@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 07:51:35 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/05/22 00:48:51 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/05/22 09:30:26 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "./Libft/printf.h"
 # include "./minilibx-linux/mlx.h"
 
-# define WIN_WIDTH	30
+# define WIN_WIDTH	640
 # define WIN_HEIGHT	480
 # define MAP_WIDTH	24
 # define MAP_HEIGHT	24
@@ -42,20 +42,20 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
+	double		ray_pos;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
 }				t_ray;
 
 typedef struct s_game

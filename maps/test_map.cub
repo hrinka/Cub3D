@@ -1,16 +1,10 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+NO textures/north.png
+SO textures/south.png
+WE textures/east.png
+EA textures/west.png
 
-F 220,100,0 //床の色
-C 225,30,0 //天井の色
-
-1111111111111
-10010000000C1
-1000011111001
-1P0011E000001
-1111111111111
+C 255,2,255
+F 225,30,10
 
 		1111111111111111111111111
 		1000000000110000000000001

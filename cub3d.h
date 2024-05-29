@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/27 21:45:02 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/05/29 19:39:51 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stddef.h>
 
 # define WIDTH_WIN 1600
 # define HEIGHT_WIN 900
@@ -57,7 +58,7 @@ typedef struct s_player
 	float			angle;
 }					t_player;
 
-typedef struct s_graphics
+typedef struct s_map
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
@@ -66,23 +67,19 @@ typedef struct s_graphics
 	int				height_map;
 	int				size_map;
 	int				size_shape;
-}					t_graphics;
-
-typedef struct s_map
-{
-	char			**file_content;
 	char			**map;
 	char			**tmp;
-	t_paths			paths;
-	t_textures		textures;
 }					t_map;
 
 typedef struct s_cub3d
 {
-	t_graphics		graphics;
 	t_player		player;
 	t_render		render;
 	t_map			map;
+	t_textures		textures;
+	t_paths			paths;
+	char			**file_content;
+	mlx_t			*mlx;
 }					t_cub3d;
 
 typedef struct s_render
@@ -213,10 +210,10 @@ int					store_map(t_cub3d *data, int index);
 void				valid_texture_line(char *str, char *needle);
 int					check_which_texture(t_cub3d *data, int i, char *direction);
 int					check_path_rgb(t_cub3d *data);
-void				check_map(t_cub3d *data);
+void				check_map(t_map *data);
 void				init_game(char *path_file, t_cub3d *data);
 
-char				*r_rgb_str(char *line);
+char				*skip_to_rgb_values(char *line);
 long				rgb_to_hex(char *line);
 uint32_t			get_texel(mlx_image_t *img, int x, int y);
 
@@ -224,7 +221,7 @@ void				check_comma(char *line);
 int					beflastline(char **map, int y);
 void				duplicate_player(t_cub3d *data);
 void				get_player_pos(t_cub3d *data);
-void				check_dimensions(t_cub3d *data);
+void				check_dimensions(t_map *data);
 void				check_valid_path(t_cub3d *data, int y, int x);
 
 #endif

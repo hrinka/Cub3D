@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:54:04 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/27 22:20:14 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/05/29 11:30:01 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	is_map_line(char *line)
 	return (0);
 }
 
-// returns 1 if line isn't empty
 int	empty_line(char *line)
 {
 	int	i;
@@ -40,7 +39,7 @@ int	empty_line(char *line)
 	return (0);
 }
 
-void	check_map(t_cub3d *data)
+void	check_map(t_map *data)
 {
 	int	i;
 
@@ -56,7 +55,7 @@ void	check_map(t_cub3d *data)
 	}
 }
 
-void	check_dimensions(t_cub3d *data)
+void	check_dimensions(t_map *data)
 {
 	int	i;
 	int	j;

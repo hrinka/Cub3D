@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:45:49 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/27 20:38:32 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/05/29 12:25:49 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	check_extension(char *file, char *extension)
 	char	*file_extension;
 
 	file_extension = ft_strchr(file, '.');
-	if (file_extension != NULL && 
-		ft_strncmp(file_extension, "./maps", 6) == 0)
+	if (file_extension != NULL && ft_strncmp(file_extension, "./maps", 6) == 0)
 	{
 		file_extension++;
 		file_extension = ft_strchr(file_extension, '.');
@@ -34,7 +33,7 @@ int	check_extension(char *file, char *extension)
 	return (1);
 }
 
-void	parse_file_content(t_cub3d *data)
+void	parse_file_content(t_map *data)
 {
 	int	v;
 	int	i;

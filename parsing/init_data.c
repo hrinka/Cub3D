@@ -6,13 +6,13 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/27 20:38:36 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/05/29 12:26:56 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	check_walls(t_cub3d *data)
+void	check_walls(t_map *data)
 {
 	int	i;
 	int	j;
@@ -21,32 +21,33 @@ void	check_walls(t_cub3d *data)
 	while (data->map[i])
 	{
 		j = 0;
-		while (data->map[i][j] && data->map[i][j] != '\n')
+		while (data->map[i][j])
 		{
-			if (i == 0 || data->map[i + 1] == NULL)
+			if (data->map[i][j] == '\n')
+				break; // 改行文字に達したらその行の処理を終了
+			// 最初の行と最後の行のすべての文字、または各行の最初と最後の文字が壁であるかチェック
+			if (i == 0 || data->map[i + 1] == NULL || j == 0 || data->map[i][j + 1] == '\0')
 			{
-				if (data->map[i][j] != '1' && data->map[i][j] != ' ')
-					exit(1);
-			}
-			else if (j == 0 || data->map[i][j + 1] == '\n')
-			{
-				if (data->map[i][j] != '1' && data->map[i][j] != ' ')
-					exit(1);
+				if (data->map[i][j] != '1' && data->map[i][j] != ' ' && data->map[i][j] != '\t')
+				{
+					fprintf(stderr, "Error: Map boundaries must be walls or empty spaces.\n");
+					exit(EXIT_FAILURE);
+				}
 			}
 			j++;
 		}
-		i++;
+        i++;
 	}
 }
 
 void	init_struct(t_cub3d *game_data)
 {
-	game_data->file_content = NULL;
-	game_data->paths.no_path = NULL;
-	game_data->paths.so_path = NULL;
-	game_data->paths.we_path = NULL;
-	game_data->paths.ea_path = NULL;
-	game_data->map = NULL;
+	game_data->map.file_content = NULL;
+	game_data->map.paths.no_path = NULL;
+	game_data->map.paths.so_path = NULL;
+	game_data->map.paths.we_path = NULL;
+	game_data->map.paths.ea_path = NULL;
+	game_data->map.map = NULL;
 	game_data->textures.sky_hex = -1;
 	game_data->textures.floor_hex = -1;
 	game_data->player.direction = 0;
@@ -56,13 +57,13 @@ void	init_struct(t_cub3d *game_data)
 
 int	check_path_rgb(t_cub3d *data)
 {
-	if (data->paths.no_path == NULL)
+	if (data->map.paths.no_path == NULL)
 		return (1);
-	if (data->paths.so_path == NULL)
+	if (data->map.paths.so_path == NULL)
 		return (1);
-	if (data->paths.we_path == NULL)
+	if (data->map.paths.we_path == NULL)
 		return (1);
-	if (data->paths.ea_path == NULL)
+	if (data->map.paths.ea_path == NULL)
 		return (1);
 	if (data->textures.floor_hex == -1)
 		return (1);

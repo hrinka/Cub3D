@@ -6,13 +6,13 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:51:53 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/29 12:25:47 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 00:13:35 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	duplicate_player(t_map *data)
+void	duplicate_player(t_cub3d *data)
 {
 	int	i;
 	int	j;

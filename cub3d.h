@@ -6,10 +6,9 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/29 19:39:51 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 00:13:13 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -53,8 +52,6 @@ typedef struct s_player
 	int				i;
 	int				j;
 	char			direction;
-	float			px;
-	float			py;
 	float			angle;
 }					t_player;
 
@@ -69,18 +66,9 @@ typedef struct s_map
 	int				size_shape;
 	char			**map;
 	char			**tmp;
+	float			px;
+	float			py;
 }					t_map;
-
-typedef struct s_cub3d
-{
-	t_player		player;
-	t_render		render;
-	t_map			map;
-	t_textures		textures;
-	t_paths			paths;
-	char			**file_content;
-	mlx_t			*mlx;
-}					t_cub3d;
 
 typedef struct s_render
 {
@@ -100,58 +88,26 @@ typedef struct s_render
 	float			step_hor_y;
 	float			step_ver_x;
 	float			step_ver_y;
+	float			steps;
 	float			increamentx;
 	float			increamenty;
 	int				texture_offset_x;
 	float			texture_offset_y;
 	int				wall_start;
+	float			present_texture;
+	double			old_x;
 }					t_render;
 
-
-// typedef struct s_cub3d //<-構造体を分割して整理する
-// {
-// 	char			**file_content;
-// 	char			**map;
-// 	char			**tmp;
-// 	t_paths			paths;
-// 	t_textures		textures;
-// 	t_player		player;
-// 	mlx_t			*mlx;
-// 	mlx_image_t		*img;
-// 	mlx_image_t		*img_map;
-// 	int				width_map;
-// 	int				height_map;
-// 	int				size_map;
-// 	int				size_shape;
-// 	float			px;
-// 	float			py;
-// 	float			angle;
-// 	float			number_rays;
-// 	mlx_texture_t	*load_img;
-// 	double			old_x;
-// 	float			hores_inters_x;
-// 	float			hores_inters_y;
-// 	float			next_hor_inters_x;
-// 	float			next_hor_inters_y;
-// 	float			step_hor_x;
-// 	float			step_hor_y;
-// 	float			distance_horz;
-// 	float			distance_vert;
-// 	float			dist;
-// 	float			vertcl_inters_x;
-// 	float			vertcl_inters_y;
-// 	float			next_ver_inters_x;
-// 	float			next_ver_inters_y;
-// 	float			step_ver_x;
-// 	float			step_ver_y;
-// 	float			steps;
-// 	float			increamentx;
-// 	float			increamenty;
-// 	float			present_texture;
-// 	int				texture_offset_x;
-// 	float			texture_offset_y;
-// 	int				wall_start;
-// }					t_cub3d;
+typedef struct s_cub3d
+{
+	t_player		player;
+	t_render		render;
+	t_map			map;
+	t_textures		textures;
+	t_paths			paths;
+	char			**file_content;
+	mlx_t			*mlx;
+}					t_cub3d;
 
 float				to_rad(float degree);
 void				draw_line_dda(t_cub3d *data, float x2, float y2,
@@ -196,7 +152,6 @@ void				free_2dchar_array(char **arr);
 void				free_cub_data(t_cub3d *data);
 void				close_callback(void *param);
 
-// void    init_struct(t_game_data *game_data);
 void				init_textures(mlx_t *mlx, t_cub3d *data);
 int					check_extension(char *file, char *extension);
 void				get_file_content(char *path, t_cub3d *data);
@@ -208,9 +163,9 @@ void				parse_file_content(t_cub3d *data);
 int					store_map(t_cub3d *data, int index);
 
 void				valid_texture_line(char *str, char *needle);
-int					check_which_texture(t_cub3d *data, int i, char *direction);
+int					check_which_texture(t_cub3d *data, int i, const char *direction);
 int					check_path_rgb(t_cub3d *data);
-void				check_map(t_map *data);
+void				check_map(t_cub3d *data);
 void				init_game(char *path_file, t_cub3d *data);
 
 char				*skip_to_rgb_values(char *line);

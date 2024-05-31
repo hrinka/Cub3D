@@ -6,7 +6,7 @@
 #    By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 08:44:19 by hrinka            #+#    #+#              #
-#    Updated: 2024/05/29 08:44:23 by hrinka           ###   ########.fr        #
+#    Updated: 2024/05/31 23:19:50 by hrinka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FRAMEWORKS = ~/42Tokyo/cub3d-test/MLX/libmlx42.a -Iinclude -lglfw -L"/Users/$(US
 
 FLAGS = -Wall -Wextra -Werror
 
-PARSE_SRC =  parsing/check_utils.c parsing/texel.c parsing/free_ressources.c parsing/rgb_conversion.c parsing/get_file_data.c parsing/init_data.c parsing/store_data.c parsing/check_map_utils.c parsing/check_map_utils2.c parsing/file_parser.c parsing/check_player.c parsing/store_data_utils.c
+PARSE_SRC =  parsing/check_utils.c parsing/texel.c parsing/free_resources.c parsing/rgb_conversion.c parsing/get_file_data.c parsing/init_data.c parsing/store_data.c parsing/check_map_utils.c parsing/check_map_utils2.c parsing/file_parser.c parsing/check_player.c parsing/store_data_utils.c
 
 GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 

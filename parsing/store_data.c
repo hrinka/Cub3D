@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/29 19:39:46 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 00:10:07 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	store_textures_path(t_cub3d *data, int length)
 		printf("Error: Texture path validation failed.\n");
 		exit(1);
 	}
+	return (0);
 }
 
 void	init_textures(mlx_t *mlx, t_cub3d *data)
@@ -110,15 +111,15 @@ int	store_map(t_cub3d *data, int index)
 		index++;
 	map_length_val = map_length(data, index);
 	data->map.map = malloc((map_length_val + 1) * sizeof(char *));
-	data->map.tmp_map = malloc((map_length_val + 1) * sizeof(char *));
+	data->map.tmp = malloc((map_length_val + 1) * sizeof(char *));
 	while (data->file_content[index] != NULL)
 	{
 		data->map.map[i] = ft_strdup(data->file_content[index]);
-		data->map.tmp_map[i] = ft_strdup(data->file_content[index]);
+		data->map.tmp[i] = ft_strdup(data->file_content[index]);
 		i++;
 		index++;
 	}
 	data->map.map[i] = NULL;
-	data->map.tmp_map[i] = NULL;
+	data->map.tmp[i] = NULL;
 	return (0);
 }

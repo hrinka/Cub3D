@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:42:37 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/29 12:12:46 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/05/31 20:01:45 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ void	get_file_content(char *path, t_cub3d *data)
 	}
 	i = 0;
 	number_of_lines = lines_in_file(path);
-	data->map.file_content = ft_calloc(number_of_lines + 1, sizeof(char *));
+	data->file_content = ft_calloc(number_of_lines + 1, sizeof(char *));
 	while (1)
 	{
-		data->map.file_content[i] = get_next_line(fd);
-		if (data->map.file_content[i] == NULL)
+		data->file_content[i] = get_next_line(fd);
+		if (data->file_content[i] == NULL)
 			break ;
 		i++;
 	}
-	data->map.file_content[i] = NULL;
+	data->file_content[i] = NULL;
 }

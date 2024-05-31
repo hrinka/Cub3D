@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:45:49 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/29 12:25:49 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 00:12:22 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_extension(char *file, char *extension)
 	return (1);
 }
 
-void	parse_file_content(t_map *data)
+void	parse_file_content(t_cub3d *data)
 {
 	int	v;
 	int	i;

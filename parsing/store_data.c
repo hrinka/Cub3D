@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 00:10:07 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 21:11:56 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	store_textures_path(t_cub3d *data, int length)
 	if (check_path_rgb(data) == 0)
 	{
 		printf("Error: Texture path validation failed.\n");
-		exit(1);
+		return (0);
 	}
-	return (0);
+	exit(1);
 }
 
 void	init_textures(mlx_t *mlx, t_cub3d *data)

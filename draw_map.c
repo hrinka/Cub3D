@@ -6,51 +6,51 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 19:42:21 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/31 20:20:14 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 19:31:14 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "cub3d.h"
 
-void	draw_rectangle(int x, int y, t_cub3d *data, uint32_t color)
+void	draw_rectangle(int x, int y, t_map *data, uint32_t color)
 {
 	int	i;
 	int	j;
 
 	i = x;
 	j = y;
-	while (y < data->map.size_shape + j)
+	while (y < data->size_shape + j)
 	{
 		x = i;
-		while (x < data->map.size_shape + i)
+		while (x < data->size_shape + i)
 		{
-			mlx_put_pixel(data->map.img_map, x, y, color);
+			mlx_put_pixel(data->img_map, x, y, color);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	draw_map_2(t_cub3d *data, int mode, int i, int j)
+void	draw_map_2(t_map *data, int mode, int i, int j)
 {
-	if (data->map.map[j][i] == '1')
-		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
+	if (data->map[j][i] == '1')
+		draw_rectangle(i * data->size_shape, j * data->size_shape, data,
 			0xFFFFFFFF);
-	if (data->map.map[j][i] == '0' || (mode == 0 && data->map.map[j][i] == 'P'))
-		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
+	if (data->map[j][i] == '0' || (mode == 0 && data->map[j][i] == 'P'))
+		draw_rectangle(i * data->size_shape, j * data->size_shape, data,
 			0x000000FF);
-	if (data->map.map[j][i] == ' ')
-		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
+	if (data->map[j][i] == ' ')
+		draw_rectangle(i * data->size_shape, j * data->size_shape, data,
 			0xFF000033);
-	if (data->map.map[j][i] == 'P' && mode)
+	if (data->map[j][i] == 'P' && mode)
 	{
-		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
+		draw_rectangle(i * data->size_shape, j * data->size_shape, data,
 			0x000000FF);
-		mlx_put_pixel(data->map.img, data->map.px = (i * data->map.size_shape)
-			+ (data->map.size_shape / 2),
-			data->map.py = (j * data->map.size_shape)
-			+ (data->map.size_shape / 2), 0xFF0000FF);
+		mlx_put_pixel(data->img, data->px = (i * data->size_shape)
+			+ (data->size_shape / 2),
+			data->py = (j * data->size_shape)
+			+ (data->size_shape / 2), 0xFF0000FF);
 	}
 }
 
@@ -66,7 +66,7 @@ void	draw_map(t_cub3d *data, int mode)
 		i = 0;
 		while (i < data->map.width_map)
 		{
-			draw_map_2(data, mode, i, j);
+			draw_map_2(&(data->map), mode, i, j);
 			i++;
 		}
 		j++;

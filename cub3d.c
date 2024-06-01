@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/31 22:57:14 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 21:50:58 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,48 +32,69 @@ void	init_data(t_cub3d *data)
 		data->map.size_shape = data->map.size_map / data->map.height_map;
 	else
 		data->map.size_shape = data->map.size_map / data->map.width_map;
-	data->render.old_x = WIDTH_WIN;
+	data->map.old_x = WIDTH_WIN;
 }
 
-void	draw_map_2(t_cub3d *data, int mode, int i, int j)
+// void	draw_map_2(t_cub3d *data, int mode, int i, int j)
+// {
+// 	if (data->map.map[j][i] == '1')
+// 		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
+// 			0xFFFFFFFF);
+// 	if (data->map.map[j][i] == '0' || (mode == 0 && data->map.map[j][i] == 'P'))
+// 		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
+// 			0x000000FF);
+// 	if (data->map.map[j][i] == ' ')
+// 		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
+// 			0xFF000033);
+// 	if (data->map.map[j][i] == 'P' && mode)
+// 	{
+// 		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
+// 			0x000000FF);
+// 		mlx_put_pixel(data->map.img, data->map.px = (i * data->map.size_shape)
+// 			+ (data->map.size_shape / 2),
+// 			data->map.py = (j * data->map.size_shape)
+// 			+ (data->map.size_shape / 2), 0xFF0000FF);
+// 	}
+// }
+
+// void	draw_map(t_cub3d *data, int mode)//マップ全体をループで描画
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	while (j < data->map.height_map)
+// 	{
+// 		i = 0;
+// 		while (i < data->map.width_map)
+// 		{
+// 			draw_map_2(data, mode, i, j);//マップの各セルを描画。壁、空間、プレイヤー位置など
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// }
+void	calcul_distance(t_cub3d *data)
 {
-	if (data->map.map[j][i] == '1')
-		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
-			0xFFFFFFFF);
-	if (data->map.map[j][i] == '0' || (mode == 0 && data->map.map[j][i] == 'P'))
-		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
-			0x000000FF);
-	if (data->map.map[j][i] == ' ')
-		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
-			0xFF000033);
-	if (data->map.map[j][i] == 'P' && mode)
-	{
-		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
-			0x000000FF);
-		mlx_put_pixel(data->map.img, data->map.px = (i * data->map.size_shape)
-			+ (data->map.size_shape / 2),
-			data->map.py = (j * data->map.size_shape)
-			+ (data->map.size_shape / 2), 0xFF0000FF);
-	}
+	data->render.distance_horz = distance_between_points(data->map.px, data->map.py,
+			data->render.hores_inters_x, data->render.hores_inters_y);
+	data->render.distance_vert = distance_between_points(data->map.px, data->map.py,
+			data->render.vertcl_inters_x, data->render.vertcl_inters_y);
 }
 
-void	draw_map(t_cub3d *data, int mode)//マップ全体をループで描画
+void	check_ray_draw(t_cub3d *data, float ray_angle, int id_ray)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (j < data->map.height_map)
-	{
-		i = 0;
-		while (i < data->map.width_map)
-		{
-			draw_map_2(data, mode, i, j);//マップの各セルを描画。壁、空間、プレイヤー位置など
-			i++;
-		}
-		j++;
-	}
+	if (ray_angle > 0 && ray_angle < 180)
+		check_ray_draw_down(data, ray_angle);
+	else
+		check_ray_draw_up(data, ray_angle);
+	if (ray_angle < 90 || ray_angle > 270)
+		check_ray_draw_right(data, ray_angle);
+	else
+		check_ray_draw_left(data, ray_angle);
+	calcul_distance(data);
+	call_raycasting(data, ray_angle, id_ray);
 }
 
 void	draw(void *param)

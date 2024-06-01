@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:10:02 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/29 19:23:07 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 17:41:42 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*remove_newline(char *str)
 	return (trimmed);
 }
 
-int	check_which_texture(t_cub3d *data, int i, char *direction)
+int	check_which_texture(t_cub3d *data, int i, const char *direction)
 {
 	if (ft_strnstr(data->file_content[i],
 			direction, ft_strlen(data->file_content[i])))

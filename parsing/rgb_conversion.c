@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:24:22 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/31 23:32:33 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 20:59:59 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	validate_rgb_values(char **str)
 	int	i;
 	int	j;
 
-	if (!str)
-		return ;
 	i = 0;
 	while (str[i])
 	{
@@ -45,9 +43,9 @@ void	validate_rgb_values(char **str)
 		j = 0;
 		while (str[i][j])
 		{
-			if (!ft_isdigit(str[i][j]) && str[i][j] != ',')
+			if (!ft_isdigit(str[i][j]) && str[i][j] != '\n')
 			{
-				printf("Please fix the RGB values, invalid character found.\n");
+				printf("Please fix the RGB values, invalid character found: %s\n", &str[i][j]);
 				exit(1);
 			}
 			j++;
@@ -66,33 +64,34 @@ int	nb_rgb_elem(char **line)
 	return (i);
 }
 
-long return_hex_rgb(char *line) {
-    char **values;
-    long hex_val = -1; // Initialize hex_val to indicate failure by default.
-    int r, g, b;
+long	return_hex_rgb(char *line)
+{
+	char	**values;
+	long	hex_val;
+	int		r;
+	int		g;
+	int		b;
 
-    values = ft_split(line, ',');
-    if (!values || nb_rgb_elem(values) != 3) {
-        printf("Invalid RGB format.\n");
-        free_2dchar_array(values);
-        return hex_val; // Return error indicator.
-    }
-
-    validate_rgb_values(values); // Assume this function sets up proper error handling or exceptions.
-    r = ft_atoi(values[0]);
-    g = ft_atoi(values[1]);
-    b = ft_atoi(values[2]);
-    
-    if (r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255) {
-        hex_val = ((r << 24) | (g << 16) | (b << 8) | 0xFF); // Include alpha value as 255 (fully opaque)
-    } else {
-        printf("RGB values must be within the range 0-255.\n");
-    }
-
-    free_2dchar_array(values); // Ensure memory is freed in all paths
-    return hex_val; // Return the computed value or the error indicator
+	values = ft_split(line, ',');
+	if (nb_rgb_elem(values) > 3)
+		exit(1);
+	validate_rgb_values(values);
+	if (values && values[0] && values[1] && values[2])
+	{
+		r = ft_atoi(values[0]);
+		g = ft_atoi(values[1]);
+		b = ft_atoi(values[2]);
+		free_2dchar_array(values);
+		if ((r >= 0 && r <= 255) && (g >= 0 && g <= 255) && (b >= 0
+				&& b <= 255))
+		{
+			hex_val = ((long)r << 24) | ((long)g << 16) | (long)b << 8 | (1
+					* 255);
+			return (hex_val);
+		}
+	}
+	return (-1);
 }
-
 
 long	rgb_to_hex(char *line)
 {

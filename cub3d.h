@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 00:13:13 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 21:51:41 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_map
 	char			**tmp;
 	float			px;
 	float			py;
+	double			old_x;
 }					t_map;
 
 typedef struct s_render
@@ -95,7 +96,6 @@ typedef struct s_render
 	float			texture_offset_y;
 	int				wall_start;
 	float			present_texture;
-	double			old_x;
 }					t_render;
 
 typedef struct s_cub3d
@@ -162,10 +162,11 @@ int					check_if_map_line(char *line);
 void				parse_file_content(t_cub3d *data);
 int					store_map(t_cub3d *data, int index);
 
-void				valid_texture_line(char *str, char *needle);
-int					check_which_texture(t_cub3d *data, int i, const char *direction);
+void				valid_texture_line(char *str, const char *needle);
+int					check_which_texture(t_cub3d *data, int i,
+						const char *direction);
 int					check_path_rgb(t_cub3d *data);
-void				check_map(t_cub3d *data);
+void				check_map(t_map *data);
 void				init_game(char *path_file, t_cub3d *data);
 
 char				*skip_to_rgb_values(char *line);

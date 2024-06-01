@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:00:40 by hrinka            #+#    #+#             */
-/*   Updated: 2024/05/29 19:08:05 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/01 18:02:04 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	check_valid_path(t_cub3d *game, int y, int x)
 	}
 }
 
-void	valid_texture_line(char *str, char *needle)
+void	valid_texture_line(char *str, const char *needle)
 {
 	int		i;
 

@@ -136,5 +136,6 @@ void	check_ray_draw_left(t_cub3d *data, float ray_angle)
 	{
 		data->render.vertcl_inters_y += data->render.step_ver_y;
 		data->render.vertcl_inters_x -= data->render.step_ver_x;
+
 	}
 }

@@ -18,13 +18,11 @@ void	ray_casting(t_cub3d *data, float ray_angle,
 	double	height_wall;
 	int		xstart;
 	int		ystart;
-	// int		xend;
 	int		yend;
 
 	data->render.dist = data->render.dist * cos(to_rad(ray_angle) - to_rad(data->player.angle));
 	height_wall = ((data->map.size_shape) * HEIGHT_WIN) / data->render.dist;
 	xstart = id_ray;
-	// xend = id_ray;
 	ystart = (HEIGHT_WIN / 2) - (height_wall / 2);
 	yend = (HEIGHT_WIN / 2) + (height_wall / 2);
 	if (yend > HEIGHT_WIN)
@@ -91,19 +89,14 @@ void	check_ray_draw_up(t_cub3d *data, float ray_angle)
 
 void check_ray_draw_right(t_cub3d *data, float ray_angle)
 {
-    // Calculate initial intersection points
     data->render.vertcl_inters_x = floor(data->map.px / data->map.size_shape + 1) * data->map.size_shape;
     data->render.vertcl_inters_y = data->map.py - (data->map.px - data->render.vertcl_inters_x) * tan(to_rad(ray_angle));
 
-    // Calculate next intersection points
     data->render.next_ver_inters_x = data->render.vertcl_inters_x + data->map.size_shape;
     data->render.next_ver_inters_y = data->render.vertcl_inters_y - ((data->render.vertcl_inters_x - data->render.next_ver_inters_x) * tan(to_rad(ray_angle)));
 
-    // Calculate vertical steps
-    data->render.step_ver_x = data->map.size_shape;
     data->render.step_ver_y = data->render.next_ver_inters_y - data->render.vertcl_inters_y;
 
-    // Iterate through map and check conditions
     int map_x, map_y;
     while (true)
     {
@@ -116,7 +109,6 @@ void check_ray_draw_right(t_cub3d *data, float ray_angle)
             break;
         }
 
-        // Update intersection points
         data->render.vertcl_inters_y += data->render.step_ver_y;
         data->render.vertcl_inters_x += data->render.step_ver_x;
     }

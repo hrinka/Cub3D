@@ -71,7 +71,6 @@ void	init_textures(mlx_t *mlx, t_cub3d *data)
 	images[1] = &data->textures.so_texture;
 	images[2] = &data->textures.ea_texture;
 	images[3] = &data->textures.we_texture;
-
 	i = 0;
 	while (i < 4)
 	{

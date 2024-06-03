@@ -23,7 +23,7 @@ void	init_data(t_cub3d *data)
 		data->player.angle = 180;
 	else
 		data->player.angle = 0;
-	data->render.number_rays = WIDTH_WIN;//光線の数をウィンドウの幅に設定
+	data->render.number_rays = WIDTH_WIN;//光線の数
 	if (WIDTH_WIN / 9 > HEIGHT_WIN / 9)//ゲームウィンドウ内でのマップの全体的なサイズを決定
 		data->map.size_map = WIDTH_WIN / 9;
 	else
@@ -35,46 +35,6 @@ void	init_data(t_cub3d *data)
 	data->map.old_x = WIDTH_WIN;
 }
 
-// void	draw_map_2(t_cub3d *data, int mode, int i, int j)
-// {
-// 	if (data->map.map[j][i] == '1')
-// 		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
-// 			0xFFFFFFFF);
-// 	if (data->map.map[j][i] == '0' || (mode == 0 && data->map.map[j][i] == 'P'))
-// 		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
-// 			0x000000FF);
-// 	if (data->map.map[j][i] == ' ')
-// 		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
-// 			0xFF000033);
-// 	if (data->map.map[j][i] == 'P' && mode)
-// 	{
-// 		draw_rectangle(i * data->map.size_shape, j * data->map.size_shape, data,
-// 			0x000000FF);
-// 		mlx_put_pixel(data->map.img, data->map.px = (i * data->map.size_shape)
-// 			+ (data->map.size_shape / 2),
-// 			data->map.py = (j * data->map.size_shape)
-// 			+ (data->map.size_shape / 2), 0xFF0000FF);
-// 	}
-// }
-
-// void	draw_map(t_cub3d *data, int mode)//マップ全体をループで描画
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (j < data->map.height_map)
-// 	{
-// 		i = 0;
-// 		while (i < data->map.width_map)
-// 		{
-// 			draw_map_2(data, mode, i, j);//マップの各セルを描画。壁、空間、プレイヤー位置など
-// 			i++;
-// 		}
-// 		j++;
-// 	}
-// }
 void	calcul_distance(t_cub3d *data)
 {
 	data->render.distance_horz = distance_between_points(data->map.px, data->map.py,

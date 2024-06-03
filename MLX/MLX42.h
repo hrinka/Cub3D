@@ -53,8 +53,8 @@ extern "C" {
 typedef enum action
 {
 	MLX_RELEASE = 0,
-	MLX_PRESS	= 1,
-	MLX_REPEAT	= 2,
+	MLX_PRESS = 1,
+	MLX_REPEAT = 2,
 }	action_t;
 
 /**

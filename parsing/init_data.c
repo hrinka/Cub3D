@@ -24,8 +24,7 @@ void	check_walls(t_map *data)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == '\n')
-				break; // 改行文字に達したらその行の処理を終了
-			// 最初の行と最後の行のすべての文字、または各行の最初と最後の文字が壁であるかチェック
+				break;
 			if (i == 0 || data->map[i + 1] == NULL || j == 0 || data->map[i][j + 1] == '\0')
 			{
 				if (data->map[i][j] != '1' && data->map[i][j] != ' ' && data->map[i][j] != '\t')
@@ -36,7 +35,7 @@ void	check_walls(t_map *data)
 			}
 			j++;
 		}
-        i++;
+		i++;
 	}
 }
 

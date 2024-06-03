@@ -14,7 +14,7 @@ NAME = cub3D
 
 CC = cc
 
-FRAMEWORKS = ~/42Tokyo/cub3d-test/MLX/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
+FRAMEWORKS = ~/42Tokyo/cub3D/MLX/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
 
 FLAGS = -Wall -Wextra -Werror
 

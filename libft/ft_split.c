@@ -47,7 +47,6 @@ void	*ft_memcpy(void	*dst, const void *src, size_t	n)
 	return (dst);
 }
 
-
 static char	*ft_strndup(const char *s, size_t n)
 {
 	char	*str;

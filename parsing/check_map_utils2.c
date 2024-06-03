@@ -53,9 +53,9 @@ int	valid_cell_path(t_cub3d *game, int y, int x)
 	|| game->map.tmp[y][x] == pos) && y == 0)
 		|| ((game->map.tmp[y][x] == '0' || game->map.tmp[y][x] ==
 			pos) && game->map.tmp[y + 1] == NULL)
-		|| ((game->map.tmp[y][x] == '0' || game->map.tmp[y][x] 
+		|| ((game->map.tmp[y][x] == '0' || game->map.tmp[y][x]
 			== pos) && x == 0)
-		|| ((game->map.tmp[y][x] == '0' || game->map.tmp[y][x] 
+		|| ((game->map.tmp[y][x] == '0' || game->map.tmp[y][x]
 			== pos) && (game->map.tmp[y][x + 1] == '\n'
 		|| game->map.tmp[y][x + 1] == '\0')))
 	{

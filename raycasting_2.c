@@ -21,7 +21,8 @@ void	call_raycasting(t_cub3d *data, float ray_angle, int id_ray)
 			ray_casting(data, ray_angle, id_ray, data->textures.no_texture);
 		else
 			ray_casting(data, ray_angle, id_ray, data->textures.so_texture);
-		data->render.present_texture = (data->render.hores_inters_x / data->map.size_shape)
+		data->render.present_texture
+			= (data->render.hores_inters_x / data->map.size_shape)
 			- ((int)(data->render.hores_inters_x / data->map.size_shape));
 	}
 	else
@@ -31,7 +32,8 @@ void	call_raycasting(t_cub3d *data, float ray_angle, int id_ray)
 			ray_casting(data, ray_angle, id_ray, data->textures.ea_texture);
 		else
 			ray_casting(data, ray_angle, id_ray, data->textures.we_texture);
-		data->render.present_texture = (data->render.vertcl_inters_y / data->map.size_shape)
+		data->render.present_texture
+			= (data->render.vertcl_inters_y / data->map.size_shape)
 			- ((int)(data->render.vertcl_inters_y / data->map.size_shape));
 	}
 }

@@ -45,7 +45,7 @@ void	validate_rgb_values(char **str)
 		{
 			if (!ft_isdigit(str[i][j]) && str[i][j] != '\n')
 			{
-				printf("Please fix the RGB values, invalid character found: %s\n", &str[i][j]);
+				printf("Please fix RGB values, invalid: %s\n", &str[i][j]);
 				exit(1);
 			}
 			j++;

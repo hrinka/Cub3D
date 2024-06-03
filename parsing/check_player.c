@@ -63,4 +63,3 @@ void	get_player_pos(t_cub3d *game)
 		i++;
 	}
 }
-

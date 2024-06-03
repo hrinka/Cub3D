@@ -3,61 +3,47 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+         #
+#    By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/09 09:52:44 by hirosuzu          #+#    #+#              #
-#    Updated: 2024/05/15 09:01:32 by hirosuzu         ###   ########.fr        #
+#    Created: 2024/05/29 08:44:19 by hrinka            #+#    #+#              #
+#    Updated: 2024/06/01 22:09:05 by hrinka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	cub3d
-SRCS	=	main.c raycasting.c player.c
+NAME = cub3D
 
-OBJS = $(SRCS:.c=.o)
-LIBFTDIR = Libft/
-LIBFTNAME = libft.a
-# PRINTFDIR = printf/
-# PRINTFNAME = libftprintf.a
-LIBFT = $(LIBFTDIR)$(LIBFTNAME)
-# PRINTF = $(PRINTFDIR)$(PRINTFNAME)
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -O3
-# CFLAGS = -g -fsanitize=address
-RM = rm -rf
+
+FRAMEWORKS = ~/42Tokyo/cub3D/MLX/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
+
+FLAGS = -Wall -Wextra -Werror
+
+PARSE_SRC =  parsing/check_utils.c parsing/texel.c parsing/free_resources.c parsing/rgb_conversion.c parsing/get_file_data.c parsing/init_data.c parsing/store_data.c parsing/check_map_utils.c parsing/check_map_utils2.c parsing/file_parser.c parsing/check_player.c parsing/store_data_utils.c
+
+GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
+
+LIBFT_SRC = libft/ft_isdigit.c libft/ft_strlen.c libft/ft_strncmp.c libft/ft_strchr.c libft/ft_calloc.c libft/ft_bzero.c libft/ft_strnstr.c libft/ft_atoi.c libft/ft_strdup.c libft/ft_split.c
+
+ABD_SRC = move_mouse.c move_player.c raycasting_2.c raycasting.c tools.c draw_map.c draw_player.c cub3d.c
+
+OBJ = $(PARSE_SRC:.c=.o) $(GNL_SRC:cpp=.o) $(LIBFT_SRC:.c=.o) $(ABD_SRC:.c=.o)
+
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFTNAME)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTNAME) -Imlx -lmlx -framework OpenGL -framework AppKit
+bonus: all
 
-$(LIBFTNAME): 
-	make -C $(LIBFTDIR) 
-	cp $(LIBFT) ./
+$(NAME) : $(OBJ) $(LIBFT)
+	$(CC) $(FLAGS) $^ $(FRAMEWORKS) -o $@
 
-# $(PRINTFNAME): 
-# 	make -C $(PRINTFDIR)
-# 	cp $(PRINTF) ./
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(FLAGS)  -Imlx -c $< -o $@
 
-clean:
-	make clean -C $(LIBFTDIR)
-	# make clean -C $(PRINTFDIR)
-	$(RM) $(OBJS)
+clean :
+	@find . -name "*.o" -type f -delete
 
-fclean: clean
-	$(RM) $(LIBFT)
-	$(RM) $(LIBFTNAME)
-	# $(RM) $(PRINTF)
-	# $(RM) $(PRINTFNAME)
-	$(RM) $(NAME)
+fclean : clean
+	@rm -rf $(NAME)
 
-re: fclean all
-
-# main:
-# 	cc -g -fsanitize=address -Imlx -lmlx -framework OpenGL -framework AppKit Libft/*.c printf/*.c *.c
-
-.PHONY: all clean fclean re
-
-
+re : fclean all

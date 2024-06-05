@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/05 01:15:18 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:42:19 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	init_player(t_player *player, t_cub3d *data)
 
 void	init_ray(t_player *player, t_ray *ray, int x)
 {
-	memset(ray, 0, sizeof(t_ray));
+	ft_memset(ray, 0, sizeof(t_ray));
 	ray->ray_pos = 2 * x / (double)WIDTH_WIN - 1;
 	ray->ray_dir_x = player->dir_x + player->plane_x * ray->ray_pos;
 	ray->ray_dir_y = player->dir_y + player->plane_y * ray->ray_pos;
@@ -164,7 +164,7 @@ void	single_ray(t_cub3d *data, int x)
 	// print_player(player); // debug
 	// print_ray(ray, player, x); // debug
 	ray_vec(&data->player, &ray);
-	dda(&ray, &data->map);
+	dda(&ray, data->map.world_map);
 	ray_dist(&data->player, &ray);
 	render_wall(data, &ray, x);
 }

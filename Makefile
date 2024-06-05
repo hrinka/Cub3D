@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+         #
+#    By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 08:44:19 by hrinka            #+#    #+#              #
-#    Updated: 2024/06/05 00:59:49 by hirosuzu         ###   ########.fr        #
+#    Updated: 2024/06/05 17:56:02 by hrinka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ PARSE_SRC =  parsing/check_utils.c parsing/texel.c parsing/free_resources.c pars
 
 GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
-LIBFT_SRC = libft/ft_isdigit.c libft/ft_strlen.c libft/ft_strncmp.c libft/ft_strchr.c libft/ft_calloc.c libft/ft_bzero.c libft/ft_strnstr.c libft/ft_atoi.c libft/ft_strdup.c libft/ft_split.c
+LIBFT_SRC = libft/ft_isdigit.c libft/ft_strlen.c libft/ft_strncmp.c libft/ft_strchr.c libft/ft_calloc.c libft/ft_bzero.c libft/ft_strnstr.c libft/ft_atoi.c libft/ft_strdup.c libft/ft_split.c libft/ft_memset.c libft/ft_isspace.c \
+				libft/ft_memcpy.c libft/ft_substr.c libft/ft_xmalloc.c libft/ft_memmove.c libft/ft_printf.c libft/ft_flagchar.c libft/ft_flagpoint.c libft/ft_flagstr.c libft/ft_flagint.c libft/ft_flagu.c libft/ft_xbase.c libft/pf_putchar_fd.c libft/pf_putstr_fd.c libft/pf_strlen.c
 
 ABD_SRC = move_mouse.c move_player.c raycasting_2.c raycasting.c tools.c draw_map.c draw_player.c cub3d.c my_raycasting.c
 

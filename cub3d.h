@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/05 00:52:38 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 18:03:35 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "./MLX/MLX42.h"
+# include "./libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -218,5 +219,7 @@ void				render_wall(t_cub3d *data, t_ray *ray, int x);
 void				ray_dist(t_player *player, t_ray *ray);
 void				dda(t_ray *ray, int **world_map);
 void				ray_vec(t_player *player, t_ray *ray);
+void				init_world_map(t_cub3d *data);
+
 
 #endif

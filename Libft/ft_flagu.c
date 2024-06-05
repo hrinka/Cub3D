@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_flagu.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 09:38:53 by hirosuzu          #+#    #+#             */
-/*   Updated: 2023/10/14 08:51:05 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:21:01 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"printf.h"
+#include"libft.h"
 
 void	ft_flagu(unsigned long long u, int *len)
 {

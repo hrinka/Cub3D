@@ -3,85 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 23:05:10 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 19:43:35 by hrinka           ###   ########.fr       */
+/*   Created: 2023/05/31 06:16:23 by hirosuzu          #+#    #+#             */
+/*   Updated: 2023/12/15 07:52:04 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-static char	**ret_doublep(char const *s, char c)
+static size_t	ft_split_countwords(char const *s, char c)
+{
+	size_t	count;
+
+	count = 0;
+	while (*s)
+	{
+		while (*s && c == *s)
+			s++;
+		if (*s != '\0')
+			count++;
+		while (*s && c != *s)
+			s++;
+	}
+	return (count);
+}
+
+static char	**ft_split_free(char **str, size_t i)
+{
+	while (i >= 0)
+	{
+		free(str[i]);
+		i--;
+	}
+	free(str);
+	return (NULL);
+}
+
+static char	**fill_with_split(char **str, char const *s, char c, size_t count)
 {
 	size_t	i;
-	int		splen;
+	char	**origin;
 
-	if (!s)
-		return (NULL);
-	i = 0;
-	splen = 0;
-	while (s[i])
+	origin = str;
+	while (*s)
 	{
-		while (s[i] == c)
+		i = 0;
+		while (*(s + i) != c && *(s + i) != '\0')
 			i++;
-		if (s[i] != '\0')
-			splen++;
-		while (s[i] && (s[i] != c))
-			i++;
+		if (i != 0)
+		{
+			*str = ft_substr(s, 0, i);
+			if (!*str)
+				return (ft_split_free(str, str - origin));
+			str++;
+		}
+		s += i;
+		if (!*s)
+			return (str - count);
+		s++;
 	}
-	return ((char **)ft_calloc(splen + 1, sizeof(char *)));
-}
-
-void	*ft_memcpy(void	*dst, const void *src, size_t	n)
-{
-	const unsigned char	*s;
-	unsigned char		*d;
-
-	if (dst == src)
-		return (dst);
-	s = (const unsigned char *)src;
-	d = (unsigned char *)dst;
-	while (n--)
-		*d++ = *s++;
-	return (dst);
-}
-
-static char	*ft_strndup(const char *s, size_t n)
-{
-	char	*str;
-
-	str = (char *)ft_calloc(n + 1, sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	ft_memcpy(str, s, n);
-	return (str);
+	return (str - count);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
-	size_t	sp_ind;
-	char	**sp;
+	char	**str;
+	size_t	count;
 
-	i = 0;
-	sp_ind = 0;
-	sp = ret_doublep(s, c);
-	if (sp == NULL)
+	if (s == NULL)
 		return (NULL);
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		j = i;
-		while (s[i] && s[i] != c)
-			i++;
-		if (i > j)
-		{
-			sp[sp_ind] = ft_strndup(s + j, i - j);
-			sp_ind++;
-		}
-	}
-	return (sp);
+	count = ft_split_countwords(s, c);
+	str = (char **)ft_calloc(count + 1, sizeof(char *));
+	if (str == NULL)
+		return (NULL);
+	str = fill_with_split(str, s, c, count);
+	return (str);
 }

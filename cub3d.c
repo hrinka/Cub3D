@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/05 18:53:41 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/05 22:24:00 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,11 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init(WIDTH_WIN, HEIGHT_WIN, "cub3d", false);
 	if (!data.mlx)
 		return (1);
+	printf("mlx init\n");
 	init_textures(data.mlx, &data);
+	printf("textures init\n");
 	init_data(&data);
+	printf("data init\n");
 	data.map.img_map = mlx_new_image(data.mlx, data.map.size_map, data.map.size_map);
 	data.map.img = mlx_new_image(data.mlx, WIDTH_WIN, HEIGHT_WIN);
 	if (!data.map.img || (mlx_image_to_window(data.mlx, data.map.img, 0, 0)))
@@ -148,11 +151,11 @@ int	main(int ac, char **av)
 		return (1);
 	// draw_map(&data, 1);
 	// print_map(&data);
-	mlx_loop_hook(data.mlx, my_draw, &data);
-	mlx_close_hook(data.mlx, close_callback, NULL);
-	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
-	free_cub_data(&data);
+	// mlx_loop_hook(data.mlx, my_draw, &data);
+	// mlx_close_hook(data.mlx, close_callback, NULL);
+	// mlx_loop(data.mlx);
+	// mlx_terminate(data.mlx);
+	// free_cub_data(&data);
 	return (0);
 }
 	

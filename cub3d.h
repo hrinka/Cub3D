@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 21:51:41 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/05 00:52:38 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ typedef struct s_player
 	int				j;
 	char			direction;
 	float			angle;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 }					t_player;
 
 typedef struct s_map
@@ -69,6 +75,7 @@ typedef struct s_map
 	float			px;
 	float			py;
 	double			old_x;
+	int				**world_map;
 }					t_map;
 
 typedef struct s_render
@@ -98,10 +105,29 @@ typedef struct s_render
 	float			present_texture;
 }					t_render;
 
+typedef struct s_ray
+{
+	double		ray_pos;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+}				t_ray;
+
 typedef struct s_cub3d
 {
 	t_player		player;
 	t_render		render;
+	t_ray			ray;
 	t_map			map;
 	t_textures		textures;
 	t_paths			paths;
@@ -179,5 +205,18 @@ void				duplicate_player(t_cub3d *data);
 void				get_player_pos(t_cub3d *data);
 void				check_dimensions(t_map *data);
 void				check_valid_path(t_cub3d *data, int y, int x);
+
+void				raycasting(t_cub3d *data);
+void				single_ray(t_cub3d *data, int id_ray);
+void				init_ray(t_player *player, t_ray *ray, int x);
+void				init_player(t_player *player, t_cub3d *data);
+void				print_ray(t_ray ray, t_player *player, int x);	
+void				print_player(t_player *player);
+void				draw_line(t_cub3d *data, int x, int start, int end,
+						int color);
+void				render_wall(t_cub3d *data, t_ray *ray, int x);
+void				ray_dist(t_player *player, t_ray *ray);
+void				dda(t_ray *ray, int **world_map);
+void				ray_vec(t_player *player, t_ray *ray);
 
 #endif

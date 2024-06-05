@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/05 01:15:18 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:10:38 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,13 @@ void	dda(t_ray *ray, int **world_map)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
+		printf ("ray->map_x: %d, ray->map_y: %d : ", ray->map_x, ray->map_y);
+		printf("world_map[ray->map_x][ray->map_y]: %d\n", world_map[0][1]);
 		if (world_map[ray->map_x][ray->map_y] > 0)
+		{
+			printf("hit\n");
 			ray->hit = 1;
+		}
 	}
 }
 
@@ -93,7 +98,7 @@ void	draw_line(t_cub3d *data, int x, int start, int end, int color)
 	printf("end: %d\n", end);
 	while (y < end)
 	{
-		printf("y: %d\n", y);
+		// printf("y: %d\n", y);
 		mlx_put_pixel(data->map.img, x, y, color);
 		y++;
 	}
@@ -139,8 +144,8 @@ void	init_player(t_player *player, t_cub3d *data)
 	player->pos_y = data->map.py;
 	player->dir_x = cos(player->angle) - sin(player->angle);
 	player->dir_y = sin(player->angle) + cos(player->angle);
-	player->plane_x = player->dir_y * tan(player->angle / 2);
-	player->plane_y = -player->dir_x * tan(player->angle / 2);
+	player->plane_x = 0;
+	player->plane_y = 0.66;
 }
 
 void	init_ray(t_player *player, t_ray *ray, int x)
@@ -169,11 +174,34 @@ void	single_ray(t_cub3d *data, int x)
 	render_wall(data, &ray, x);
 }
 
+void	print_world_map(t_cub3d *data, int **world_map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (j < data->map.height_map)
+	{
+		i = 0;
+		while (i < data->map.width_map)
+		{
+			printf("%d", data->map.world_map[j][i]);
+			i++;
+		}
+		printf("\n");
+		j++;
+	}
+}
+
 void	raycasting(t_cub3d *data)
 {
 	int	x;
 
 	x = 0;
+	printf("raycasting\n");
+	print_world_map(&data);
+	printf("start\n");
 	init_player(&data->player, data);
 	while (x < WIDTH_WIN)
 	{

@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/05 00:52:38 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:10:11 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,5 +218,6 @@ void				render_wall(t_cub3d *data, t_ray *ray, int x);
 void				ray_dist(t_player *player, t_ray *ray);
 void				dda(t_ray *ray, int **world_map);
 void				ray_vec(t_player *player, t_ray *ray);
+void	print_world_map(int **world_map)
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 07:37:38 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/01/23 09:27:16 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 21:53:45 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,16 @@ size_t	ft_strchar_position(const char *str, int c);
 double	ft_fabs(double i);
 int		ft_uppercase(int a, int b);
 void	*ft_xmalloc(size_t size);
+int		ft_printf(const char *print, ...);
+int		ft_flagjudge(int c, va_list args);
+void	ft_flagchar(int c, int *len);
+void	ft_flagstr(char *s, int *len);
+void	ft_flagint(int n, int *len);
+void	ft_flagpoint(unsigned long long p, int *len);
+void	ft_flagu(unsigned long long u, int *len);
+void	ft_xbase(unsigned long long n, int base, int istoupper, int *len);
+void	pf_putchar_fd(char c, int fd);
+void	pf_putstr_fd(char *s, int fd);
+size_t	pf_strlen(const char *str);
 
 #endif

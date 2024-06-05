@@ -3,40 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 11:28:03 by hrinka            #+#    #+#             */
-/*   Updated: 2022/11/15 12:01:43 by hrinka           ###   ########.fr       */
+/*   Created: 2023/05/26 09:03:44 by hirosuzu          #+#    #+#             */
+/*   Updated: 2024/01/23 09:15:02 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 char	*ft_strdup(const char *s1)
 {
-	size_t	i;
-	size_t	len;
-	char	*cpy;
+	char	*str;
 
-	i = 0;
-	len = ft_strlen(s1);
-	cpy = (char *) malloc (sizeof(char) * (len + 1));
-	if (cpy == NULL)
+	str = (char *)ft_xmalloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (str == NULL)
 		return (NULL);
-	while (i < len)
-	{
-		cpy[i] = s1[i];
-		i++;
-	}
-	cpy[i] = '\0';
-	return (cpy);
+	ft_memcpy(str, s1, ft_strlen(s1) + 1);
+	return (str);
 }
 
-// int 	main(void)
-// {
-// 	char *s1;
-// 	s1 = "Higher than the highest skyscraper.";
+/*
+int main(){
+	char a[] = "tkodai";
+	char *test;
 
-// 	printf ("%s\n", strdup(s1));
-// 	printf ("%s\n", ft_strdup(s1));
-// }
+	test = ft_strdup(a);
+}
+*/

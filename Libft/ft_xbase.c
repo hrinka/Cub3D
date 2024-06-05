@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_xbase.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 10:02:02 by hirosuzu          #+#    #+#             */
-/*   Updated: 2023/10/14 08:51:29 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:21:34 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"printf.h"
+#include"libft.h"
 
 void	ft_xbase(unsigned long long n, int base, int istoupper, int *len)
 {

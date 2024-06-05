@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/05 01:15:18 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 18:52:37 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,27 @@ void	ray_vec(t_player *player, t_ray *ray)
 }
 
 
-void	dda(t_ray *ray, int **world_map)
+void	dda(t_cub3d *data, int **world_map)
 {
-	while (ray->hit == 0)
+	while (data->ray.hit == 0)
 	{
-		if (ray->side_dist_x < ray->side_dist_y)
+		if (data->ray.side_dist_x < data->ray.side_dist_y)
 		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
+			data->ray.side_dist_x += data->ray.delta_dist_x;
+			data->ray.map_x += data->ray.step_x;
+			data->ray.side = 0;
 		}
 		else
 		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
+			data->ray.side_dist_y += data->ray.delta_dist_y;
+			data->ray.map_y += data->ray.step_y;
+			data->ray.side = 1;
 		}
-		if (world_map[ray->map_x][ray->map_y] > 0)
-			ray->hit = 1;
+        if (data->ray.map_x < 0 || data->ray.map_x >= data->map.width_map ||
+			data->ray.map_y < 0 || data->ray.map_y >= data->map.height_map)
+            break;  // Break the loop if out of bounds
+		if (world_map[data->ray.map_x][data->ray.map_y] > 0)
+			data->ray.hit = 1;
 	}
 }
 
@@ -145,7 +148,7 @@ void	init_player(t_player *player, t_cub3d *data)
 
 void	init_ray(t_player *player, t_ray *ray, int x)
 {
-	memset(ray, 0, sizeof(t_ray));
+	ft_memset(ray, 0, sizeof(t_ray));
 	ray->ray_pos = 2 * x / (double)WIDTH_WIN - 1;
 	ray->ray_dir_x = player->dir_x + player->plane_x * ray->ray_pos;
 	ray->ray_dir_y = player->dir_y + player->plane_y * ray->ray_pos;
@@ -164,7 +167,7 @@ void	single_ray(t_cub3d *data, int x)
 	// print_player(player); // debug
 	// print_ray(ray, player, x); // debug
 	ray_vec(&data->player, &ray);
-	dda(&ray, &data->map);
+	dda(data, data->map.world_map);
 	ray_dist(&data->player, &ray);
 	render_wall(data, &ray, x);
 }

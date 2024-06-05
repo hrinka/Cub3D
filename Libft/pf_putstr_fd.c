@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pf_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 14:47:39 by hirosuzu          #+#    #+#             */
-/*   Updated: 2023/10/14 08:51:48 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:17:16 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"printf.h"
+#include"libft.h"
 
 void	pf_putstr_fd(char *s, int fd)
 {

@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:45:49 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 19:32:12 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/05 22:20:33 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	parse_file_content(t_cub3d *data)
 	{
 		store_map(data, i);
 		check_map(&(data->map));
+		printf("Map is valid.\n");
 	}
 	else
 	{

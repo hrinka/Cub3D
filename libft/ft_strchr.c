@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_schr.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 14:23:13 by hrinka            #+#    #+#             */
-/*   Updated: 2022/11/27 21:51:40 by hrinka           ###   ########.fr       */
+/*   Created: 2023/05/25 07:18:23 by hirosuzu          #+#    #+#             */
+/*   Updated: 2023/05/25 22:12:04 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s)
+	if (c < 0 || c > 255)
 	{
-		if ((char)c == *s)
-			return ((char *)s);
-		s++;
+		while (c < 0)
+			c += 256;
+		while (c > 255)
+			c -= 256;
 	}
-	if ((char)c == 0)
+	while (*s && *s != c)
+		s++;
+	if (*s == c)
 		return ((char *)s);
 	return (NULL);
 }
-
-//int	main(void)
-//{
-//	char	*s;
-//	char	c;
-//
-//	s = "ahijidfjijdiji8hhqhj";
-//	c = 'q';
-//	printf("%p\n", strchr(s, c));
-//	printf("%p\n", ft_strchr(s, c));
-//}

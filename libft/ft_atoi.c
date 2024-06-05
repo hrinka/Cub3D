@@ -3,55 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 21:06:30 by hrinka            #+#    #+#             */
-/*   Updated: 2023/06/26 21:42:13 by hrinka           ###   ########.fr       */
+/*   Created: 2023/05/28 15:22:14 by hirosuzu          #+#    #+#             */
+/*   Updated: 2023/12/16 09:41:46 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-int	ft_atoi(const char	*str)
+static long	ft_overflow(const char *str, int sign)
 {
-	long	num;
-	int		i;
-	int		neg;
+	long long	result;
+	int			digit;
 
-	num = 0;
-	i = 0;
-	neg = 1;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\r')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	result = 0;
+	while (*str >= '0' && *str <= '9' )
 	{
-		if (str[i] == '-')
-			neg *= -1;
-		i++;
+		digit = *str - '0';
+		if (sign == 1)
+		{
+			if (result * sign > LONG_MAX / 10
+				|| (result == LONG_MAX / 10
+					&& digit > LONG_MAX % 10))
+				return (LONG_MAX);
+		}
+		else
+		{
+			if (result * sign < LONG_MIN / 10
+				|| (result * sign == LONG_MIN / 10
+					&& digit * sign < LONG_MIN % 10))
+				return (LONG_MIN);
+		}
+		result = result * 10 + digit;
+		str++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		num = num * 10 + (str[i] - '0');
-		i++;
-	}
-	return (num * neg);
+	return (result * sign);
 }
 
-// int	main(void)
-// {
-// 	char	str[]= "-153678";
+int	ft_atoi(const char *str)
+{
+	int	sign;
 
-// 	printf ("%d\n", ft_atoi(str));
-// 	printf ("%d\n", atoi (str));
-// }
-// INT_MAX < num <= LONG_MAX -> (int) num
-// return ((int)res);
-
-// LONG_MAX < (int)LONG_MAX
-// return ((int)res);
-
-// INT_MAX "4byte" bit 01111111 11111111 11111111 11111111
-// 					10000000 00000000 00000000 00000000
-
-// 					if LONG_MAX < num * 10 + (str[i] - '0');
+	sign = 1;
+	while (ft_isspace(*str))
+		str++;
+	while (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign *= -1;
+		str++;
+		if (*str == '+' || *str == '-')
+			return (0);
+	}
+	return ((int)ft_overflow(str, sign));
+}

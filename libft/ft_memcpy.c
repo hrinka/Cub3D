@@ -3,34 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 23:17:43 by hrinka            #+#    #+#             */
-/*   Updated: 2022/12/01 21:41:41 by hrinka           ###   ########.fr       */
+/*   Created: 2023/05/19 09:15:02 by hirosuzu          #+#    #+#             */
+/*   Updated: 2023/06/04 16:38:34 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-void	*ft_memcpy(void	*dst, const void *src, size_t	n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	const unsigned char	*s;
+	size_t				i;
 	unsigned char		*d;
+	const unsigned char	*s;
 
-	if (dst == src)
-		return (dst);
-	s = (const unsigned char *)src;
+	if (!dst && !src)
+		return (NULL);
 	d = (unsigned char *)dst;
-	while (n--)
-		*d++ = *s++;
+	s = (unsigned char *)src;
+	i = 0;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
 	return (dst);
 }
-
-// int main(void)
-// {
-// 	char *dst = NULL;
-// 	const char *src = "hogehoge";
-// 	char *ret;
-// 	printf ("%s\n", ft_printf())
-
-// }

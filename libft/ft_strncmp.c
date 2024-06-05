@@ -3,40 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 21:43:36 by hrinka            #+#    #+#             */
-/*   Updated: 2023/07/05 20:34:06 by hrinka           ###   ########.fr       */
+/*   Created: 2023/05/25 09:18:02 by hirosuzu          #+#    #+#             */
+/*   Updated: 2023/05/27 17:26:25 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if (!s1 || !s2)
+	size_t				i;
+	const unsigned char	*s11;
+	const unsigned char	*s22;
+
+	s11 = (const unsigned char *)s1;
+	s22 = (const unsigned char *)s2;
+	i = 0;
+	if (n == 0)
 		return (0);
-	while (n)
+	while (s11[i] == s22[i])
 	{
-		if (*s1 != *s2)
-			return ((unsigned char) *s1 - (unsigned char) *s2);
-		n--;
-		s1++;
-		s2++;
+		if (s11[i] == '\0')
+			return (0);
+		i++;
+		if (i == n)
+			return (s11[i - 1] - s22[i - 1]);
 	}
-	return (0);
+	return (s11[i] - s22[i]);
 }
-
-// int main(void)
-// {
-// 	char *str1;
-// 	char *str2;
-
-// 	int	n;
-
-// 	str1 = "abcdefgh";
-// 	str2 = "abcdeqqq";
-// 	n = 6;
-// 		printf("%d\n", strncmp(str1, str2, n));
-// 		printf("%d\n", ft_strncmp(str1, str2, n));
-// }

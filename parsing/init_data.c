@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/05 17:08:39 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/05 18:43:56 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	init_world_map(t_cub3d *data)
 			else
 			{
 				data->map.world_map[i][j] = -1; // Undefined cells, consider error handling here
-			
+				printf("Error: Invalid map cell at [%d][%d]\n", i, j);
 	        }
 			j++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 21:50:58 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/05 01:10:32 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,126 @@ void	check_ray_draw(t_cub3d *data, float ray_angle, int id_ray)
 	call_raycasting(data, ray_angle, id_ray);
 }
 
-void	draw(void *param)
+// void	draw(void *param)
+// {
+// 	t_cub3d	*data;
+
+// 	data = (t_cub3d *)param;
+// 	controle_angle(data);
+// 	controle_player(data);
+// 	draw_ceil_floor(data);
+// 	draw_map(data, 0);
+// 	draw_view_angle(data);
+// 	draw_player(data);
+// }
+
+void	print_data(t_cub3d *data)
+{
+	printf("Player position: x = %f, y = %f\n", data->map.px, data->map.py);
+	printf("Player angle: %f\n", data->player.angle);
+	printf("Player direction: %c\n", data->player.direction);
+	printf("Player i: %d, j: %d\n", data->player.i, data->player.j);
+	printf("Player old_x: %f\n", data->map.old_x);
+	printf("shape : %d\n", data->map.size_shape);
+	printf("size_map : %d\n", data->map.size_map);
+	printf("height_map : %d\n", data->map.height_map);
+	printf("width_map : %d\n", data->map.width_map);
+	printf("number_rays : %f\n", data->render.number_rays);
+	printf("distance_horz : %f\n", data->render.distance_horz);
+	printf("distance_vert : %f\n", data->render.distance_vert);
+	printf("hores_inters_x : %f\n", data->render.hores_inters_x);
+	printf("hores_inters_y : %f\n", data->render.hores_inters_y);
+	printf("next_hor_inters_x : %f\n", data->render.next_hor_inters_x);
+}
+
+void	print_map(t_cub3d *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	printf("printmap\n");
+	while (j < data->map.height_map)
+	{
+		i = 0;
+		while (i < data->map.width_map)
+		{
+			printf("%c", data->map.map[j][i]);
+			i++;
+		}
+		printf("\n");
+		j++;
+	}
+}
+
+void	my_draw(void *param)
 {
 	t_cub3d	*data;
 
 	data = (t_cub3d *)param;
-	controle_angle(data);
-	controle_player(data);
-	draw_ceil_floor(data);
-	draw_map(data, 0);
-	draw_view_angle(data);
-	draw_player(data);
+	
+	print_data(data);
+	raycasting(data);
+	// controle_angle(data);
+	// controle_player(data);
+	// draw_ceil_floor(data);
+	// draw_map(data, 0);
+	// draw_view_angle(data);
+	// draw_player(data);
+}
+
+void	init_world_map(t_cub3d *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	data->map.world_map = (int **)calloc(sizeof(int *), data->map.height_map);
+	while (j < data->map.height_map)
+	{
+		data->map.world_map[j] = (int *)calloc(sizeof(int), data->map.width_map);
+		while (data->map.map[j][i] != '\n' && data->map.map[j][i] != '\0' )
+		{
+			printf("map check [%d]\n", i);
+			if (data->map.map[j][i] == '1')
+				data->map.world_map[j][i] = 1;
+			else
+				data->map.world_map[j][i] = 0;
+			i++;
+		}
+		i = 0;
+		j++;
+	}
+	i = 0;
+	j = 0;
+	printf("atoi check\n");
+	while (j < data->map.height_map)
+	{
+		i = 0;
+		while (i < data->map.width_map)
+		{
+			printf("%d", data->map.world_map[j][i]);
+			i++;
+		}
+		printf("\n");
+		j++;
+	}
+
+	// while (j < data->map.height_map)
+	// {
+	// 	i = 0;
+	// 	while (i < data->map.width_map)
+	// 	{
+	// 		if (data->map.map[j][i] == '1')
+	// 			data->map.map[j][i] = 1;
+	// 		else
+	// 			data->map.map[j][i] = 0;
+	// 		i++;
+	// 	}
+	// 	j++;
+	// }
 }
 
 int	main(int ac, char **av)
@@ -90,8 +199,10 @@ int	main(int ac, char **av)
 	(mlx_image_to_window(data.mlx, data.map.img_map, 0, 0));
 	if (!data.map.img_map)
 		return (1);
-	draw_map(&data, 1);
-	mlx_loop_hook(data.mlx, draw, &data);
+	init_world_map(&data);
+	// draw_map(&data, 1);
+	// print_map(&data);
+	mlx_loop_hook(data.mlx, my_draw, &data);
 	mlx_close_hook(data.mlx, close_callback, NULL);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pf_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 06:24:52 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/01/23 09:19:50 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:17:21 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"printf.h"
+#include"libft.h"
 
 size_t	pf_strlen(const char *str)
 {

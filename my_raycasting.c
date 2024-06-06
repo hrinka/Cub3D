@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/05 22:10:38 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/06 08:48:38 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,11 @@ void	print_player(t_player *player)
 
 void	init_player(t_player *player, t_cub3d *data)
 {
-	player->pos_x = data->map.px;
-	player->pos_y = data->map.py;
+	printf("init_player\n");
+	player->pos_x = player->i;
+	printf("data->map.px: %f\n", data->map.px);
+	printf("player->pos_x: %f\n", player->pos_x);
+	player->pos_y = player->j;
 	player->dir_x = cos(player->angle) - sin(player->angle);
 	player->dir_y = sin(player->angle) + cos(player->angle);
 	player->plane_x = 0;
@@ -150,11 +153,14 @@ void	init_player(t_player *player, t_cub3d *data)
 
 void	init_ray(t_player *player, t_ray *ray, int x)
 {
-	memset(ray, 0, sizeof(t_ray));
+	printf("init_ray\n");
+	ft_memset(ray, 0, sizeof(t_ray));
 	ray->ray_pos = 2 * x / (double)WIDTH_WIN - 1;
 	ray->ray_dir_x = player->dir_x + player->plane_x * ray->ray_pos;
 	ray->ray_dir_y = player->dir_y + player->plane_y * ray->ray_pos;
 	ray->map_x = (int)player->pos_x;
+	printf("player->pos_x: %f\n", player->pos_x);
+	printf("ray->map_x: %d\n", ray->map_x);
 	ray->map_y = (int)player->pos_y;
 	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
@@ -169,30 +175,30 @@ void	single_ray(t_cub3d *data, int x)
 	// print_player(player); // debug
 	// print_ray(ray, player, x); // debug
 	ray_vec(&data->player, &ray);
-	dda(&ray, &data->map);
+	dda(&ray, data->map.world_map);
 	ray_dist(&data->player, &ray);
 	render_wall(data, &ray, x);
 }
 
-void	print_world_map(t_cub3d *data, int **world_map)
-{
-	int	i;
-	int	j;
+// void	print_world_map(t_cub3d *data, int **world_map)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	j = 0;
-	while (j < data->map.height_map)
-	{
-		i = 0;
-		while (i < data->map.width_map)
-		{
-			printf("%d", data->map.world_map[j][i]);
-			i++;
-		}
-		printf("\n");
-		j++;
-	}
-}
+// 	i = 0;
+// 	j = 0;
+// 	while (j < data->map.height_map)
+// 	{
+// 		i = 0;
+// 		while (i < data->map.width_map)
+// 		{
+// 			printf("%d", data->map.world_map[j][i]);
+// 			i++;
+// 		}
+// 		printf("\n");
+// 		j++;
+// 	}
+// }
 
 void	raycasting(t_cub3d *data)
 {
@@ -200,7 +206,7 @@ void	raycasting(t_cub3d *data)
 
 	x = 0;
 	printf("raycasting\n");
-	print_world_map(&data);
+	// print_world_map(&data);
 	printf("start\n");
 	init_player(&data->player, data);
 	while (x < WIDTH_WIN)

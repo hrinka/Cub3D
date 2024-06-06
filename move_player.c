@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:17:09 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/01 21:13:34 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/04 15:31:27 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	check_wall(t_cub3d *data)
 		&& !mlx_is_key_down(data->mlx, MLX_KEY_W)
 		&& !mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-		x = data->map.px - cos(to_rad(90) - to_rad(data->player.angle)) * MOVE_STEP_V;
+		x = data->map.px - cos(to_rad(90) - to_rad(data->player.angle)) * MOVE_STEP_V;                   
 		y = data->map.py + sin(to_rad(90) - to_rad(data->player.angle)) * MOVE_STEP_V;
 	}
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_A)

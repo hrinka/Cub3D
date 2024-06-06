@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_flagstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 02:12:24 by hirosuzu          #+#    #+#             */
-/*   Updated: 2023/10/14 08:50:44 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:20:59 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"printf.h"
+#include"libft.h"
 
 void	ft_flagstr(char *s, int *len)
 {

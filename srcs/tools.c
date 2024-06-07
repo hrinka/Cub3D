@@ -6,11 +6,11 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:52:59 by ahajji            #+#    #+#             */
-/*   Updated: 2024/05/31 20:46:48 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 21:56:43 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 float	to_rad(float degree)
 {

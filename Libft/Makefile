@@ -6,7 +6,7 @@
 #    By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/22 21:04:11 by hirosuzu          #+#    #+#              #
-#    Updated: 2024/06/05 17:51:56 by hrinka           ###   ########.fr        #
+#    Updated: 2024/06/05 22:36:49 by hrinka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ bonus:
 	make WITH_BONUS=1
 
 main:
-	$(CC) -g -fsanitize=address *.c
+	$(CC) -g *.c
 	./a.out
 
 f: fclean

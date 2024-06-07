@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 09:09:21 by hirosuzu          #+#    #+#             */
-/*   Updated: 2023/06/04 16:47:27 by hirosuzu         ###   ########.fr       */
+/*   Created: 2024/05/15 08:49:22 by hirosuzu          #+#    #+#             */
+/*   Updated: 2024/06/07 21:56:35 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "../cub3d.h"
 
-void	ft_bzero(void *s, size_t n)
+t_player	init_player(void)
 {
-	size_t			i;
-	unsigned char	*chr;
+	t_player	player;
 
-	chr = (unsigned char *)s;
-	i = 0;
-	while (i < n)
-	{
-		chr[i] = 0;
-		i++;
-	}
+	player.pos_x = 9.0;
+	player.pos_y = 5.0;
+	player.dir_x = 1.0;
+	player.dir_y = 0.0;
+	player.plane_x = 0.0;
+	player.plane_y = 0.66;
+	return (player);
 }

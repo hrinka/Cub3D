@@ -6,12 +6,12 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 19:42:21 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 19:31:14 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 21:56:10 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	draw_rectangle(int x, int y, t_map *data, uint32_t color)
 {

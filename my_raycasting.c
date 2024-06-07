@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/07 16:13:46 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 17:18:36 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,41 @@ void	dda(t_cub3d *data, int **world_map)
 			data->ray.map_y += data->ray.step_y;
 			data->ray.side = 1;
 		}
-		printf ("ray->map_x: %d, ray->map_y: %d : ", ray->map_x, ray->map_y);
-		printf("world_map[ray->map_x][ray->map_y]: %d\n", world_map[0][1]);
-		if (world_map[ray->map_x][ray->map_y] > 0)
+		if (data->ray.map_x < 0 || data->ray.map_x >= data->map.width_map || data->ray.map_y < 0 || data->ray.map_y >= data->map.height_map) {
+            printf("Out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
+            break;  // Break the loop if out of bounds
+        }
+		if (world_map[data->ray.map_x][data->ray.map_y] > 0)
 		{
 			printf("hit\n");
-			ray->hit = 1;
+			data->ray.hit = 1;
 		}
+		printf("Checking hit: map_x=%d, map_y=%d, hit=%d\n", data->ray.map_x, data->ray.map_y, data->ray.hit);
 	}
 }
 
-void	ray_dist(t_player *player, t_ray *ray)
-{
-	if (ray->side == 0)
-		ray->wall_dist = (ray->map_x - player->pos_x + (1 - ray->step_x) / 2) / ray->ray_dir_x;
-	else
-		ray->wall_dist = (ray->map_y - player->pos_y + (1 - ray->step_y) / 2) / ray->ray_dir_y;
+// void	ray_dist(t_player *player, t_ray *ray)
+// {
+// 	if (ray->side == 0)
+// 		ray->wall_dist = (ray->map_x - player->pos_x + (1 - ray->step_x) / 2) / ray->ray_dir_x;
+// 	else
+// 		ray->wall_dist = (ray->map_y - player->pos_y + (1 - ray->step_y) / 2) / ray->ray_dir_y;
+// 	printf("ray->wall_dist: %f\n", ray->wall_dist);
+// }
+
+void ray_dist(t_player *player, t_ray *ray) {
+    if (ray->side == 0) {
+        if (ray->ray_dir_x == 0) ray->ray_dir_x = 0.0001;  // 非常に小さい値を0とみなさないようにする
+        ray->wall_dist = (ray->map_x - player->pos_x + (1 - ray->step_x) / 2) / ray->ray_dir_x;
+    } else {
+        if (ray->ray_dir_y == 0) ray->ray_dir_y = 0.0001;  // 非常に小さい値を0とみなさないようにする
+        ray->wall_dist = (ray->map_y - player->pos_y + (1 - ray->step_y) / 2) / ray->ray_dir_y;
+    }
+    printf("ray->wall_dist: %f\n", ray->wall_dist);
+    if (ray->wall_dist <= 0) {
+        printf("Adjusting ray->wall_dist from %f to 0.1 to avoid division by zero\n", ray->wall_dist);
+        ray->wall_dist = 0.1;  // 最小値を設定して無限ループや他の数値エラーを防ぐ
+    }
 }
 
 void	render_wall(t_cub3d *data, t_ray *ray, int x)
@@ -80,7 +99,6 @@ void	render_wall(t_cub3d *data, t_ray *ray, int x)
 	int draw_end = line_height / 2 + HEIGHT_WIN / 2;
 	if (draw_end >= HEIGHT_WIN)
 		draw_end = HEIGHT_WIN - 1;
-	// int color = (ray->side == 1) ? 0xAAAAAA : 0xFFFFFF;
 	int color;
 	if (ray->side == 1)
 	    color = 0xAAAAAA;
@@ -98,7 +116,6 @@ void	draw_line(t_cub3d *data, int x, int start, int end, int color)
 	printf("end: %d\n", end);
 	while (y < end)
 	{
-		// printf("y: %d\n", y);
 		mlx_put_pixel(data->map.img, x, y, color);
 		y++;
 	}
@@ -151,21 +168,24 @@ void	init_player(t_player *player, t_cub3d *data)
 	player->plane_y = 0.66;
 }
 
-void	init_ray(t_player *player, t_ray *ray, int x)
-{
-	printf("init_ray\n");
-	ft_memset(ray, 0, sizeof(t_ray));
-	ray->ray_pos = 2 * x / (double)WIDTH_WIN - 1;
-	ray->ray_dir_x = player->dir_x + player->plane_x * ray->ray_pos;
-	ray->ray_dir_y = player->dir_y + player->plane_y * ray->ray_pos;
-	ray->map_x = (int)player->pos_x;
-	printf("player->pos_x: %f\n", player->pos_x);
-	printf("ray->map_x: %d\n", ray->map_x);
-	ray->map_y = (int)player->pos_y;
-	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
-	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
-	ray->hit = 0;
+void init_ray(t_player *player, t_ray *ray, int x) {
+    ft_memset(ray, 0, sizeof(t_ray));
+    ray->ray_pos = 2 * x / (double)WIDTH_WIN - 1;
+    ray->ray_dir_x = player->dir_x + player->plane_x * ray->ray_pos;
+    ray->ray_dir_y = player->dir_y + player->plane_y * ray->ray_pos;
+    ray->map_x = (int)player->pos_x;
+    ray->map_y = (int)player->pos_y;
+    ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
+    ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
+    ray->hit = 0;
+
+    printf("init_ray\n");
+    printf("player->pos_x: %f\n", player->pos_x);
+    printf("ray->map_x: %d\n", ray->map_x);
+    printf("ray->ray_dir_x: %f\n", ray->ray_dir_x);
+    printf("ray->ray_dir_y: %f\n", ray->ray_dir_y);
 }
+
 
 void	single_ray(t_cub3d *data, int x)
 {

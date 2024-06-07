@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/06/05 18:43:56 by hrinka           ###   ########.fr       */
-=======
-/*   Updated: 2024/06/06 08:31:42 by hirosuzu         ###   ########.fr       */
->>>>>>> d6bccb98e85f9a021b60c2515d8cb9ad3bac04db
+/*   Updated: 2024/06/07 16:45:52 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,10 +166,10 @@ void	init_game(char *path_file, t_cub3d *data)
 	}
 	get_file_content(path_file, data);
 	parse_file_content(data);
+	check_dimensions(&data->map);
 	init_world_map(data);
 	duplicate_player(data);
 	get_player_pos(data);
-	check_dimensions(&data->map);
 	check_walls(&data->map);
 	check_valid_path(data, data->player.i, data->player.j);
 }

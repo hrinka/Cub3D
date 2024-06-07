@@ -6,7 +6,11 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
+<<<<<<< HEAD:srcs/cub3d.c
 /*   Updated: 2024/06/07 22:40:27 by hrinka           ###   ########.fr       */
+=======
+/*   Updated: 2024/06/07 15:55:21 by hrinka           ###   ########.fr       */
+>>>>>>> origin/main:cub3d.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +127,15 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init(WIDTH_WIN, HEIGHT_WIN, "cub3d", false);
 	if (!data.mlx)
 		return (1);
+	printf("mlx init\n");
 	init_textures(data.mlx, &data);
+	printf("textures init\n");
 	init_data(&data);
+<<<<<<< HEAD:srcs/cub3d.c
 	print_map(&data);
+=======
+	printf("data init\n");
+>>>>>>> origin/main:cub3d.c
 	data.map.img_map = mlx_new_image(data.mlx, data.map.size_map, data.map.size_map);
 	data.map.img = mlx_new_image(data.mlx, WIDTH_WIN, HEIGHT_WIN);
 	if (!data.map.img || (mlx_image_to_window(data.mlx, data.map.img, 0, 0)))
@@ -133,11 +143,21 @@ int	main(int ac, char **av)
 	(mlx_image_to_window(data.mlx, data.map.img_map, 0, 0));
 	if (!data.map.img_map)
 		return (1);
+<<<<<<< HEAD:srcs/cub3d.c
 	print_map(&data);
 	mlx_loop_hook(data.mlx, my_draw, &data);
 	mlx_close_hook(data.mlx, close_callback, NULL);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	free_cub_data(&data);
+=======
+	// draw_map(&data, 1);
+	// print_map(&data);
+	// mlx_loop_hook(data.mlx, my_draw, &data);
+	// mlx_close_hook(data.mlx, close_callback, NULL);
+	// mlx_loop(data.mlx);
+	// mlx_terminate(data.mlx);
+	// free_cub_data(&data);
+>>>>>>> origin/main:cub3d.c
 	return (0);
 }

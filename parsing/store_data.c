@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 23:21:11 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 23:52:43 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	store_textures_path(t_cub3d *data, int length)
 	if (check_path_rgb(data) != 0)
 	{
 		printf("Error: Texture path validation failed.\n");
-		exit(1);
+		return (0);
 	}
 	return (0);
 }
@@ -116,6 +116,7 @@ int	store_map(t_cub3d *data, int index)
 		fprintf(stderr, "Error: Unable to allocate memory for map\n");
 		exit(EXIT_FAILURE);
 	}
+
 	while (data->file_content[index] != NULL)
 	{
 		char *line = data->file_content[index];

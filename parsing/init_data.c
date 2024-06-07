@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 23:26:04 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 23:51:19 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	check_walls(t_map *data)
 
 void	init_struct(t_cub3d *data)
 {
+	ft_memset(data, 0, sizeof(t_cub3d));
 	data->file_content = NULL;
 	data->paths.no_path = NULL;
 	data->paths.so_path = NULL;
@@ -70,6 +71,72 @@ int	check_path_rgb(t_cub3d *data)
 		return (1);
 	return (0);
 }
+
+void init_world_map(t_cub3d *data)
+{
+    int i, j;
+
+    data->map.world_map = (int **)ft_xmalloc(data->map.height_map * sizeof(int *));
+    if (!data->map.world_map) {
+        fprintf(stderr, "Error: Unable to allocate memory for world_map\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for (i = 0; i < data->map.height_map; i++) {
+        data->map.world_map[i] = (int *)ft_xmalloc(data->map.width_map * sizeof(int));
+        if (!data->map.world_map[i]) {
+            fprintf(stderr, "Error: Unable to allocate memory for world_map[%d]\n", i);
+            // Free previously allocated rows
+            while (--i >= 0) {
+                free(data->map.world_map[i]);
+            }
+            free(data->map.world_map);
+            exit(EXIT_FAILURE);
+        }
+
+        for (j = 0; j < data->map.width_map; j++) {
+            char cell = data->map.map[i][j];
+            if (cell == '1') {
+                data->map.world_map[i][j] = 1;
+            } else if (cell == '0' || cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W') {
+                data->map.world_map[i][j] = 0;
+            } else {
+                data->map.world_map[i][j] = -1;
+                fprintf(stderr, "Error: Invalid map cell at [%d][%d]: '%c'\n", i, j, cell);
+            }
+        }
+    }
+}
+
+// void	init_world_map(t_cub3d *data)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	data->map.world_map = (int **)malloc(data->map.height_map * sizeof(int *));
+// 	while(i < data->map.height_map)
+// 	{
+// 	    data->map.world_map[i] = (int *)malloc(data->map.width_map * sizeof(int));
+// 		j = 0;
+// 	    while (j < data->map.width_map)
+// 		{
+// 			char cell = data->map.map[i][j];
+// 			if (cell == '1')
+// 				data->map.world_map[i][j] = 1;
+// 			else if
+// 			(cell == '0' || cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W')
+// 			    data->map.world_map[i][j] = 0;
+// 			else
+// 			{
+// 				data->map.world_map[i][j] = -1; // Undefined cells, consider error handling here
+// 				printf("Error: Invalid map cell at [%d][%d]\n", i, j);
+// 	        }
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 // void	init_world_map(t_cub3d *data)
 // {
@@ -160,11 +227,12 @@ void	init_game(char *path_file, t_cub3d *data)
 	}
 	get_file_content(path_file, data);
 	parse_file_content(data);
-	check_dimensions(&data->map);
 	init_world_map(data);
-	print_world_map(data);
 	duplicate_player(data);
 	get_player_pos(data);
+	check_dimensions(&data->map);
 	check_walls(&data->map);
 	check_valid_path(data, data->player.i, data->player.j);
+
+printf("end	init_game\n");
 }

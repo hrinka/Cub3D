@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_data_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:10:02 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 17:41:42 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/06 09:19:16 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*remove_newline(char *str)
 	j = 0;
 	while (str[i] && str[i] != '\n')
 		i++;
+	printf("i: %d\n", i);
 	trimmed = malloc((sizeof(char) * i) + 1);
 	if (!trimmed)
 		return (NULL);

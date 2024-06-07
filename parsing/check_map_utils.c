@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:54:04 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 14:21:38 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 23:49:37 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	empty_line(char *line)
 	i = 0;
 	while (line[i] && line[i] != '\n')
 	{
-		if (line[i] != ' ' && line[i] != '\t')
+		if (line[i] != ' ')
 			return (1);
 		i++;
 	}
@@ -45,7 +45,7 @@ void	check_map(t_map *data)
 	i = 0;
 	while (data->map[i] != NULL)
 	{
-		if (is_map_line(data->map[i]) == 1 || !empty_line(data->map[i]))
+		if (is_map_line(data->map[i]) == 1)
 		{
 			printf ("Error on line %d: Map can only be composed of '01NSWE ' and must not be empty.\n", i+1);
 			exit(1);

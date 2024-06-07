@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 13:53:21 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 23:52:43 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	store_textures_path(t_cub3d *data, int length)
 	if (check_path_rgb(data) != 0)
 	{
 		printf("Error: Texture path validation failed.\n");
-		exit (1);
+		return (0);
 	}
 	return (0);
 }
@@ -109,11 +109,20 @@ int	store_map(t_cub3d *data, int index)
 		&& (empty_line(data->file_content[index]) == 0))
 		index++;
 	map_length_val = map_length(data, index);
+	printf("map_length_val: %d\n", map_length_val);
 	data->map.map = malloc((map_length_val + 1) * sizeof(char *));
 	data->map.tmp = malloc((map_length_val + 1) * sizeof(char *));
+	if (!data->map.map || !data->map.tmp) {
+		fprintf(stderr, "Error: Unable to allocate memory for map\n");
+		exit(EXIT_FAILURE);
+	}
 
 	while (data->file_content[index] != NULL)
 	{
+		char *line = data->file_content[index];
+		while (*line == ' ' || *line == '\t')
+			line++;
+
 		data->map.map[i] = ft_strdup(data->file_content[index]);
 		data->map.tmp[i] = ft_strdup(data->file_content[index]);
 		i++;

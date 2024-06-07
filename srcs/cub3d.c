@@ -6,11 +6,15 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
+<<<<<<< HEAD:srcs/cub3d.c
+/*   Updated: 2024/06/07 22:40:27 by hrinka           ###   ########.fr       */
+=======
 /*   Updated: 2024/06/07 15:55:21 by hrinka           ###   ########.fr       */
+>>>>>>> origin/main:cub3d.c
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	init_data(t_cub3d *data)
 {
@@ -37,8 +41,8 @@ void	init_data(t_cub3d *data)
 
 void	calcul_distance(t_cub3d *data)
 {
-	data->render.distance_horz = distance_between_points(data->map.px, data->map.py,
-			data->render.hores_inters_x, data->render.hores_inters_y);
+	data->render.distance_horz = distance_between_points(data->map.px,
+		data->map.py, data->render.hores_inters_x, data->render.hores_inters_y);
 	data->render.distance_vert = distance_between_points(data->map.px, data->map.py,
 			data->render.vertcl_inters_x, data->render.vertcl_inters_y);
 }
@@ -56,19 +60,6 @@ void	check_ray_draw(t_cub3d *data, float ray_angle, int id_ray)
 	calcul_distance(data);
 	call_raycasting(data, ray_angle, id_ray);
 }
-
-// void	draw(void *param)
-// {
-// 	t_cub3d	*data;
-
-// 	data = (t_cub3d *)param;
-// 	controle_angle(data);
-// 	controle_player(data);
-// 	draw_ceil_floor(data);
-// 	draw_map(data, 0);
-// 	draw_view_angle(data);
-// 	draw_player(data);
-// }
 
 void	print_data(t_cub3d *data)
 {
@@ -100,12 +91,11 @@ void	print_map(t_cub3d *data)
 	while (j < data->map.height_map)
 	{
 		i = 0;
-		while (i < data->map.width_map)
+		while (data->map.map[j][i])
 		{
 			printf("%c", data->map.map[j][i]);
 			i++;
 		}
-		printf("\n");
 		j++;
 	}
 }
@@ -115,12 +105,12 @@ void	my_draw(void *param)
 	t_cub3d	*data;
 
 	data = (t_cub3d *)param;
-	
-	print_data(data);
-	raycasting(data);
-	// controle_angle(data);
-	// controle_player(data);
-	// draw_ceil_floor(data);
+
+	// print_data(data);
+	controle_angle(data);
+	controle_player(data);
+	draw_ceil_floor(data);
+	// raycasting(data);
 	// draw_map(data, 0);
 	// draw_view_angle(data);
 	// draw_player(data);
@@ -141,7 +131,11 @@ int	main(int ac, char **av)
 	init_textures(data.mlx, &data);
 	printf("textures init\n");
 	init_data(&data);
+<<<<<<< HEAD:srcs/cub3d.c
+	print_map(&data);
+=======
 	printf("data init\n");
+>>>>>>> origin/main:cub3d.c
 	data.map.img_map = mlx_new_image(data.mlx, data.map.size_map, data.map.size_map);
 	data.map.img = mlx_new_image(data.mlx, WIDTH_WIN, HEIGHT_WIN);
 	if (!data.map.img || (mlx_image_to_window(data.mlx, data.map.img, 0, 0)))
@@ -149,6 +143,14 @@ int	main(int ac, char **av)
 	(mlx_image_to_window(data.mlx, data.map.img_map, 0, 0));
 	if (!data.map.img_map)
 		return (1);
+<<<<<<< HEAD:srcs/cub3d.c
+	print_map(&data);
+	mlx_loop_hook(data.mlx, my_draw, &data);
+	mlx_close_hook(data.mlx, close_callback, NULL);
+	mlx_loop(data.mlx);
+	mlx_terminate(data.mlx);
+	free_cub_data(&data);
+=======
 	// draw_map(&data, 1);
 	// print_map(&data);
 	// mlx_loop_hook(data.mlx, my_draw, &data);
@@ -156,6 +158,6 @@ int	main(int ac, char **av)
 	// mlx_loop(data.mlx);
 	// mlx_terminate(data.mlx);
 	// free_cub_data(&data);
+>>>>>>> origin/main:cub3d.c
 	return (0);
 }
-	

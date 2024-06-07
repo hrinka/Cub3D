@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/05 18:53:41 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 16:12:26 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,12 @@ void	print_map(t_cub3d *data)
 	while (j < data->map.height_map)
 	{
 		i = 0;
-		while (i < data->map.width_map)
+		while (data->map.map[j][i])
 		{
 			printf("%c", data->map.map[j][i]);
 			i++;
 		}
-		printf("\n");
+		// printf("\n");
 		j++;
 	}
 }
@@ -116,7 +116,7 @@ void	my_draw(void *param)
 
 	data = (t_cub3d *)param;
 	
-	print_data(data);
+	// print_data(data);
 	raycasting(data);
 	// controle_angle(data);
 	// controle_player(data);
@@ -125,6 +125,44 @@ void	my_draw(void *param)
 	// draw_view_angle(data);
 	// draw_player(data);
 }
+
+// void	init_world_map(t_cub3d *data)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	data->map.world_map = (int **)calloc(sizeof(int *), data->map.height_map);
+// 	while (j < data->map.height_map)
+// 	{
+// 		data->map.world_map[j] = (int *)calloc(sizeof(int), data->map.width_map);
+// 		while (data->map.map[j][i] != '\n' && data->map.map[j][i] != '\0' )
+// 		{
+// 			// printf("map check [%d]\n", i);
+// 			if (data->map.map[j][i] == '1')
+// 				data->map.world_map[j][i] = 1;
+// 			else
+// 				data->map.world_map[j][i] = 0;
+// 			i++;
+// 		}
+// 		i = 0;
+// 		j++;
+// 	}
+	// while (j < data->map.height_map)
+	// {
+	// 	i = 0;
+	// 	while (i < data->map.width_map)
+	// 	{
+	// 		if (data->map.map[j][i] == '1')
+	// 			data->map.map[j][i] = 1;
+	// 		else
+	// 			data->map.map[j][i] = 0;
+	// 		i++;
+	// 	}
+	// 	j++;
+	// }
+// }
 
 int	main(int ac, char **av)
 {
@@ -146,13 +184,14 @@ int	main(int ac, char **av)
 	(mlx_image_to_window(data.mlx, data.map.img_map, 0, 0));
 	if (!data.map.img_map)
 		return (1);
+	// init_world_map(&data);
 	// draw_map(&data, 1);
 	// print_map(&data);
-	mlx_loop_hook(data.mlx, my_draw, &data);
-	mlx_close_hook(data.mlx, close_callback, NULL);
-	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
-	free_cub_data(&data);
+	// mlx_loop_hook(data.mlx, my_draw, &data);
+	// mlx_close_hook(data.mlx, close_callback, NULL);
+	// mlx_loop(data.mlx);
+	// mlx_terminate(data.mlx);
+	// free_cub_data(&data);
 	return (0);
 }
 	

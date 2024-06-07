@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   store_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 21:11:56 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/06 09:20:02 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int	store_map(t_cub3d *data, int index)
 		&& (empty_line(data->file_content[index]) == 0))
 		index++;
 	map_length_val = map_length(data, index);
+	printf("map_length_val: %d\n", map_length_val);
 	data->map.map = malloc((map_length_val + 1) * sizeof(char *));
 	data->map.tmp = malloc((map_length_val + 1) * sizeof(char *));
 	while (data->file_content[index] != NULL)

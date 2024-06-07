@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 22:24:10 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 23:26:04 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,37 +71,84 @@ int	check_path_rgb(t_cub3d *data)
 	return (0);
 }
 
-void	init_world_map(t_cub3d *data)
-{
-	int	i;
-	int	j;
+// void	init_world_map(t_cub3d *data)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	j = 0;
-	printf("data->map.height_map = %d\n", data->map.height_map);
-	printf("data->map.width_map = %d\n", data->map.width_map);
-	data->map.world_map = (int **)malloc(data->map.height_map * sizeof(int *));
-	while(i < data->map.height_map)
-	{
-	    data->map.world_map[i] = (int *)malloc(data->map.width_map * sizeof(int));
-	    while (j < data->map.width_map)
-		{
-			char cell = data->map.map[i][j];
-			if (cell == '1')
-				data->map.world_map[i][j] = 1;
-			else if
-			(cell == '0' || cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W')
-			    data->map.world_map[i][j] = 0;
-			else
-			{
-				data->map.world_map[i][j] = -1; // Undefined cells, consider error handling here
-				printf("Error: Invalid map cell at [%d][%d]\n", i, j);
-	        }
-			j++;
-		}
-		i++;
-	}
+// 	i = 0;
+// 	j = 0;
+// 	printf("data->map.height_map = %d\n", data->map.height_map);
+// 	printf("data->map.width_map = %d\n", data->map.width_map);
+// 	data->map.world_map = (int **)malloc(data->map.height_map * sizeof(int *));
+// 	while(i < data->map.height_map)
+// 	{
+// 	    data->map.world_map[i] = (int *)malloc(data->map.width_map * sizeof(int));
+// 	    while (j < data->map.width_map)
+// 		{
+// 			char cell = data->map.map[i][j];
+// 			if (cell == '1')
+// 				data->map.world_map[i][j] = 1;
+// 			else if
+// 			(cell == '0' || cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W')
+// 			    data->map.world_map[i][j] = 0;
+// 			else
+// 			{
+// 				data->map.world_map[i][j] = -1; // Undefined cells, consider error handling here
+// 				printf("Error: Invalid map cell at [%d][%d]\n", i, j);
+// 	        }
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+void init_world_map(t_cub3d *data) {
+    int i, j;
+
+    data->map.world_map = (int **)malloc(data->map.height_map * sizeof(int *));
+    if (!data->map.world_map) {
+        fprintf(stderr, "Error: Unable to allocate memory for world_map\n");
+        exit(EXIT_FAILURE);
+    }
+
+    for (i = 0; i < data->map.height_map; i++) {
+        data->map.world_map[i] = (int *)malloc(data->map.width_map * sizeof(int));
+        if (!data->map.world_map[i]) {
+            fprintf(stderr, "Error: Unable to allocate memory for world_map[%d]\n", i);
+            // Free previously allocated rows
+            while (--i >= 0) {
+                free(data->map.world_map[i]);
+            }
+            free(data->map.world_map);
+            exit(EXIT_FAILURE);
+        }
+
+        for (j = 0; j < data->map.width_map; j++) {
+            char cell = data->map.map[i][j];
+            if (cell == '1') {
+                data->map.world_map[i][j] = 1;
+            } else if (cell == '0' || cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W' || cell == " ") {
+                data->map.world_map[i][j] = 0;
+            } else {
+                data->map.world_map[i][j] = 1;
+                fprintf(stderr, "Error: Invalid map cell at [%d][%d]: '%c'\n", i, j, cell);
+            }
+        }
+    }
 }
+
+void print_world_map(t_cub3d *data) {
+    int i, j;
+
+    printf("World Map:\n");
+    for (i = 0; i < data->map.height_map; i++) {
+        for (j = 0; j < data->map.width_map; j++) {
+            printf("%d ", data->map.world_map[i][j]);
+        }
+        printf("\n");
+    }
+}
+
 
 void	init_game(char *path_file, t_cub3d *data)
 {
@@ -115,6 +162,7 @@ void	init_game(char *path_file, t_cub3d *data)
 	parse_file_content(data);
 	check_dimensions(&data->map);
 	init_world_map(data);
+	print_world_map(data);
 	duplicate_player(data);
 	get_player_pos(data);
 	check_walls(&data->map);

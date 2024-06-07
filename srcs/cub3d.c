@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 22:21:51 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 22:40:27 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,11 @@ void	my_draw(void *param)
 
 	data = (t_cub3d *)param;
 
-	print_data(data);
+	// print_data(data);
 	controle_angle(data);
 	controle_player(data);
 	draw_ceil_floor(data);
-	raycasting(data);
+	// raycasting(data);
 	// draw_map(data, 0);
 	// draw_view_angle(data);
 	// draw_player(data);
@@ -133,7 +133,6 @@ int	main(int ac, char **av)
 	(mlx_image_to_window(data.mlx, data.map.img_map, 0, 0));
 	if (!data.map.img_map)
 		return (1);
-	// draw_map(&data, 1);
 	print_map(&data);
 	mlx_loop_hook(data.mlx, my_draw, &data);
 	mlx_close_hook(data.mlx, close_callback, NULL);

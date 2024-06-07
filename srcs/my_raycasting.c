@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/07 21:57:15 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 22:29:23 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,25 +199,25 @@ void	single_ray(t_cub3d *data, int x)
 	render_wall(data, &ray, x);
 }
 
-void	print_world_map(t_cub3d *data, int **world_map)
-{
-	int	i;
-	int	j;
+// void	print_world_map(t_cub3d *data, int **world_map)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	j = 0;
-	while (j < data->map.height_map)
-	{
-		i = 0;
-		while (i < data->map.width_map)
-		{
-			printf("%d", data->map.world_map[j][i]);
-			i++;
-		}
-		printf("\n");
-		j++;
-	}
-}
+// 	i = 0;
+// 	j = 0;
+// 	while (j < data->map.height_map)
+// 	{
+// 		i = 0;
+// 		while (i < data->map.width_map)
+// 		{
+// 			printf("%d", data->map.world_map[j][i]);
+// 			i++;
+// 		}
+// 		printf("\n");
+// 		j++;
+// 	}
+// }
 
 void	raycasting(t_cub3d *data)
 {

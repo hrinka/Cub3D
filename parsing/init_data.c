@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 23:51:19 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/08 00:31:26 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,42 +70,6 @@ int	check_path_rgb(t_cub3d *data)
 	if (data->textures.sky_hex == -1)
 		return (1);
 	return (0);
-}
-
-void init_world_map(t_cub3d *data)
-{
-    int i, j;
-
-    data->map.world_map = (int **)ft_xmalloc(data->map.height_map * sizeof(int *));
-    if (!data->map.world_map) {
-        fprintf(stderr, "Error: Unable to allocate memory for world_map\n");
-        exit(EXIT_FAILURE);
-    }
-
-    for (i = 0; i < data->map.height_map; i++) {
-        data->map.world_map[i] = (int *)ft_xmalloc(data->map.width_map * sizeof(int));
-        if (!data->map.world_map[i]) {
-            fprintf(stderr, "Error: Unable to allocate memory for world_map[%d]\n", i);
-            // Free previously allocated rows
-            while (--i >= 0) {
-                free(data->map.world_map[i]);
-            }
-            free(data->map.world_map);
-            exit(EXIT_FAILURE);
-        }
-
-        for (j = 0; j < data->map.width_map; j++) {
-            char cell = data->map.map[i][j];
-            if (cell == '1') {
-                data->map.world_map[i][j] = 1;
-            } else if (cell == '0' || cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W') {
-                data->map.world_map[i][j] = 0;
-            } else {
-                data->map.world_map[i][j] = -1;
-                fprintf(stderr, "Error: Invalid map cell at [%d][%d]: '%c'\n", i, j, cell);
-            }
-        }
-    }
 }
 
 // void	init_world_map(t_cub3d *data)
@@ -194,7 +158,7 @@ void init_world_map(t_cub3d *data) {
             char cell = data->map.map[i][j];
             if (cell == '1') {
                 data->map.world_map[i][j] = 1;
-            } else if (cell == '0' || cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W' || cell == " ") {
+            } else if (cell == '0' || cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W' || cell == ' ') {
                 data->map.world_map[i][j] = 0;
             } else {
                 data->map.world_map[i][j] = 1;
@@ -204,17 +168,17 @@ void init_world_map(t_cub3d *data) {
     }
 }
 
-void print_world_map(t_cub3d *data) {
-    int i, j;
+// void print_world_map(t_cub3d *data) {
+//     int i, j;
 
-    printf("World Map:\n");
-    for (i = 0; i < data->map.height_map; i++) {
-        for (j = 0; j < data->map.width_map; j++) {
-            printf("%d ", data->map.world_map[i][j]);
-        }
-        printf("\n");
-    }
-}
+//     printf("World Map:\n");
+//     for (i = 0; i < data->map.height_map; i++) {
+//         for (j = 0; j < data->map.width_map; j++) {
+//             printf("%d ", data->map.world_map[i][j]);
+//         }
+//         printf("\n");
+//     }
+// }
 
 
 void	init_game(char *path_file, t_cub3d *data)

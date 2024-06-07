@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/05 23:10:17 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 15:52:08 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	check_walls(t_map *data)
 
 void	init_struct(t_cub3d *data)
 {
+	ft_memset(data, 0, sizeof(t_cub3d));
 	data->file_content = NULL;
 	data->paths.no_path = NULL;
 	data->paths.so_path = NULL;
@@ -75,14 +76,14 @@ void init_world_map(t_cub3d *data)
 {
     int i, j;
 
-    data->map.world_map = (int **)malloc(data->map.height_map * sizeof(int *));
+    data->map.world_map = (int **)ft_xmalloc(data->map.height_map * sizeof(int *));
     if (!data->map.world_map) {
         fprintf(stderr, "Error: Unable to allocate memory for world_map\n");
         exit(EXIT_FAILURE);
     }
 
     for (i = 0; i < data->map.height_map; i++) {
-        data->map.world_map[i] = (int *)malloc(data->map.width_map * sizeof(int));
+        data->map.world_map[i] = (int *)ft_xmalloc(data->map.width_map * sizeof(int));
         if (!data->map.world_map[i]) {
             fprintf(stderr, "Error: Unable to allocate memory for world_map[%d]\n", i);
             // Free previously allocated rows
@@ -200,16 +201,15 @@ void	init_game(char *path_file, t_cub3d *data)
 	}
 	get_file_content(path_file, data);
 	parse_file_content(data);
-	printf("file-parsed\n");
 	printf("Width: %d, Height: %d\n", data->map.width_map, data->map.height_map);
-	init_world_map(data);
-	printf("world-map-init\n");
 	duplicate_player(data);
 	printf("player-duplicated\n");
-	get_player_pos(data);
-	printf("player-pos\n");
 	check_dimensions(&data->map);
 	printf("dimensions-checked\n");
+	init_world_map(data);
+	printf("world-map-init\n");
+	get_player_pos(data);
+	printf("player-pos\n");
 	check_walls(&data->map);
 	check_valid_path(data, data->player.i, data->player.j);
 

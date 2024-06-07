@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/05 22:05:03 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 13:53:21 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	store_map(t_cub3d *data, int index)
 	map_length_val = map_length(data, index);
 	data->map.map = malloc((map_length_val + 1) * sizeof(char *));
 	data->map.tmp = malloc((map_length_val + 1) * sizeof(char *));
+
 	while (data->file_content[index] != NULL)
 	{
 		data->map.map[i] = ft_strdup(data->file_content[index]);

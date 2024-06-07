@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/05 22:22:48 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 23:16:13 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "./MLX/MLX42.h"
-# include "./libft/libft.h"
+# include "./Libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -209,7 +209,7 @@ void				check_valid_path(t_cub3d *data, int y, int x);
 
 void				raycasting(t_cub3d *data);
 void				single_ray(t_cub3d *data, int id_ray);
-void				init_ray(t_player *player, t_ray *ray, int x);
+void				init_ray(t_cub3d *data, t_ray *ray, int x);
 void				init_player(t_player *player, t_cub3d *data);
 void				print_ray(t_ray ray, t_player *player, int x);	
 void				print_player(t_player *player);
@@ -220,6 +220,6 @@ void				ray_dist(t_player *player, t_ray *ray);
 void				dda(t_cub3d *ray, int **world_map);
 void				ray_vec(t_player *player, t_ray *ray);
 void				init_world_map(t_cub3d *data);
-
+void				print_world_map(t_cub3d *data, int **world_map);
 
 #endif

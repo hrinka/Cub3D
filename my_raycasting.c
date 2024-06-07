@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/07 17:18:36 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 19:08:58 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void ray_dist(t_player *player, t_ray *ray) {
     }
     printf("ray->wall_dist: %f\n", ray->wall_dist);
     if (ray->wall_dist <= 0) {
-        printf("Adjusting ray->wall_dist from %f to 0.1 to avoid division by zero\n", ray->wall_dist);
         ray->wall_dist = 0.1;  // 最小値を設定して無限ループや他の数値エラーを防ぐ
     }
 }
@@ -200,25 +199,25 @@ void	single_ray(t_cub3d *data, int x)
 	render_wall(data, &ray, x);
 }
 
-// void	print_world_map(t_cub3d *data, int **world_map)
-// {
-// 	int	i;
-// 	int	j;
+void	print_world_map(t_cub3d *data, int **world_map)
+{
+	int	i;
+	int	j;
 
-// 	i = 0;
-// 	j = 0;
-// 	while (j < data->map.height_map)
-// 	{
-// 		i = 0;
-// 		while (i < data->map.width_map)
-// 		{
-// 			printf("%d", data->map.world_map[j][i]);
-// 			i++;
-// 		}
-// 		printf("\n");
-// 		j++;
-// 	}
-// }
+	i = 0;
+	j = 0;
+	while (j < data->map.height_map)
+	{
+		i = 0;
+		while (i < data->map.width_map)
+		{
+			printf("%d", data->map.world_map[j][i]);
+			i++;
+		}
+		printf("\n");
+		j++;
+	}
+}
 
 void	raycasting(t_cub3d *data)
 {
@@ -226,12 +225,16 @@ void	raycasting(t_cub3d *data)
 
 	x = 0;
 	printf("raycasting\n");
-	// print_world_map(&data);
-	printf("start\n");
+	print_world_map(data, data->map.world_map);
 	init_player(&data->player, data);
 	while (x < WIDTH_WIN)
 	{
+		printf("x: %d\n", x);
 		single_ray(data, x);
 		x++;
+		if (x == WIDTH_WIN) {
+			printf("end\n");
+			break;
+		}
 	}
 }

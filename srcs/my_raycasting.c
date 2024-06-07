@@ -6,11 +6,11 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/07 19:08:58 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 21:57:15 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	ray_vec(t_player *player, t_ray *ray)
 {

@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 16:44:23 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 19:48:56 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	store_textures_path(t_cub3d *data, int length)
 		exit(1);
 	}
 	return (0);
-
 }
 
 void	init_textures(mlx_t *mlx, t_cub3d *data)

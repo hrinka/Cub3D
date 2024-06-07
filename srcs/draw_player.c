@@ -6,11 +6,11 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 15:56:23 by ahajji            #+#    #+#             */
-/*   Updated: 2024/05/31 20:04:17 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 21:56:16 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	draw_player(t_cub3d *data)
 {

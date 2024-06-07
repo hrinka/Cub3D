@@ -6,11 +6,11 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 12:37:30 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/01 17:22:09 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 21:55:21 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	ray_casting(t_cub3d *data, float ray_angle,
 	int id_ray, mlx_image_t *img)

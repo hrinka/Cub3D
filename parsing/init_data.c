@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 16:45:52 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 22:24:10 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	check_walls(t_map *data)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == '\n')
-				break;
+				break ;
 			if (i == 0 || data->map[i + 1] == NULL || j == 0 || data->map[i][j + 1] == '\0')
 			{
-				if (data->map[i][j] != '1' && data->map[i][j] != ' ' && data->map[i][j] != '\t')
-				{
-					fprintf(stderr, "Error: Map boundaries must be walls or empty spaces.\n");
+			if (data->map[i][j] != '1' && data->map[i][j] != ' ' && data->map[i][j] != '\t')
+			{
+				ft_printf( "Error: Map boundaries must be walls or empty spaces.\n");
 					exit(EXIT_FAILURE);
-				}
+			}
 			}
 			j++;
 		}
@@ -102,59 +102,6 @@ void	init_world_map(t_cub3d *data)
 		i++;
 	}
 }
-
-// void	init_world_map(t_cub3d *data)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	j = 0;
-// 	data->map.world_map = (int **)calloc(sizeof(int *), data->map.height_map);
-// 	while (j < data->map.height_map)
-// 	{
-// 		data->map.world_map[j] = (int *)calloc(sizeof(int), data->map.width_map);
-// 		while (data->map.map[j][i] != '\n' && data->map.map[j][i] != '\0' )
-// 		{
-// 			printf("map check [%d]\n", i);
-// 			if (data->map.map[j][i] == '1')
-// 				data->map.world_map[j][i] = 1;
-// 			else
-// 				data->map.world_map[j][i] = 0;
-// 			i++;
-// 		}
-// 		i = 0;
-// 		j++;
-// 	}
-// 	i = 0;
-// 	j = 0;
-// 	printf("atoi check\n");
-// 	while (j < data->map.height_map)
-// 	{
-// 		i = 0;
-// 		while (i < data->map.width_map)
-// 		{
-// 			printf("%d", data->map.world_map[j][i]);
-// 			i++;
-// 		}
-// 		printf("\n");
-// 		j++;
-// 	}
-
-	// while (j < data->map.height_map)
-	// {
-	// 	i = 0;
-	// 	while (i < data->map.width_map)
-	// 	{
-	// 		if (data->map.map[j][i] == '1')
-	// 			data->map.map[j][i] = 1;
-	// 		else
-	// 			data->map.map[j][i] = 0;
-	// 		i++;
-	// 	}
-	// 	j++;
-	// }
-// }
 
 void	init_game(char *path_file, t_cub3d *data)
 {

@@ -6,11 +6,11 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:32:35 by ahajji            #+#    #+#             */
-/*   Updated: 2024/05/31 20:43:13 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 21:56:39 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	call_raycasting(t_cub3d *data, float ray_angle, int id_ray)
 {

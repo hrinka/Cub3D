@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 00:33:19 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/08 02:08:43 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	my_draw(void *param)
 	controle_angle(data);
 	controle_player(data);
 	draw_ceil_floor(data);
-	// raycasting(data);
+	raycasting(data);
 	// draw_map(data, 0);
 	// draw_view_angle(data);
 	// draw_player(data);
@@ -137,10 +137,11 @@ int	main(int ac, char **av)
 		return (1);
 	// draw_map(&data, 1);
 	// print_map(&data);
-	// mlx_loop_hook(data.mlx, my_draw, &data);
-	// mlx_close_hook(data.mlx, close_callback, NULL);
-	// mlx_loop(data.mlx);
-	// mlx_terminate(data.mlx);
-	// free_cub_data(&data);
+	my_draw(&data);
+	mlx_loop_hook(data.mlx, my_draw, &data);
+	mlx_close_hook(data.mlx, close_callback, NULL);
+	mlx_loop(data.mlx);
+	mlx_terminate(data.mlx);
+	free_cub_data(&data);
 	return (0);
 }

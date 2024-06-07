@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/07 21:57:15 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/07 22:59:21 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ray_vec(t_player *player, t_ray *ray)
 {
+
 	if (ray->ray_dir_x < 0)
 	{
 		ray->step_x = -1;
@@ -39,6 +40,7 @@ void	ray_vec(t_player *player, t_ray *ray)
 
 void	dda(t_cub3d *data, int **world_map)
 {
+	printf("dda\n");
 	while (data->ray.hit == 0)
 	{
 		if (data->ray.side_dist_x < data->ray.side_dist_y)
@@ -53,16 +55,20 @@ void	dda(t_cub3d *data, int **world_map)
 			data->ray.map_y += data->ray.step_y;
 			data->ray.side = 1;
 		}
-		if (data->ray.map_x < 0 || data->ray.map_x >= data->map.width_map || data->ray.map_y < 0 || data->ray.map_y >= data->map.height_map) {
-            printf("Out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
-            break;  // Break the loop if out of bounds
-        }
+		// if (data->ray.map_x < 0 || data->ray.map_x >= data->map.width_map || data->ray.map_y < 0 || data->ray.map_y >= data->map.height_map) {
+        //     printf("Out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
+        //     break;  // Break the loop if out of bounds
+        // }
 		if (world_map[data->ray.map_x][data->ray.map_y] > 0)
 		{
 			printf("hit\n");
 			data->ray.hit = 1;
+			return ;
 		}
 		printf("Checking hit: map_x=%d, map_y=%d, hit=%d\n", data->ray.map_x, data->ray.map_y, data->ray.hit);
+		printf("data->ray.side_dist_x: %f , data->ray.side_dist_y: %f\n", data->ray.side_dist_x, data->ray.side_dist_y);
+		printf("data->ray.step_x: %d , data->ray.step_y: %d\n", data->ray.step_x, data->ray.step_y);
+		printf("world_map[data->ray.map_x][data->ray.map_y]: %d\n", world_map[data->ray.map_x][data->ray.map_y]);
 	}
 }
 
@@ -77,16 +83,16 @@ void	dda(t_cub3d *data, int **world_map)
 
 void ray_dist(t_player *player, t_ray *ray) {
     if (ray->side == 0) {
-        if (ray->ray_dir_x == 0) ray->ray_dir_x = 0.0001;  // 非常に小さい値を0とみなさないようにする
+        //  if (ray->ray_dir_x == 0) ray->ray_dir_x = 0.0001;  // 非常に小さい値を0とみなさないようにする
         ray->wall_dist = (ray->map_x - player->pos_x + (1 - ray->step_x) / 2) / ray->ray_dir_x;
     } else {
-        if (ray->ray_dir_y == 0) ray->ray_dir_y = 0.0001;  // 非常に小さい値を0とみなさないようにする
+        // if (    sray->ray_dir_y == 0) ray->ray_dir_y = 0.0001;  // 非常に小さい値を0とみなさないようにする
         ray->wall_dist = (ray->map_y - player->pos_y + (1 - ray->step_y) / 2) / ray->ray_dir_y;
     }
-    printf("ray->wall_dist: %f\n", ray->wall_dist);
-    if (ray->wall_dist <= 0) {
-        ray->wall_dist = 0.1;  // 最小値を設定して無限ループや他の数値エラーを防ぐ
-    }
+    // printf("ray->wall_dist: %f\n", ray->wall_dist);
+    // if (ray->wall_dist <= 0) {
+    //     ray->wall_dist = 0.1;  // 最小値を設定して無限ループや他の数値エラーを防ぐ
+    // }
 }
 
 void	render_wall(t_cub3d *data, t_ray *ray, int x)
@@ -111,8 +117,8 @@ void	draw_line(t_cub3d *data, int x, int start, int end, int color)
 	int	y;
 
 	y = start;
-	printf("start: %d\n", start);
-	printf("end: %d\n", end);
+	// printf("start: %d\n", start);
+	// printf("end: %d\n", end);
 	while (y < end)
 	{
 		mlx_put_pixel(data->map.img, x, y, color);
@@ -156,10 +162,10 @@ void	print_player(t_player *player)
 
 void	init_player(t_player *player, t_cub3d *data)
 {
-	printf("init_player\n");
+	// printf("init_player\n");
 	player->pos_x = player->i;
-	printf("data->map.px: %f\n", data->map.px);
-	printf("player->pos_x: %f\n", player->pos_x);
+	// printf("data->map.px: %f\n", data->map.px);
+	// printf("player->pos_x: %f\n", player->pos_x);
 	player->pos_y = player->j;
 	player->dir_x = cos(player->angle) - sin(player->angle);
 	player->dir_y = sin(player->angle) + cos(player->angle);
@@ -167,22 +173,23 @@ void	init_player(t_player *player, t_cub3d *data)
 	player->plane_y = 0.66;
 }
 
-void init_ray(t_player *player, t_ray *ray, int x) {
+void init_ray(t_cub3d *data, t_ray *ray, int x) {
     ft_memset(ray, 0, sizeof(t_ray));
     ray->ray_pos = 2 * x / (double)WIDTH_WIN - 1;
-    ray->ray_dir_x = player->dir_x + player->plane_x * ray->ray_pos;
-    ray->ray_dir_y = player->dir_y + player->plane_y * ray->ray_pos;
-    ray->map_x = (int)player->pos_x;
-    ray->map_y = (int)player->pos_y;
+    ray->ray_dir_x = data->player.dir_x + data->player.plane_x * ray->ray_pos;
+    ray->ray_dir_y = data->player.dir_y + data->player.plane_y * ray->ray_pos;
+    ray->map_x = (int)data->player.pos_x;
+    ray->map_y = (int)data->player.pos_y;
     ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
     ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
     ray->hit = 0;
-
-    printf("init_ray\n");
-    printf("player->pos_x: %f\n", player->pos_x);
-    printf("ray->map_x: %d\n", ray->map_x);
-    printf("ray->ray_dir_x: %f\n", ray->ray_dir_x);
-    printf("ray->ray_dir_y: %f\n", ray->ray_dir_y);
+	ray_vec(&data->player, ray);
+    // printf("init_ray\n");
+    // printf("player->pos_x: %f\n", player->pos_x);
+    // printf("ray->map_x: %d\n", ray->map_x);
+    // printf("ray->ray_dir_x: %f\n", ray->ray_dir_x);
+    // printf("ray->ray_dir_y: %f\n", ray->ray_dir_y);
+	data->ray = *ray;
 }
 
 
@@ -190,10 +197,11 @@ void	single_ray(t_cub3d *data, int x)
 {
 	t_ray	ray;
 
-	init_ray(&data->player, &ray, x);
+	init_ray(data, &ray, x);
 	// print_player(player); // debug
-	// print_ray(ray, player, x); // debug
-	ray_vec(&data->player, &ray);
+	// print_ray(ray, &data->player, x); // debug
+	// ray_vec(&data->player, &ray);
+	print_ray(ray, &data->player, x); // debug
 	dda(data, data->map.world_map);
 	ray_dist(&data->player, &ray);
 	render_wall(data, &ray, x);
@@ -229,11 +237,11 @@ void	raycasting(t_cub3d *data)
 	init_player(&data->player, data);
 	while (x < WIDTH_WIN)
 	{
-		printf("x: %d\n", x);
+		// printf("x: %d\n", x);
 		single_ray(data, x);
 		x++;
 		if (x == WIDTH_WIN) {
-			printf("end\n");
+			// printf("end\n");
 			break;
 		}
 	}

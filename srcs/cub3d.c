@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 15:05:23 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/08 20:18:52 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,9 @@ void	my_draw(void *param)
 	controle_player(data);
 	draw_ceil_floor(data);
 	raycasting(data);
-	// draw_map(data, 0);
-	// draw_view_angle(data);
+	(mlx_image_to_window(data->mlx, data->map.img_map, 0, 0));
+// 	if (!data->map.img_map)
+// 		return (1);
 }
 
 int	main(int ac, char **av)
@@ -122,19 +123,17 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init(WIDTH_WIN, HEIGHT_WIN, "cub3d", false);
 	if (!data.mlx)
 		return (1);
-	printf("mlx init\n");
-	init_textures(data.mlx, &data);
-	printf("textures init\n");
 	init_data(&data);
 	printf("data init\n");
+	init_textures(data.mlx, &data);
+	printf("textures init\n");
 	data.map.img_map = mlx_new_image(data.mlx, data.map.size_map, data.map.size_map);
 	data.map.img = mlx_new_image(data.mlx, WIDTH_WIN, HEIGHT_WIN);
 	if (!data.map.img || (mlx_image_to_window(data.mlx, data.map.img, 0, 0)))
 		return (1);
-	(mlx_image_to_window(data.mlx, data.map.img_map, 0, 0));
-	if (!data.map.img_map)
-		return (1);
-	// draw_map(&data, 1);
+	// (mlx_image_to_window(data.mlx, data.map.img_map, 0, 0));
+	// if (!data.map.img_map)
+	// 	return (1);
 	// print_map(&data);
 	my_draw(&data);
 	mlx_loop_hook(data.mlx, my_draw, &data);

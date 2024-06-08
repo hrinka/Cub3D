@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:51:53 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/01 16:33:11 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/08 21:11:30 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,57 @@ void	duplicate_player(t_cub3d *data)
 	}
 }
 
-void	get_player_pos(t_cub3d *game)
-{
-	int	i;
-	int	j;
+// void	get_player_pos(t_cub3d *game)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	while (game->map.map[i])
+// 	i = 0;
+// 	while (game->map.map[i])
+// 	{
+// 		j = 0;
+// 		while (game->map.map[i][j])
+// 		{
+// 			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S' \
+// 			|| game->map.map[i][j] == 'E' || game->map.map[i][j] == 'W')
+// 			{
+// 				game->player.direction = game->map.map[i][j];
+// 				game->player.i = i;
+// 				game->player.j = j;
+// 				return ;
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
+void	get_player_pos(t_cub3d *data)
+{
+	int i = 0;
+	while (i < data->map.height_map)
 	{
-		j = 0;
-		while (game->map.map[i][j])
+		int j = 0;
+		while (j < data->map.width_map)
 		{
-			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S' \
-			|| game->map.map[i][j] == 'E' || game->map.map[i][j] == 'W')
+			if (data->map.world_map[i][j] == 'N' || data->map.world_map[i][j] == 'S' \
+			|| data->map.world_map[i][j] == 'E' || data->map.world_map[i][j] == 'W')
 			{
-				game->player.direction = game->map.map[i][j];
-				game->player.i = i;
-				game->player.j = j;
-				return ;
+                data->player.i = i;
+                data->player.j = j;
+                data->player.pos_x = j + 0.5;
+                data->player.pos_y = i + 0.5;
+				// if (c == 'N')
+				//     data->player.angle = 270;
+				// else if (c == 'S')
+				//     data->player.angle = 90;
+				// else if (c == 'W')
+				//     data->player.angle = 180;
+				// else if (c == 'E')
+				// 	data->player.angle = 0;
+				// return;
 			}
-			j++;
+            j++;
 		}
 		i++;
 	}

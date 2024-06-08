@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 16:46:55 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/08 18:02:59 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void				draw_ceil_floor(t_cub3d *data);
 void				controle_angle(t_cub3d *data);
 void				controle_player(t_cub3d *data);
 void				check_wall_part_tow(t_cub3d *data, int *x, int *y);
-int					check_wall(t_cub3d *data);
+int					check_wall(t_cub3d *data, float x, float y);
 void				check_ray_draw(t_cub3d *data, float ray_angle, int id_ray);
 void				check_ray_draw_down(t_cub3d *data, float ray_angle);
 void				check_ray_draw_up(t_cub3d *data, float ray_angle);

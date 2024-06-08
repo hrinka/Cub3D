@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 13:46:21 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/08 15:04:02 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ float				distance_between_points(float x1, float y1, float x2,
 						float y2);
 void				draw_map(t_cub3d *data, int mode);
 void				draw_view_angle(t_cub3d *data);
-void				check_ray_draw(t_cub3d *data, float ray_angle, int id_ray);
+// void				check_ray_draw(t_cub3d *data, float ray_angle, int id_ray);
 void				ray_casting(t_cub3d *data, float ray_angle, int id_ray,
 						mlx_image_t *img);
 void				move_mouse(double xp, double yp, void *param);

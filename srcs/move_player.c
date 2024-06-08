@@ -6,13 +6,13 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:17:09 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/07 21:55:05 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/08 15:23:00 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	controle_angle(t_cub3d *data)
+void	controle_angle(t_cub3d *data) 
 {
 	mlx_cursor_hook(data->mlx, move_mouse, (void *)data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
@@ -35,6 +35,7 @@ void	controle_player(t_cub3d *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W) && check_wall(data))
 	{
+		printf("W\n");
 		data->map.px = data->map.px + (cos(to_rad(data->player.angle)) * MOVE_STEP);
 		data->map.py = data->map.py + (sin(to_rad(data->player.angle)) * MOVE_STEP);
 	}
@@ -53,6 +54,12 @@ void	controle_player(t_cub3d *data)
 		data->map.px = data->map.px + cos(to_rad(90) - to_rad(data->player.angle)) * MOVE_STEP;
 		data->map.py = data->map.py - sin(to_rad(90) - to_rad(data->player.angle)) * MOVE_STEP;
 	}
+	printf("data->map.px: %f\n",data->map.px);
+	printf("data->map.py: %f\n",data->map.py);
+	printf("cos(to_rad(data->player.angle)): %f\n", cos(to_rad(data->player.angle)));
+	printf("sin(to_rad(data->player.angle)): %f\n", sin(to_rad(data->player.angle)));
+	printf("MOVE_STEP: %d\n", MOVE_STEP);
+
 }
 
 void	check_wall_part_tow(t_cub3d *data, int *x, int *y)

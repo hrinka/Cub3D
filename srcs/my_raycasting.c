@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/08 14:07:34 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/08 15:06:50 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,10 @@ void	raycasting(t_cub3d *data)
 
 	x = 0;
 	printf("raycasting\n");
-	print_world_map(data, data->map.world_map);
+	// print_world_map(data, data->map.world_map);
 	init_player(&data->player, data);
 	while (x < WIDTH_WIN)
 	{
-		// printf("x: %d\n", x);
 		single_ray(data, x);
 		x++;
 		if (x == WIDTH_WIN) {

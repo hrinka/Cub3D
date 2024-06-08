@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42tokyo.>       +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 02:04:16 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/08 02:04:50 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/08 16:52:39 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,26 @@ void	draw_line(t_cub3d *data, int x, int start, int end, int color)
 	{
 		mlx_put_pixel(data->map.img, x, y, color);
 		y++;
+	}
+}
+
+void	draw_ceil_floor(t_cub3d *data)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (j < HEIGHT_WIN)
+	{
+		i = 0;
+		while (i < WIDTH_WIN)
+		{
+			if (j < HEIGHT_WIN / 2)
+				mlx_put_pixel(data->map.img, i, j, data->textures.sky_hex);
+			else
+				mlx_put_pixel(data->map.img, i, j, data->textures.floor_hex);
+			i++;
+		}
+		j++;
 	}
 }

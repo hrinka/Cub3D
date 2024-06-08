@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 01:56:20 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:06:11 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,5 +221,6 @@ void				dda(t_cub3d *ray, int **world_map);
 void				ray_vec(t_player *player, t_ray *ray);
 void				init_world_map(t_cub3d *data);
 void				print_world_map(t_cub3d *data, int **world_map);
+uint32_t			get_texel_from_image(mlx_image_t *image, const uint32_t tex_x, const uint32_t tex_y);
 
 #endif

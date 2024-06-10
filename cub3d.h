@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 00:30:20 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/10 23:20:52 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define HEIGHT_WIN 900
 # define SPEED_ROTATE 2
 # define MOVE_STEP 1
-# define MOVE_STEP_V 3
+// # define MOVE_STEP 3
 # define VIEW_ANGLE 60
 
 typedef struct s_paths
@@ -141,17 +141,17 @@ void				draw_line_dda(t_cub3d *data, float x2, float y2,
 						uint32_t color);
 float				distance_between_points(float x1, float y1, float x2,
 						float y2);
-void				draw_map(t_cub3d *data, int mode);
+// void				draw_map(t_cub3d *data, int mode);
 void				draw_view_angle(t_cub3d *data);
-void				check_ray_draw(t_cub3d *data, float ray_angle, int id_ray);
+// void				check_ray_draw(t_cub3d *data, float ray_angle, int id_ray);
 void				ray_casting(t_cub3d *data, float ray_angle, int id_ray,
 						mlx_image_t *img);
 void				move_mouse(double xp, double yp, void *param);
 void				draw_ceil_floor(t_cub3d *data);
 void				controle_angle(t_cub3d *data);
 void				controle_player(t_cub3d *data);
-void				check_wall_part_tow(t_cub3d *data, int *x, int *y);
-int					check_wall(t_cub3d *data);
+void				check_wall_2(t_cub3d *data, float *new_x, float *new_y);
+int					check_wall(t_cub3d *data, float x, float y);
 void				check_ray_draw(t_cub3d *data, float ray_angle, int id_ray);
 void				check_ray_draw_down(t_cub3d *data, float ray_angle);
 void				check_ray_draw_up(t_cub3d *data, float ray_angle);

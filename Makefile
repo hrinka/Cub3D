@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+         #
+#    By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 08:44:19 by hrinka            #+#    #+#              #
-#    Updated: 2024/06/08 16:47:05 by hrinka           ###   ########.fr        #
+#    Updated: 2024/06/11 00:57:13 by hirosuzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ GNL_SRC = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 LIBFT_SRC = libft/ft_isdigit.c libft/ft_strlen.c libft/ft_strncmp.c libft/ft_strchr.c libft/ft_calloc.c libft/ft_bzero.c libft/ft_strnstr.c libft/ft_atoi.c libft/ft_strdup.c libft/ft_split.c libft/ft_memset.c libft/ft_isspace.c \
 				libft/ft_memcpy.c libft/ft_substr.c libft/ft_xmalloc.c libft/ft_memmove.c libft/ft_printf.c libft/ft_flagchar.c libft/ft_flagpoint.c libft/ft_flagstr.c libft/ft_flagint.c libft/ft_flagu.c libft/ft_xbase.c libft/pf_putchar_fd.c libft/pf_putstr_fd.c libft/pf_strlen.c
 
-ABD_SRC = srcs/move_mouse.c srcs/move_player.c srcs/tools.c srcs/cub3d.c srcs/my_raycasting.c srcs/my_init.c srcs/my_draw.c
+ABD_SRC = srcs/move_mouse.c srcs/move_player.c srcs/tools.c srcs/draw_map.c srcs/cub3d.c srcs/my_raycasting.c srcs/my_init.c srcs/my_draw.c
 
 OBJ = $(PARSE_SRC:.c=.o) $(GNL_SRC:cpp=.o) $(LIBFT_SRC:.c=.o) $(ABD_SRC:.c=.o)
 

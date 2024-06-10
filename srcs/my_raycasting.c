@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/10 20:26:02 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 00:53:44 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	dda(t_cub3d *data, int **world_map)
 		if (data->ray.map_x < 0 || data->ray.map_x >= data->map.width_map || \
 			data->ray.map_y < 0 || data->ray.map_y >= data->map.height_map)
 		{
-            // printf("Out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
+            printf("Out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
             break ;  // Break the loop if out of bounds
         }
 		if (world_map[data->ray.map_x][data->ray.map_y] > 0)

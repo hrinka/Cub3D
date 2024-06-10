@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/08 17:18:01 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/09 16:42:15 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	dda(t_cub3d *data, int **world_map)
 			data->ray.map_y < 0 || data->ray.map_y >= data->map.height_map)
 		{
             printf("Out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
-            exit(1);  // Break the loop if out of bounds
+            break ;  // Break the loop if out of bounds
         }
 		if (world_map[data->ray.map_x][data->ray.map_y] > 0)
 		{

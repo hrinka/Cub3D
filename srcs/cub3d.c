@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 20:18:52 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/10 21:03:05 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void	print_data(t_cub3d *data)
 	printf("size_map : %d\n", data->map.size_map);
 	printf("height_map : %d\n", data->map.height_map);
 	printf("width_map : %d\n", data->map.width_map);
-	printf("number_rays : %f\n", data->render.number_rays);
-	printf("distance_horz : %f\n", data->render.distance_horz);
-	printf("distance_vert : %f\n", data->render.distance_vert);
-	printf("hores_inters_x : %f\n", data->render.hores_inters_x);
-	printf("hores_inters_y : %f\n", data->render.hores_inters_y);
-	printf("next_hor_inters_x : %f\n", data->render.next_hor_inters_x);
+	// printf("number_rays : %f\n", data->render.number_rays);
+	// printf("distance_horz : %f\n", data->render.distance_horz);
+	// printf("distance_vert : %f\n", data->render.distance_vert);
+	// printf("hores_inters_x : %f\n", data->render.hores_inters_x);
+	// printf("hores_inters_y : %f\n", data->render.hores_inters_y);
+	// printf("next_hor_inters_x : %f\n", data->render.next_hor_inters_x);
 }
 
 void	print_map(t_cub3d *data)

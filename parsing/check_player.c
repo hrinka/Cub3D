@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:51:53 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/10 20:03:19 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/10 22:36:56 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,6 @@ void	get_player_pos(t_cub3d *data)
                 data->player.j = j;
                 data->player.pos_x = j + 0.5;
                 data->player.pos_y = i + 0.5;
-				// if (c == 'N')
-				//     data->player.angle = 270;
-				// else if (c == 'S')
-				//     data->player.angle = 90;
-				// else if (c == 'W')
-				//     data->player.angle = 180;
-				// else if (c == 'E')
-				// 	data->player.angle = 0;
-				// return;
 			}
             j++;
 		}

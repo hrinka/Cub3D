@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/09 16:42:15 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:26:02 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	dda(t_cub3d *data, int **world_map)
 		if (data->ray.map_x < 0 || data->ray.map_x >= data->map.width_map || \
 			data->ray.map_y < 0 || data->ray.map_y >= data->map.height_map)
 		{
-            printf("Out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
+            // printf("Out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
             break ;  // Break the loop if out of bounds
         }
 		if (world_map[data->ray.map_x][data->ray.map_y] > 0)
@@ -100,6 +100,18 @@ void	single_ray(t_cub3d *data, int x)
 	render_wall(data, &data->ray, x);
 }
 
+void	print_player(t_player *player)
+{
+	static int	i = 0;
+
+	printf("\n%d\n", i++);
+    // printf("Player Position: (%f, %f)\n", player->pos_x, player->pos_y);
+    printf("Player Angle: %f\n", player->angle);
+    // printf("Player Direction: (%f, %f)\n", player->dir_x, player->dir_y);
+	// printf("plane_x: %f\n", player->plane_x);
+	// printf("plane_y: %f\n", player->plane_y);
+}
+
 void	raycasting(t_cub3d *data)
 {
 	int	x;
@@ -107,6 +119,7 @@ void	raycasting(t_cub3d *data)
 	x = 0;
 	printf("raycasting\n");
 	// print_world_map(data, data->map.world_map);
+	print_player(&data->player);
 	init_player(&data->player, data);
 	while (x < WIDTH_WIN)
 	{

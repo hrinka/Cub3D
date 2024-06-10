@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 01:45:06 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/08 02:03:22 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:46:41 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,6 @@ void	print_ray(t_ray ray, t_player *player, int x)
     printf("hit: %d\n", ray.hit);
     printf("side: %d\n", ray.side);
 }
-
-void	print_player(t_player *player)
-{
-	static int	i = 0;
-
-	printf("\n%d\n", i++);
-	printf("pos_x: %f\n", player->pos_x);
-	printf("pos_y: %f\n", player->pos_y);
-	printf("dir_x: %f\n", player->dir_x);
-	printf("dir_y: %f\n", player->dir_y);
-	printf("plane_x: %f\n", player->plane_x);
-	printf("plane_y: %f\n", player->plane_y);
-}
-
 
 void	print_world_map(t_cub3d *data, int **world_map)
 {

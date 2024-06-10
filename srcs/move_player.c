@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:17:09 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/08 20:28:28 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/10 20:35:35 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,41 @@ void	controle_angle(t_cub3d *data)
 // 	}
 // }
 
+
+void controle_player(t_cub3d *data) {
+    // float dir_x = cos(data->player.angle) * MOVE_STEP;
+    // float dir_y = sin(data->player.angle) * MOVE_STEP;
+    float dir_x = cos(data->player.angle * M_PI / 180.0) * MOVE_STEP;
+    float dir_y = sin(data->player.angle * M_PI / 180.0) * MOVE_STEP;
+	float new_x = data->player.pos_x;
+    float new_y = data->player.pos_y;
+	
+    if (mlx_is_key_down(data->mlx, MLX_KEY_W)) {
+        new_x += dir_x;
+        new_y += dir_y;
+    }
+    if (mlx_is_key_down(data->mlx, MLX_KEY_S)) {
+        new_x -= dir_x;
+        new_y -= dir_y;
+    }
+    if (mlx_is_key_down(data->mlx, MLX_KEY_A)) {
+        new_x -= dir_y; // 左右移動は角度に垂直
+        new_y += dir_x;
+    }
+    if (mlx_is_key_down(data->mlx, MLX_KEY_D)) {
+        new_x += dir_y;
+        new_y -= dir_x;
+    }
+
+    if (check_wall(data, new_x, new_y)) {
+        data->player.pos_x = new_x;
+        data->player.pos_y = new_y;
+        printf("Old Position: (%f, %f), Hit wall at: (%f, %f)\n", new_x, new_y, data->player.pos_x, data->player.pos_y);
+    } else {
+        printf("Hit wall at (%f, %f)\n", new_x, new_y);}
+	// printf("Old Position: (%f, %f), Hit wall at: (%f, %f)\n", new_x, new_y, data->player.pos_x, data->player.pos_y);
+}
+
 // int	check_wall(t_cub3d *data)
 // {
 // 	int	x;
@@ -106,43 +141,20 @@ void	controle_angle(t_cub3d *data)
 // 		return (0);
 // 	return (1);
 // }
-void controle_player(t_cub3d *data) {
-    float dir_x = cos(data->player.angle) * MOVE_STEP;
-    float dir_y = sin(data->player.angle) * MOVE_STEP;
-	float new_x = data->player.pos_x;
-    float new_y = data->player.pos_y;
-	
-    if (mlx_is_key_down(data->mlx, MLX_KEY_W)) {
-        new_x += dir_x;
-        new_y += dir_y;
-    }
-    if (mlx_is_key_down(data->mlx, MLX_KEY_S)) {
-        new_x -= dir_x;
-        new_y -= dir_y;
-    }
-    if (mlx_is_key_down(data->mlx, MLX_KEY_A)) {
-        new_x -= dir_y; // 左右移動は角度に垂直
-        new_y += dir_x;
-    }
-    if (mlx_is_key_down(data->mlx, MLX_KEY_D)) {
-        new_x += dir_y;
-        new_y -= dir_x;
-    }
-
-    if (check_wall(data, new_x, new_y)) {
-        data->player.pos_x = new_x;
-        data->player.pos_y = new_y;
-    }
-	printf("data->map.px: %f\n",data->map.px);
-	printf("data->map.py: %f\n",data->map.py);
-	printf("Old Position: (%f, %f), New Position: (%f, %f)\n", new_x, new_y, data->player.pos_x, data->player.pos_y);
-}
-
+// int check_wall(t_cub3d *data, float x, float y) {
+//     int map_x = (int)(x / data->map.size_shape);
+//     int map_y = (int)(y / data->map.size_shape);
+//     if (data->map.world_map[map_y][map_x] == 1) {
+//         return 0; // Wall present
+//     }
+//     return 1; // No wall
+// }
 int check_wall(t_cub3d *data, float x, float y) {
-    int map_x = (int)(x / data->map.size_shape);
-    int map_y = (int)(y / data->map.size_shape);
-    if (data->map.world_map[map_y][map_x] == 1) {
-        return 0; // Wall present
+    int map_x = (int)x;
+    int map_y = (int)y;
+    printf("Checking wall at (%d, %d)\n", map_x, map_y);
+    if (data->map.world_map[map_y][map_x] == 1) { // 壁があるかのチェック
+        return 0; // 壁がある
     }
-    return 1; // No wall
+    return 1; // 移動可能
 }

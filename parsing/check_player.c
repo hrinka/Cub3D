@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:51:53 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 21:11:30 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/10 20:03:19 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,6 @@ void	duplicate_player(t_cub3d *data)
 		exit(1);
 	}
 }
-
-// void	get_player_pos(t_cub3d *game)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (game->map.map[i])
-// 	{
-// 		j = 0;
-// 		while (game->map.map[i][j])
-// 		{
-// 			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S' \
-// 			|| game->map.map[i][j] == 'E' || game->map.map[i][j] == 'W')
-// 			{
-// 				game->player.direction = game->map.map[i][j];
-// 				game->player.i = i;
-// 				game->player.j = j;
-// 				return ;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
 
 void	get_player_pos(t_cub3d *data)
 {

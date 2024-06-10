@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 01:45:58 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/08 14:57:00 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/10 20:42:01 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_player(t_player *player, t_cub3d *data)
     float angle;
 	printf("init_player\n");
     angle = to_rad(player->angle);
-	player->pos_x = player->i + data->map.px;
-	player->pos_y = player->j + data->map.py;
+	// player->pos_x = player->i + data->map.px;
+	// player->pos_y = player->j + data->map.py;
 	printf("data->map.px: %f\n", data->map.px);
 	printf("player->pos_x: %f\n", player->pos_x);
 	printf("player->pos_y: %f\n", player->pos_y);
@@ -45,10 +45,5 @@ void init_ray(t_cub3d *data, t_ray *ray, int x)
     ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
     ray->hit = 0;
     data->ray = *ray;
-    // printf("init_ray\n");
-    // printf("player->pos_x: %f\n", data->player.pos_x);
-    // printf("ray->map_x: %d\n", ray->map_x);
-    // printf("ray->ray_dir_x: %f\n", ray->ray_dir_x);
-    // printf("ray->ray_dir_y: %f\n", ray->ray_dir_y);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/08 20:20:06 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/10 20:26:02 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,18 @@ void	single_ray(t_cub3d *data, int x)
 	render_wall(data, &data->ray, x);
 }
 
+void	print_player(t_player *player)
+{
+	static int	i = 0;
+
+	printf("\n%d\n", i++);
+    // printf("Player Position: (%f, %f)\n", player->pos_x, player->pos_y);
+    printf("Player Angle: %f\n", player->angle);
+    // printf("Player Direction: (%f, %f)\n", player->dir_x, player->dir_y);
+	// printf("plane_x: %f\n", player->plane_x);
+	// printf("plane_y: %f\n", player->plane_y);
+}
+
 void	raycasting(t_cub3d *data)
 {
 	int	x;
@@ -107,6 +119,7 @@ void	raycasting(t_cub3d *data)
 	x = 0;
 	printf("raycasting\n");
 	// print_world_map(data, data->map.world_map);
+	print_player(&data->player);
 	init_player(&data->player, data);
 	while (x < WIDTH_WIN)
 	{

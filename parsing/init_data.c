@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 00:58:32 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:48:27 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,8 @@ void	init_game(char *path_file, t_cub3d *data)
 		printf("Please enter a map folder with the correct extension (\".cub\")");
 		exit(1);
 	}
+
+	printf("START: init_game\n");
 	get_file_content(path_file, data);
 	parse_file_content(data);
 	duplicate_player(data);
@@ -136,6 +138,4 @@ void	init_game(char *path_file, t_cub3d *data)
 	init_world_map(data);
 	check_walls(&data->map);
 	check_valid_path(data, data->player.i, data->player.j);
-
-printf("end	init_game\n");
 }

@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/08 17:20:30 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/09 16:26:54 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "./MLX/MLX42.h"
-# include "./libft/libft.h"
+# include "./Libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -141,7 +141,7 @@ void				draw_line_dda(t_cub3d *data, float x2, float y2,
 						uint32_t color);
 float				distance_between_points(float x1, float y1, float x2,
 						float y2);
-void				draw_map(t_cub3d *data, int mode);
+// void				draw_map(t_cub3d *data, int mode);
 void				draw_view_angle(t_cub3d *data);
 // void				check_ray_draw(t_cub3d *data, float ray_angle, int id_ray);
 void				ray_casting(t_cub3d *data, float ray_angle, int id_ray,

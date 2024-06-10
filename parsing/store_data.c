@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 23:52:43 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 00:12:34 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ int	store_map(t_cub3d *data, int index)
 	printf("map_length_val: %d\n", map_length_val);
 	data->map.map = malloc((map_length_val + 1) * sizeof(char *));
 	data->map.tmp = malloc((map_length_val + 1) * sizeof(char *));
-	if (!data->map.map || !data->map.tmp) {
+	if (!data->map.map || !data->map.tmp)
+	{
 		fprintf(stderr, "Error: Unable to allocate memory for map\n");
 		exit(EXIT_FAILURE);
 	}

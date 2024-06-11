@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 00:12:34 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 00:23:08 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,31 +99,52 @@ int	map_length(t_cub3d *data, int index)
 	return (i);
 }
 
-int	store_map(t_cub3d *data, int index)
+// int	store_map(t_cub3d *data, int index)
+// {
+// 	int	i;
+// 	int	map_length_val;
+
+// 	i = 0;
+// 	while (data->file_content[index] != NULL
+// 		&& (empty_line(data->file_content[index]) == 0))
+// 		index++;
+// 	map_length_val = map_length(data, index);
+// 	printf("map_length_val: %d\n", map_length_val);
+// 	data->map.map = malloc((map_length_val + 1) * sizeof(char *));
+// 	data->map.tmp = malloc((map_length_val + 1) * sizeof(char *));
+// 	if (!data->map.map || !data->map.tmp)
+// 	{
+// 		fprintf(stderr, "Error: Unable to allocate memory for map\n");
+// 		exit(EXIT_FAILURE);
+// 	}
+
+// 	while (data->file_content[index] != NULL)
+// 	{
+// 		char *line = data->file_content[index];
+// 		while (*line == ' ' || *line == '\t')
+// 			line++;
+
+// 		data->map.map[i] = ft_strdup(data->file_content[index]);
+// 		data->map.tmp[i] = ft_strdup(data->file_content[index]);
+// 		i++;
+// 		index++;
+// 	}
+// 	data->map.map[i] = NULL;
+// 	data->map.tmp[i] = NULL;
+// 	return (0);
+// }
+
+void	copy_map_content(t_cub3d *data, int index)
 {
-	int	i;
-	int	map_length_val;
+	int		i;
+	char	*line;
 
 	i = 0;
-	while (data->file_content[index] != NULL
-		&& (empty_line(data->file_content[index]) == 0))
-		index++;
-	map_length_val = map_length(data, index);
-	printf("map_length_val: %d\n", map_length_val);
-	data->map.map = malloc((map_length_val + 1) * sizeof(char *));
-	data->map.tmp = malloc((map_length_val + 1) * sizeof(char *));
-	if (!data->map.map || !data->map.tmp)
-	{
-		fprintf(stderr, "Error: Unable to allocate memory for map\n");
-		exit(EXIT_FAILURE);
-	}
-
 	while (data->file_content[index] != NULL)
 	{
-		char *line = data->file_content[index];
+		line = data->file_content[index];
 		while (*line == ' ' || *line == '\t')
 			line++;
-
 		data->map.map[i] = ft_strdup(data->file_content[index]);
 		data->map.tmp[i] = ft_strdup(data->file_content[index]);
 		i++;
@@ -131,5 +152,23 @@ int	store_map(t_cub3d *data, int index)
 	}
 	data->map.map[i] = NULL;
 	data->map.tmp[i] = NULL;
+}
+
+int		store_map(t_cub3d *data, int index)
+{
+	int	map_length_val;
+
+	while (data->file_content[index] != NULL
+		&& empty_line(data->file_content[index]) == 0)
+		index++;
+	map_length_val = map_length(data, index);
+	data->map.map = malloc((map_length_val + 1) * sizeof(char *));
+	data->map.tmp = malloc((map_length_val + 1) * sizeof(char *));
+	if (!data->map.map || !data->map.tmp)
+	{
+		fprintf(stderr, "Error: Unable to allocate memory for map\n");
+		exit(EXIT_FAILURE);
+	}
+	copy_map_content(data, index);
 	return (0);
 }

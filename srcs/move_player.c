@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:17:09 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/11 17:14:34 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 18:04:45 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@ void    controle_angle(t_cub3d *data)
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit(0);
+}
+
+void move_player(t_cub3d *data, float new_x, float new_y) {
+    // 新しい位置が壁でないかチェック
+    if (check_wall(data, new_x, new_y)) {
+        printf("Old Position: (%f, %f), New Position: (%f, %f)\n", data->player.pos_x, data->player.pos_y, new_x, new_y);
+        data->player.pos_x = new_x;
+        data->player.pos_y = new_y;
+    } else {
+        printf("Hit wall at (%f, %f)\n", new_x, new_y);
+    }
 }
 
 void    controle_player(t_cub3d *data)
@@ -58,15 +69,7 @@ void    controle_player(t_cub3d *data)
         new_x += data->player.dir_y * MOVE_STEP;
         new_y -= data->player.dir_x * MOVE_STEP;
     }
-
-    if (check_wall(data, new_x, new_y))
-    {
-        printf("Old Position: (%f, %f), New Position: (%f, %f)\n", data->player.pos_x, data->player.pos_y, new_x, new_y);
-        data->player.pos_x = new_x;
-        data->player.pos_y = new_y;
-    }else{
-        printf("Hit wall at (%f, %f)\n", new_x, new_y);
-    }
+    move_player(data, new_x, new_y);
 }
 
 
@@ -104,11 +107,17 @@ void    controle_player(t_cub3d *data)
 //         return (0);
 //     return (1);
 // }
-int check_wall(t_cub3d *data, float x, float y) {
-    int map_x = (int)(x / data->map.size_shape);
-    int map_y = (int)(y / data->map.size_shape);
-    if (data->map.map[map_y][map_x] == '1') {
-        return 0; // 壁がある
+int check_wall(t_cub3d *data, float new_x, float new_y) {
+    int map_x = (int)(new_x / data->map.size_shape);
+    int map_y = (int)(new_y / data->map.size_shape);
+
+    if (map_x < 0 || map_x >= data->map.width_map || map_y < 0 || map_y >= data->map.height_map) {
+        return 0; // プレイヤーがマップの外に出るのを防ぐ
+    }
+    if (data->map.map[map_y][map_x] == '1')
+    {
+        printf("Hit wall at (%d, %d)\n", map_x, map_y);
+        return 0; // 壁がある        
     }
     return 1; // 壁がない
 }

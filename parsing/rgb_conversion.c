@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:24:22 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 17:03:27 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 17:29:12 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,12 @@ long	return_hex_rgb(char *line)
 	int		b;
 
 	values = ft_split(line, ',');
-	if (nb_rgb_elem(values) > 3)
+	if (nb_rgb_elem(values) != 3)
+	{
+		printf("Error: Invalid number of RGB values\n");
+		free_2dchar_array(values);
 		exit(1);
+	}
 	validate_rgb_values(values);
 	if (values && values[0] && values[1] && values[2])
 	{

@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 00:22:01 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 13:55:53 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "./MLX/MLX42.h"
-# include "./libft/libft.h"
+# include "./Libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -26,7 +26,7 @@
 # define WIDTH_WIN 1600
 # define HEIGHT_WIN 900
 # define SPEED_ROTATE 2
-# define MOVE_STEP 1
+# define MOVE_STEP 0.1
 // # define MOVE_STEP 3
 # define VIEW_ANGLE 60
 
@@ -221,5 +221,6 @@ void				dda(t_cub3d *ray, int **world_map);
 void				ray_vec(t_player *player, t_ray *ray);
 void				init_world_map(t_cub3d *data);
 void				print_world_map(t_cub3d *data, int **world_map);
+uint32_t			get_texel_from_image(mlx_image_t *image, const uint32_t tex_x, const uint32_t tex_y);
 
 #endif

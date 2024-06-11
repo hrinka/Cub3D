@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:17:09 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/11 00:43:46 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:35:39 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void    controle_angle(t_cub3d *data)
 {
+    
 	mlx_cursor_hook(data->mlx, move_mouse, (void *)data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
@@ -47,30 +48,29 @@ void	check_wall_2(t_cub3d *data, float *new_x, float *new_y)
 
 void    controle_player(t_cub3d *data)
 {
-    float move_step = MOVE_STEP;
     float new_x = data->player.pos_x;
     float new_y = data->player.pos_y;
 
     check_wall_2(data, &new_x, &new_y);
     if (mlx_is_key_down(data->mlx, MLX_KEY_W))
     {
-        new_x += data->player.dir_x * move_step;
-        new_y += data->player.dir_y * move_step;
+        new_x += data->player.dir_x * MOVE_STEP;
+        new_y += data->player.dir_y * MOVE_STEP;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_S))
     {
-        new_x -= data->player.dir_x * move_step;
-        new_y -= data->player.dir_y * move_step;
+        new_x -= data->player.dir_x * MOVE_STEP;
+        new_y -= data->player.dir_y * MOVE_STEP;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_A))
     {
-        new_x -= data->player.dir_y * move_step;
-        new_y += data->player.dir_x * move_step;
+        new_x -= data->player.dir_y * MOVE_STEP;
+        new_y += data->player.dir_x * MOVE_STEP;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_D))
     {
-        new_x += data->player.dir_y * move_step;
-        new_y -= data->player.dir_x * move_step;
+        new_x += data->player.dir_y * MOVE_STEP;
+        new_y -= data->player.dir_x * MOVE_STEP;
     }
 
     if (check_wall(data, new_x, new_y))

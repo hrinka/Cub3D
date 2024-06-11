@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 01:45:58 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/11 01:35:30 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:45:13 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_player(t_player *player, t_cub3d *data)
     printf("angle: %f\n", angle);
     player->dir_x = cos(data->player.angle * M_PI / 180.0);
     player->dir_y = sin(data->player.angle * M_PI / 180.0);
-	player->plane_x = 0;
-	player->plane_y = 0.66;
+	player->plane_x = -player->dir_y * 0.66;
+	player->plane_y = player->dir_x * 0.66;
 	data->player = *player;
 }
 

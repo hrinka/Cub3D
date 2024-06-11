@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:08:41 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 00:23:08 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:41:25 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,18 @@ void	copy_map_content(t_cub3d *data, int index)
 	data->map.map[i] = NULL;
 	data->map.tmp[i] = NULL;
 }
+
+// void copy_map_content(t_cub3d *data, int index) {
+//     int i = 0;
+//     while (data->file_content[index] != NULL) {
+//         data->map.map[i] = ft_strdup(data->file_content[index]);
+//         data->map.tmp[i] = ft_strdup(data->file_content[index]);
+//         i++;
+//         index++;
+//     }
+//     data->map.map[i] = NULL;
+//     data->map.tmp[i] = NULL;
+// }
 
 int		store_map(t_cub3d *data, int index)
 {

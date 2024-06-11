@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/11 14:38:32 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:28:17 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,17 @@ void	ray_dist(t_player *player, t_ray *ray)
 	if (ray->wall_dist <= 0)
 		ray->wall_dist = 0.1;  // 最小値を設定して無限ループや他の数値エラーを防ぐ
 }
+// void ray_dist(t_player *player, t_ray *ray) {
+//     if (ray->side == 0) {
+//         ray->wall_dist = (ray->map_x - player->pos_x + (1 - ray->step_x) / 2) / ray->ray_dir_x;
+//     } else {
+//         ray->wall_dist = (ray->map_y - player->pos_y + (1 - ray->step_y) / 2) / ray->ray_dir_y;
+//     }
+
+//     if (ray->wall_dist <= 0) {
+//         ray->wall_dist = 0.1; // 最小値を設定して無限ループや他の数値エラーを防ぐ
+//     }
+// }
 
 void	single_ray(t_cub3d *data, int x)
 {

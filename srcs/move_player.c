@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:17:09 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/11 20:51:17 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 23:48:40 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ void    controle_player(t_cub3d *data)
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_A))
     {
-        new_x -= data->player.dir_y * MOVE_STEP;
-        new_y += data->player.dir_x * MOVE_STEP;
+        new_x -= data->player.plane_x * MOVE_STEP;
+        new_y -= data->player.plane_y * MOVE_STEP;
     }
     if (mlx_is_key_down(data->mlx, MLX_KEY_D))
     {
-        new_x += data->player.dir_y * MOVE_STEP;
-        new_y -= data->player.dir_x * MOVE_STEP;
+        new_x += data->player.plane_x * MOVE_STEP;
+        new_y += data->player.plane_y * MOVE_STEP;
     }
     move_player(data, new_x, new_y);
 }

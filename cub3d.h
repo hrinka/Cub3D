@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 13:57:10 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 20:00:07 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,35 +79,9 @@ typedef struct s_map
 	int				**world_map;
 }					t_map;
 
-typedef struct s_render
-{
-	float			number_rays;
-	float			distance_horz;
-	float			distance_vert;
-	float			dist;
-	float			hores_inters_x;
-	float			hores_inters_y;
-	float			vertcl_inters_x;
-	float			vertcl_inters_y;
-	float			next_hor_inters_x;
-	float			next_hor_inters_y;
-	float			next_ver_inters_x;
-	float			next_ver_inters_y;
-	float			step_hor_x;
-	float			step_hor_y;
-	float			step_ver_x;
-	float			step_ver_y;
-	float			steps;
-	float			increamentx;
-	float			increamenty;
-	int				texture_offset_x;
-	float			texture_offset_y;
-	int				wall_start;
-	float			present_texture;
-}					t_render;
-
 typedef struct s_ray
 {
+	float		number_rays;
 	double		ray_pos;
 	double		ray_dir_x;
 	double		ray_dir_y;
@@ -124,10 +98,38 @@ typedef struct s_ray
 	int			side;
 }				t_ray;
 
+
+// typedef struct s_render
+// {
+// 	float			number_rays;
+// 	float			distance_horz;
+// 	float			distance_vert;
+// 	float			dist;
+// 	float			hores_inters_x;
+// 	float			hores_inters_y;
+// 	float			vertcl_inters_x;
+// 	float			vertcl_inters_y;
+// 	float			next_hor_inters_x;
+// 	float			next_hor_inters_y;
+// 	float			next_ver_inters_x;
+// 	float			next_ver_inters_y;
+// 	float			step_hor_x;
+// 	float			step_hor_y;
+// 	float			step_ver_x;
+// 	float			step_ver_y;
+// 	float			steps;
+// 	float			increamentx;
+// 	float			increamenty;
+// 	int				texture_offset_x;
+// 	float			texture_offset_y;
+// 	int				wall_start;
+// 	float			present_texture;
+// }					t_render;
+
 typedef struct s_cub3d
 {
 	t_player		player;
-	t_render		render;
+	// t_render		render;
 	t_ray			ray;
 	t_map			map;
 	t_textures		textures;

@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:17:09 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/11 18:04:45 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:16:37 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int check_wall(t_cub3d *data, float new_x, float new_y) {
     int map_y = (int)(new_y / data->map.size_shape);
 
     if (map_x < 0 || map_x >= data->map.width_map || map_y < 0 || map_y >= data->map.height_map) {
+        printf("Out of map bounds: (%d, %d)\n", map_x, map_y);
         return 0; // プレイヤーがマップの外に出るのを防ぐ
     }
     if (data->map.map[map_y][map_x] == '1')

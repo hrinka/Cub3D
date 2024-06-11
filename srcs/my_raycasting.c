@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/11 17:44:15 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:43:17 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ void	dda(t_cub3d *data, int **world_map)
 		}
 		if (data->ray.map_x < 0 || data->ray.map_x >= data->map.width_map || \
 			data->ray.map_y < 0 || data->ray.map_y >= data->map.height_map)
+			printf("Ray out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
+			data->ray.hit = 1;
             break ;  // Break the loop if out of bounds
-		if (world_map[data->ray.map_x][data->ray.map_y] > 0)
+		if (world_map[data->ray.map_x][data->ray.map_y] == '1')
 		{
-			printf("hit\n");
+			printf("Ray hit wall at: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
 			data->ray.hit = 1;
 		}
-		// printf("Checking hit: map_x=%d, map_y=%d, hit=%d\n", data->ray.map_x, data->ray.map_y, data->ray.hit);
 	}
 }
 
@@ -120,15 +121,36 @@ void	print_player(t_player *player)
 	// printf("plane_y: %f\n", player->plane_y);
 }
 
+void	print_world_map(t_cub3d *data, int **world_map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	(void)world_map;
+	while (j < data->map.height_map)
+	{
+		i = 0;
+		while (i < data->map.width_map)
+		{
+			printf("%d", data->map.world_map[j][i]);
+			i++;
+		}
+		printf("\n");
+		j++;
+	}
+}
+
 void	raycasting(t_cub3d *data)
 {
 	int	x;
 
 	x = 0;
 	printf("raycasting\n");
-	// print_world_map(data, data->map.world_map);
 	print_player(&data->player);
 	init_player(&data->player, data);
+
 	while (x < WIDTH_WIN)
 	{
 		single_ray(data, x);
@@ -137,4 +159,6 @@ void	raycasting(t_cub3d *data)
 			break;
 		}
 	}
+	print_world_map(data, data->map.world_map);
+
 }

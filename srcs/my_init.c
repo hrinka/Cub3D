@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 01:45:58 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/11 14:45:13 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:57:19 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ void	init_player(t_player *player, t_cub3d *data)
     float angle;
 	printf("init_player\n");
     angle = to_rad(player->angle);
-	printf("data->map.px: %f\n", data->map.px);
+    player->dir_x = cos(to_rad(data->player.angle));
+    player->dir_y = sin(to_rad(data->player.angle));
+	player->plane_x = -player->dir_y * 0.66;
+	player->plane_y = player->dir_x * 0.66;
+	data->player = *player;
+    printf("data->map.px: %f\n", data->map.px);
 	printf("player->pos_x: %f\n", player->pos_x);
 	printf("player->pos_y: %f\n", player->pos_y);
     printf("player->dir_x: %f\n", player->dir_x);
     printf("player->dir_y: %f\n", player->dir_y);
     printf("player->angle: %f\n", player->angle);
     printf("angle: %f\n", angle);
-    player->dir_x = cos(data->player.angle * M_PI / 180.0);
-    player->dir_y = sin(data->player.angle * M_PI / 180.0);
-	player->plane_x = -player->dir_y * 0.66;
-	player->plane_y = player->dir_x * 0.66;
-	data->player = *player;
 }
 
 void init_ray(t_cub3d *data, t_ray *ray, int x)
@@ -45,3 +45,7 @@ void init_ray(t_cub3d *data, t_ray *ray, int x)
     data->ray = *ray;
 }
 
+float	to_rad(float degree)
+{
+	return (degree * (M_PI / 180));
+}

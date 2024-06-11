@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:21:26 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/11 01:14:34 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:50:40 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,6 @@ void	draw_map(t_cub3d *data, int mode)
 			i++;
 		}
 		j++;
-	}
-}
-
-void	draw_view_angle(t_cub3d *data)
-{
-	int		i;
-	float	ray_angle;
-	int		id_ray;
-
-	i = 0;
-	ray_angle = data->player.angle - (VIEW_ANGLE / 2);
-	if (ray_angle < 0)
-		ray_angle = 360 + ray_angle;
-	id_ray = 0;
-	while (i < data->render.number_rays)
-	{
-		if (ray_angle >= 360)
-			ray_angle -= 360;
-		check_ray_draw(data, ray_angle, id_ray);
-		id_ray++;
-		ray_angle += (VIEW_ANGLE / data->render.number_rays);
-		i++;
 	}
 }
 

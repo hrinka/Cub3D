@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42tokyo.>       +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:21:26 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/09 16:21:36 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/11 01:14:34 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,23 +94,23 @@ void	draw_view_angle(t_cub3d *data)
 	}
 }
 
-void	draw_ceil_floor(t_cub3d *data)
-{
-	int	i;
-	int	j;
+// void	draw_ceil_floor(t_cub3d *data)
+// {
+// 	int	i;
+// 	int	j;
 
-	j = 0;
-	while (j < HEIGHT_WIN)
-	{
-		i = 0;
-		while (i < WIDTH_WIN)
-		{
-			if (j < HEIGHT_WIN / 2)
-				mlx_put_pixel(data->map.img, i, j, data->textures.sky_hex);
-			else
-				mlx_put_pixel(data->map.img, i, j, data->textures.floor_hex);
-			i++;
-		}
-		j++;
-	}
-}
+// 	j = 0;
+// 	while (j < HEIGHT_WIN)
+// 	{
+// 		i = 0;
+// 		while (i < WIDTH_WIN)
+// 		{
+// 			if (j < HEIGHT_WIN / 2)
+// 				mlx_put_pixel(data->map.img, i, j, data->textures.sky_hex);
+// 			else
+// 				mlx_put_pixel(data->map.img, i, j, data->textures.floor_hex);
+// 			i++;
+// 		}
+// 		j++;
+// 	}
+// }

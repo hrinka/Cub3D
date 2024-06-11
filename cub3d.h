@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 00:57:48 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/11 01:39:43 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WIDTH_WIN 1600
 # define HEIGHT_WIN 900
 # define SPEED_ROTATE 2
-# define MOVE_STEP 1
+# define MOVE_STEP 0.1
 // # define MOVE_STEP 3
 # define VIEW_ANGLE 60
 

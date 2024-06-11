@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:17:09 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/11 19:16:37 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 20:51:17 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ void    controle_angle(t_cub3d *data)
 		exit(0);
 }
 
-void move_player(t_cub3d *data, float new_x, float new_y) {
+void    move_player(t_cub3d *data, float new_x, float new_y)
+{
     // 新しい位置が壁でないかチェック
-    if (check_wall(data, new_x, new_y)) {
+    if (check_wall(data, new_x, new_y))
+    {
         printf("Old Position: (%f, %f), New Position: (%f, %f)\n", data->player.pos_x, data->player.pos_y, new_x, new_y);
         data->player.pos_x = new_x;
         data->player.pos_y = new_y;
-    } else {
+    }
+    else
+    {
         printf("Hit wall at (%f, %f)\n", new_x, new_y);
     }
 }
@@ -115,7 +119,7 @@ int check_wall(t_cub3d *data, float new_x, float new_y) {
         printf("Out of map bounds: (%d, %d)\n", map_x, map_y);
         return 0; // プレイヤーがマップの外に出るのを防ぐ
     }
-    if (data->map.map[map_y][map_x] == '1')
+    if (data->map.world_map[map_y][map_x] == '1')
     {
         printf("Hit wall at (%d, %d)\n", map_x, map_y);
         return 0; // 壁がある        

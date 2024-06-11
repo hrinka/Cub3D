@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/11 19:43:17 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 21:51:45 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	dda(t_cub3d *data, int **world_map)
 		}
 		if (data->ray.map_x < 0 || data->ray.map_x >= data->map.width_map || \
 			data->ray.map_y < 0 || data->ray.map_y >= data->map.height_map)
-			printf("Ray out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
+			// printf("Ray out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
 			data->ray.hit = 1;
             break ;  // Break the loop if out of bounds
 		if (world_map[data->ray.map_x][data->ray.map_y] == '1')
@@ -114,7 +114,7 @@ void	print_player(t_player *player)
 	static int	i = 0;
 
 	printf("\n%d\n", i++);
-    // printf("Player Position: (%f, %f)\n", player->pos_x, player->pos_y);
+    printf("Player Position: (%f, %f)\n", player->pos_x, player->pos_y);
     printf("Player Angle: %f\n", player->angle);
     // printf("Player Direction: (%f, %f)\n", player->dir_x, player->dir_y);
 	// printf("plane_x: %f\n", player->plane_x);
@@ -129,6 +129,7 @@ void	print_world_map(t_cub3d *data, int **world_map)
 	i = 0;
 	j = 0;
 	(void)world_map;
+	printf("world_map\n");
 	while (j < data->map.height_map)
 	{
 		i = 0;

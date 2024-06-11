@@ -6,11 +6,26 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/10 19:48:27 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 21:13:58 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	init_struct(t_cub3d *data)
+{
+	data->file_content = NULL;
+	data->paths.no_path = NULL;
+	data->paths.so_path = NULL;
+	data->paths.we_path = NULL;
+	data->paths.ea_path = NULL;
+	data->map.map = NULL;
+	data->textures.sky_hex = -1;
+	data->textures.floor_hex = -1;
+	data->player.direction = 0;
+	data->player.i = 0;
+	data->player.j = 0;
+}
 
 void	check_walls(t_map *data)
 {
@@ -37,22 +52,6 @@ void	check_walls(t_map *data)
 		}
 		i++;
 	}
-}
-
-void	init_struct(t_cub3d *data)
-{
-	ft_memset(data, 0, sizeof(t_cub3d));
-	data->file_content = NULL;
-	data->paths.no_path = NULL;
-	data->paths.so_path = NULL;
-	data->paths.we_path = NULL;
-	data->paths.ea_path = NULL;
-	data->map.map = NULL;
-	data->textures.sky_hex = -1;
-	data->textures.floor_hex = -1;
-	data->player.direction = 0;
-	data->player.i = 0;
-	data->player.j = 0;
 }
 
 int	check_path_rgb(t_cub3d *data)
@@ -107,31 +106,42 @@ void init_world_map(t_cub3d *data) {
     }
 }
 
-// void print_world_map(t_cub3d *data) {
-//     int i, j;
+// void	print_map(t_cub3d *data, char **map)
+// {
+// 	int	i;
+// 	int	j;
 
-//     printf("World Map:\n");
-//     for (i = 0; i < data->map.height_map; i++) {
-//         for (j = 0; j < data->map.width_map; j++) {
-//             printf("%d ", data->map.world_map[i][j]);
-//         }
-//         printf("\n");
-//     }
+// 	i = 0;
+// 	j = 0;
+// 	(void)map;
+// 	printf("print_map\n");
+// 	while (j < data->map.height_map)
+// 	{
+// 		i = 0;
+// 		while (i < data->map.width_map)
+// 		{
+// 			printf("%d", data->map.map[j][i]);
+// 			i++;
+// 		}
+// 		printf("\n");
+// 		j++;
+// 	}
 // }
-
 
 void	init_game(char *path_file, t_cub3d *data)
 {
 	init_struct(data);
 	if (check_extension(path_file, ".cub") == 1)
 	{
-		printf("Please enter a map folder with the correct extension (\".cub\")");
+		printf("Please enter a map folder with (\".cub\")");
 		exit(1);
 	}
 
 	printf("START: init_game\n");
 	get_file_content(path_file, data);
 	parse_file_content(data);
+	printf("Map after parsing:\n");
+	print_map(data->map.map);//map表示
 	duplicate_player(data);
 	get_player_pos(data);
 	check_dimensions(&data->map);

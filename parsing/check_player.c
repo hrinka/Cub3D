@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:51:53 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 19:55:04 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 21:18:41 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,21 @@ void	get_player_pos(t_cub3d *data)
 		int j = 0;
 		while (j < data->map.width_map)
 		{
-			if (data->map.world_map[i][j] == 'N' || data->map.world_map[i][j] == 'S' \
-			|| data->map.world_map[i][j] == 'E' || data->map.world_map[i][j] == 'W')
+			printf("Checking position (%d, %d): %c\n", i, j, data->map.map[i][j]);
+			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' \
+			|| data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
 			{
                 data->player.i = i;
                 data->player.j = j;
                 data->player.pos_x = j + 0.5;
                 data->player.pos_y = i + 0.5;
+				data->player.direction = data->map.map[i][j];
+				printf("Found player at (%d, %d)\n", i, j);
+                return;
 			}
             j++;
 		}
 		i++;
 	}
+	printf("Error: Player start position not found in the map\n");
 }

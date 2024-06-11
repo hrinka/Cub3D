@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 19:53:10 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/11 21:46:29 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,9 @@ void	init_data(t_cub3d *data)
 	data->map.old_x = WIDTH_WIN;
 }
 
-// void	calcul_distance(t_cub3d *data)
-// {
-// 	data->render.distance_horz = distance_between_points(data->map.px,
-// 		data->map.py, data->render.hores_inters_x, data->render.hores_inters_y);
-// 	data->render.distance_vert = distance_between_points(data->map.px, data->map.py,
-// 			data->render.vertcl_inters_x, data->render.vertcl_inters_y);
-// }
-
-// void	check_ray_draw(t_cub3d *data, float ray_angle, int id_ray)
-// {
-// 	if (ray_angle > 0 && ray_angle < 180)
-// 		check_ray_draw_down(data, ray_angle);
-// 	else
-// 		check_ray_draw_up(data, ray_angle);
-// 	if (ray_angle < 90 || ray_angle > 270)
-// 		check_ray_draw_right(data, ray_angle);
-// 	else
-// 		check_ray_draw_left(data, ray_angle);
-// 	calcul_distance(data);
-// 	(void)id_ray;
-// 	// call_raycasting(data, ray_angle, id_ray);
-// }
-
 void	print_data(t_cub3d *data)
 {
-	printf("Player position: x = %f, y = %f\n", data->map.px, data->map.py);
+	printf("Player position: x = %f, y = %f\n", data->player.pos_x, data->player.pos_y);
 	printf("Player angle: %f\n", data->player.angle);
 	printf("Player direction: %c\n", data->player.direction);
 	printf("Player i: %d, j: %d\n", data->player.i, data->player.j);
@@ -77,24 +54,13 @@ void	print_data(t_cub3d *data)
 	// printf("next_hor_inters_x : %f\n", data->render.next_hor_inters_x);
 }
 
-void	print_map(t_cub3d *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	printf("printmap\n");
-	while (j < data->map.height_map)
-	{
-		i = 0;
-		while (data->map.map[j][i])
-		{
-			printf("%c", data->map.map[j][i]);
-			i++;
-		}
-		j++;
-	}
+void print_map(char **map) {
+    int i = 0;
+    while (map[i]) {
+        printf("%s", map[i]);
+        i++;
+    }
+	printf("\n");
 }
 
 void	my_draw(void *param)

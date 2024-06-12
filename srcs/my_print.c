@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 01:45:06 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/10 19:46:41 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/13 02:49:22 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ void	print_ray(t_ray ray, t_player *player, int x)
     printf("side: %d\n", ray.side);
 }
 
+void	print_player(t_player *player)
+{
+	static int	i = 0;
+
+	printf("\n%d\n", i++);
+    // printf("Player Position: (%f, %f)\n", player->pos_x, player->pos_y);
+    // printf("Player Angle: %f\n", player->angle);
+    printf("Player Direction: (%f, %f)\n", player->dir_x, player->dir_y);
+	// printf("plane_x: %f\n", player->plane_x);
+	// printf("plane_y: %f\n", player->plane_y);
+}
+
 void	print_world_map(t_cub3d *data, int **world_map)
 {
 	int	i;
@@ -41,6 +53,7 @@ void	print_world_map(t_cub3d *data, int **world_map)
 	i = 0;
 	j = 0;
 	(void)world_map;
+	printf("world_map\n");
 	while (j < data->map.height_map)
 	{
 		i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/12 23:41:39 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/13 05:40:26 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,11 +141,15 @@ void	init_game(char *path_file, t_cub3d *data)
 	get_file_content(path_file, data);
 	parse_file_content(data);
 	printf("Map after parsing:\n");
-	print_map(data->map.map);//map表示
+	// print_map(data->map.map);//map表示
+	sleep(1);
 	duplicate_player(data);
 	check_dimensions(&data->map);
 	get_player_pos(data);
 	init_world_map(data);
 	check_walls(&data->map);
 	check_valid_path(data, data->player.i, data->player.j);
+	// print_map(data->map.map);//map表示
+	// print_world_map(data, data->map.world_map);
+	// sleep(10);
 }

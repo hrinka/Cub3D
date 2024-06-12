@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/12 23:32:05 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/13 02:44:59 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	main(int ac, char **av)
 	init_data(&data);
 	printf("data init\n");
 	init_textures(data.mlx, &data);
+	print_world_map(&data, data.map.world_map);
 	printf("textures init\n");
 	data.map.img_map = mlx_new_image(data.mlx, data.map.size_map, data.map.size_map);
 	data.map.img = mlx_new_image(data.mlx, WIDTH_WIN, HEIGHT_WIN);

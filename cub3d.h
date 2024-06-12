@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 21:46:12 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/13 05:18:25 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,16 @@ typedef struct s_ray
 	int			side;
 }				t_ray;
 
+typedef struct s_draw
+{
+	int			line_height;
+	int			draw_start;	
+	int			draw_end;
+	double		wall_x;
+	mlx_image_t	*texture_img;
+	int			tex_x;
+	int			tex_y;
+}				t_draw;
 
 // typedef struct s_render
 // {
@@ -215,8 +225,6 @@ void				init_ray(t_cub3d *data, t_ray *ray, int x);
 void				init_player(t_player *player, t_cub3d *data);
 void				print_ray(t_ray ray, t_player *player, int x);	
 void				print_player(t_player *player);
-void				draw_line(t_cub3d *data, int x, int start, int end,
-						int color);
 void				render_wall(t_cub3d *data, t_ray *ray, int x);
 void				ray_dist(t_player *player, t_ray *ray);
 void				dda(t_cub3d *ray, int **world_map);
@@ -224,6 +232,7 @@ void				ray_vec(t_player *player, t_ray *ray);
 void				init_world_map(t_cub3d *data);
 void				print_world_map(t_cub3d *data, int **world_map);
 void				print_map(char **map);
-uint32_t			get_texel_from_image(mlx_image_t *image, const uint32_t tex_x, const uint32_t tex_y);
+uint32_t			get_texel_image(mlx_image_t *image,
+						uint32_t tex_x, uint32_t tex_y);
 
 #endif

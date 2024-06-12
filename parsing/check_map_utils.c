@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:54:04 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/07 23:49:37 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/12 23:40:58 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,32 @@ void	check_map(t_map *data)
 	}
 }
 
+void	check_dimensions(t_map *data)
+{
+	int	i;
+	int	j;
+	int	highest;
+
+	i = 0;
+	highest = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j] && data->map[i][j] != '\n')
+			j++;
+		if (j > 100)
+			exit(1);
+		i++;
+		if (j > highest)
+			highest = j;
+	}
+	if (i > 100)
+		exit(1);
+	printf("====================================\n");
+	data->height_map = i;
+	data->width_map = highest;
+}
+
 // void	check_dimensions(t_map *data)
 // {
 // 	int	i;
@@ -67,43 +93,25 @@ void	check_map(t_map *data)
 // 		j = 0;
 // 		while (data->map[i][j] && data->map[i][j] != '\n')
 // 			j++;
-// 		if (j > 100)
+// 		if (j > 100 || j == 0)
+// 		{
+// 			fprintf(stderr, "Error: Line %d is too long.\n", i+1);
 // 			exit(1);
-// 		i++;
+// 		}
+// 		if (i > 100 || i < 0)
+// 		{
+// 			fprintf(stderr, "Error: Map height out of expected range\n");
+// 			exit(1);
+// 		}
 // 		if (j > highest)
 // 			highest = j;
+// 		i++;
 // 	}
 // 	if (i > 100)
+// 	{
+// 		fprintf(stderr, "Error: Map is too tall.\n");
 // 		exit(1);
+// 	}
 // 	data->height_map = i;
 // 	data->width_map = highest;
 // }
-void	check_dimensions(t_map *data)
-{
-	int	i = 0, j, highest = 0;
-	while (data->map[i])
-	{
-		j = 0;
-		while (data->map[i][j] && data->map[i][j] != '\n')
-			j++;
-		if (j > 100 || j == 0)
-		{
-			fprintf(stderr, "Error: Line %d is too long.\n", i+1);
-			exit(1);
-		}
-		if (i > 100 || i < 0) {
-            fprintf(stderr, "Error: Map height out of expected range\n");
-            exit(1);
-        }
-		if (j > highest)
-			highest = j;
-		i++;
-	}
-	if (i > 100)
-	{
-		fprintf(stderr, "Error: Map is too tall.\n");
-		exit(1);
-	}
-	data->height_map = i;
-	data->width_map = highest;
-}

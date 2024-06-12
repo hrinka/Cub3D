@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 01:39:43 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/11 21:46:12 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "./MLX/MLX42.h"
-# include "./Libft/libft.h"
+# include "./libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -73,41 +73,15 @@ typedef struct s_map
 	int				size_shape;
 	char			**map;
 	char			**tmp;
-	float			px;
-	float			py;
+	// float			px;
+	// float			py;
 	double			old_x;
 	int				**world_map;
 }					t_map;
 
-typedef struct s_render
-{
-	float			number_rays;
-	float			distance_horz;
-	float			distance_vert;
-	float			dist;
-	float			hores_inters_x;
-	float			hores_inters_y;
-	float			vertcl_inters_x;
-	float			vertcl_inters_y;
-	float			next_hor_inters_x;
-	float			next_hor_inters_y;
-	float			next_ver_inters_x;
-	float			next_ver_inters_y;
-	float			step_hor_x;
-	float			step_hor_y;
-	float			step_ver_x;
-	float			step_ver_y;
-	float			steps;
-	float			increamentx;
-	float			increamenty;
-	int				texture_offset_x;
-	float			texture_offset_y;
-	int				wall_start;
-	float			present_texture;
-}					t_render;
-
 typedef struct s_ray
 {
+	float		number_rays;
 	double		ray_pos;
 	double		ray_dir_x;
 	double		ray_dir_y;
@@ -124,10 +98,38 @@ typedef struct s_ray
 	int			side;
 }				t_ray;
 
+
+// typedef struct s_render
+// {
+// 	float			number_rays;
+// 	float			distance_horz;
+// 	float			distance_vert;
+// 	float			dist;
+// 	float			hores_inters_x;
+// 	float			hores_inters_y;
+// 	float			vertcl_inters_x;
+// 	float			vertcl_inters_y;
+// 	float			next_hor_inters_x;
+// 	float			next_hor_inters_y;
+// 	float			next_ver_inters_x;
+// 	float			next_ver_inters_y;
+// 	float			step_hor_x;
+// 	float			step_hor_y;
+// 	float			step_ver_x;
+// 	float			step_ver_y;
+// 	float			steps;
+// 	float			increamentx;
+// 	float			increamenty;
+// 	int				texture_offset_x;
+// 	float			texture_offset_y;
+// 	int				wall_start;
+// 	float			present_texture;
+// }					t_render;
+
 typedef struct s_cub3d
 {
 	t_player		player;
-	t_render		render;
+	// t_render		render;
 	t_ray			ray;
 	t_map			map;
 	t_textures		textures;
@@ -221,6 +223,7 @@ void				dda(t_cub3d *ray, int **world_map);
 void				ray_vec(t_player *player, t_ray *ray);
 void				init_world_map(t_cub3d *data);
 void				print_world_map(t_cub3d *data, int **world_map);
+void				print_map(char **map);
 uint32_t			get_texel_from_image(mlx_image_t *image, const uint32_t tex_x, const uint32_t tex_y);
 
 #endif

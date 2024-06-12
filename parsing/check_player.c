@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:51:53 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/10 22:36:56 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/12 23:53:18 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,17 @@ void	duplicate_player(t_cub3d *data)
 		{
 			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S'
 				|| data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
-				v++;
+				{
+					v++;
+					if (v > 1)
+					{
+						printf("Please provide a player position in the map (NO DUPLICATES)\n");
+						exit(1);
+					}
+				}
 			j++;
 		}
 		i++;
-	}
-	if (v != 1)
-	{
-		printf("Please provide a player position in the map (NO DUPLICATES)\n");
-		exit(1);
 	}
 }
 
@@ -47,16 +49,21 @@ void	get_player_pos(t_cub3d *data)
 		int j = 0;
 		while (j < data->map.width_map)
 		{
-			if (data->map.world_map[i][j] == 'N' || data->map.world_map[i][j] == 'S' \
-			|| data->map.world_map[i][j] == 'E' || data->map.world_map[i][j] == 'W')
+			printf("Checking position (%d, %d): %c\n", i, j, data->map.map[i][j]);
+			if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' \
+			|| data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
 			{
                 data->player.i = i;
                 data->player.j = j;
-                data->player.pos_x = j + 0.5;
-                data->player.pos_y = i + 0.5;
+                data->player.pos_x = i + 0.5;
+                data->player.pos_y = j + 0.5;
+				data->player.direction = data->map.map[i][j];
+				printf("Found player at (%d, %d)\n", i, j);
+                return;
 			}
             j++;
 		}
 		i++;
 	}
+	printf("Error: Player start position not found in the map\n");
 }

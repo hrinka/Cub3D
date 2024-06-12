@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 00:54:23 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:32:05 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_data(t_cub3d *data)
 {
-	data->map.map[data->player.i][data->player.j] = 'P';
+	// data->map.map[data->player.i][data->player.j] = 'P';
 	if (data->player.direction == 'N')
 		data->player.angle = 270;
 	else if (data->player.direction == 'S')
@@ -23,7 +23,7 @@ void	init_data(t_cub3d *data)
 		data->player.angle = 180;
 	else
 		data->player.angle = 0;
-	data->render.number_rays = WIDTH_WIN;//光線の数
+	data->ray.number_rays = WIDTH_WIN;//光線の数
 	if (WIDTH_WIN / 9 > HEIGHT_WIN / 9)//ゲームウィンドウ内でのマップの全体的なサイズを決定
 		data->map.size_map = WIDTH_WIN / 9;
 	else
@@ -35,32 +35,9 @@ void	init_data(t_cub3d *data)
 	data->map.old_x = WIDTH_WIN;
 }
 
-void	calcul_distance(t_cub3d *data)
-{
-	data->render.distance_horz = distance_between_points(data->map.px,
-		data->map.py, data->render.hores_inters_x, data->render.hores_inters_y);
-	data->render.distance_vert = distance_between_points(data->map.px, data->map.py,
-			data->render.vertcl_inters_x, data->render.vertcl_inters_y);
-}
-
-void	check_ray_draw(t_cub3d *data, float ray_angle, int id_ray)
-{
-	if (ray_angle > 0 && ray_angle < 180)
-		check_ray_draw_down(data, ray_angle);
-	else
-		check_ray_draw_up(data, ray_angle);
-	if (ray_angle < 90 || ray_angle > 270)
-		check_ray_draw_right(data, ray_angle);
-	else
-		check_ray_draw_left(data, ray_angle);
-	calcul_distance(data);
-	(void)id_ray;
-	// call_raycasting(data, ray_angle, id_ray);
-}
-
 void	print_data(t_cub3d *data)
 {
-	printf("Player position: x = %f, y = %f\n", data->map.px, data->map.py);
+	printf("Player position: x = %f, y = %f\n", data->player.pos_x, data->player.pos_y);
 	printf("Player angle: %f\n", data->player.angle);
 	printf("Player direction: %c\n", data->player.direction);
 	printf("Player i: %d, j: %d\n", data->player.i, data->player.j);
@@ -77,24 +54,13 @@ void	print_data(t_cub3d *data)
 	// printf("next_hor_inters_x : %f\n", data->render.next_hor_inters_x);
 }
 
-void	print_map(t_cub3d *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	printf("printmap\n");
-	while (j < data->map.height_map)
-	{
-		i = 0;
-		while (data->map.map[j][i])
-		{
-			printf("%c", data->map.map[j][i]);
-			i++;
-		}
-		j++;
-	}
+void print_map(char **map) {
+    int i = 0;
+    while (map[i]) {
+        printf("%s", map[i]);
+        i++;
+    }
+	printf("\n");
 }
 
 void	my_draw(void *param)
@@ -132,10 +98,6 @@ int	main(int ac, char **av)
 	data.map.img = mlx_new_image(data.mlx, WIDTH_WIN, HEIGHT_WIN);
 	if (!data.map.img || (mlx_image_to_window(data.mlx, data.map.img, 0, 0)))
 		return (1);
-	// (mlx_image_to_window(data.mlx, data.map.img_map, 0, 0));
-	// if (!data.map.img_map)
-	// 	return (1);
-	// print_map(&data);
 	my_draw(&data);
 	mlx_loop_hook(data.mlx, my_draw, &data);
 	mlx_close_hook(data.mlx, close_callback, NULL);

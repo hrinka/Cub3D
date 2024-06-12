@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 02:04:16 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/11 16:55:51 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/12 20:00:44 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,9 @@
 //     uint8_t r = image->pixels[index];
 //     uint8_t g = image->pixels[index + 1];
 //     uint8_t b = image->pixels[index + 2];
-//     uint8_t a = image->pixels[index + 3];
 
 //     // 32ビットのカラー値として返す
-//     return (a << 24) | (r << 16) | (g << 8) | b;
+//     return (r << 16) | (g << 8) | b;
 // }
 
 void render_wall(t_cub3d *data, t_ray *ray, int x)
@@ -148,8 +147,7 @@ uint32_t get_texel_from_image(mlx_image_t *image, const uint32_t tex_x, const ui
     uint8_t r = image->pixels[index];
     uint8_t g = image->pixels[index + 1];
     uint8_t b = image->pixels[index + 2];
-    uint8_t a = image->pixels[index + 3];
-    return (a << 24) | (r << 16) | (g << 8) | b; 
+    return (r << 16) | (g << 8) | b; 
 }
 
 

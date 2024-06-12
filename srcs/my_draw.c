@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 02:04:16 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/12 20:13:58 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/12 21:33:32 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,6 @@ uint32_t get_texel_from_image(mlx_image_t *image, const uint32_t tex_x, const ui
     uint8_t a = image->pixels[index + 3];
     return (a << 24) | (r << 16) | (g << 8) | b; 
 }
-
 
 void	draw_ceil_floor(t_cub3d *data)
 {

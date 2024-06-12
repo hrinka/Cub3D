@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/11 21:51:45 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/12 21:42:47 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,9 @@ void	print_player(t_player *player)
 	static int	i = 0;
 
 	printf("\n%d\n", i++);
-    printf("Player Position: (%f, %f)\n", player->pos_x, player->pos_y);
-    printf("Player Angle: %f\n", player->angle);
-    // printf("Player Direction: (%f, %f)\n", player->dir_x, player->dir_y);
+    // printf("Player Position: (%f, %f)\n", player->pos_x, player->pos_y);
+    // printf("Player Angle: %f\n", player->angle);
+    printf("Player Direction: (%f, %f)\n", player->dir_x, player->dir_y);
 	// printf("plane_x: %f\n", player->plane_x);
 	// printf("plane_y: %f\n", player->plane_y);
 }

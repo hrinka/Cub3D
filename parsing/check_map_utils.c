@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:54:04 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 00:30:02 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/12 23:40:58 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	check_dimensions(t_map *data)
 	}
 	if (i > 100)
 		exit(1);
+	printf("====================================\n");
 	data->height_map = i;
 	data->width_map = highest;
 }

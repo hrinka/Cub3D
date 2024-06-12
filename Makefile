@@ -6,7 +6,7 @@
 #    By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 08:44:19 by hrinka            #+#    #+#              #
-#    Updated: 2024/06/11 20:10:38 by hrinka           ###   ########.fr        #
+#    Updated: 2024/06/12 23:23:27 by hrinka           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = cc
 FRAMEWORKS = ./MLX/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit
 
 # FLAGS = -Wall -Wextra -Werror
-FLAGS =  -Wall -Wextra -Werror
+FLAGS =  -Wall -Wextra -Werror -fsanitize=address
 
 PARSE_SRC =  parsing/check_utils.c parsing/texel.c parsing/free_resources.c parsing/rgb_conversion.c parsing/get_file_data.c parsing/init_data.c parsing/store_data.c parsing/check_map_utils.c parsing/check_map_utils2.c parsing/file_parser.c parsing/check_player.c parsing/store_data_utils.c
 

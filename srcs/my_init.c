@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 01:45:58 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/11 21:50:00 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/12 23:24:56 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	init_player(t_player *player, t_cub3d *data)
 	player->plane_y = player->dir_x * 0.66;
 	data->player = *player;
     // printf("data->map.px: %f\n", data->map.px);
-	printf("player->pos_x: %f\n", player->pos_x);
-	printf("player->pos_y: %f\n", player->pos_y);
     printf("player->dir_x: %f\n", player->dir_x);
     printf("player->dir_y: %f\n", player->dir_y);
     printf("player->angle: %f\n", player->angle);

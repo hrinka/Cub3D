@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:17:09 by ahajji            #+#    #+#             */
-/*   Updated: 2024/06/11 23:48:40 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/12 23:21:57 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void    move_player(t_cub3d *data, float new_x, float new_y)
     }
     else
     {
+        // 位置が壁の場合は、それ以上先に進めない
         printf("Hit wall at (%f, %f)\n", new_x, new_y);
     }
 }
@@ -76,53 +77,20 @@ void    controle_player(t_cub3d *data)
     move_player(data, new_x, new_y);
 }
 
+int check_wall(t_cub3d *data, float x, float y) {
+    int map_x = (int)(x / data->map.size_shape);
+    int map_y = (int)(y / data->map.size_shape);
 
-// void	check_wall_2(t_cub3d *data, float *new_x, float *new_y)
-// {
-// 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-// 	{
-// 		*new_x = data->map.px + (cos(to_rad(data->player.angle)) * MOVE_STEP);
-// 		*new_y = data->map.py + (sin(to_rad(data->player.angle)) * MOVE_STEP);
-// 	}
-// 	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-// 	{
-// 		*new_x = data->map.px - (cos(to_rad(data->player.angle)) * MOVE_STEP);
-// 		*new_y = data->map.py - (sin(to_rad(data->player.angle)) * MOVE_STEP);
-// 	}
-// }
-
-// int check_wall(t_cub3d *data, float x, float y)
-// {
-
-//     check_wall_2(data, &x, &y);
-//     if (mlx_is_key_down(data->mlx, MLX_KEY_D) && !mlx_is_key_down(data->mlx, MLX_KEY_W) && !mlx_is_key_down(data->mlx, MLX_KEY_S))
-//     {
-//         x = data->player.pos_x - cos((data->player.angle + 90) * M_PI / 180.0) * MOVE_STEP;
-//         y = data->player.pos_y + sin((data->player.angle + 90) * M_PI / 180.0) * MOVE_STEP;
-//     }
-//     else if (mlx_is_key_down(data->mlx, MLX_KEY_A) && !mlx_is_key_down(data->mlx, MLX_KEY_W) && !mlx_is_key_down(data->mlx, MLX_KEY_S))
-//     {
-//         x = data->player.pos_x + cos((data->player.angle + 90) * M_PI / 180.0) * MOVE_STEP;
-//         y = data->player.pos_y - sin((data->player.angle + 90) * M_PI / 180.0) * MOVE_STEP;
-//     }
-//     if (data->map.map[(int)(y / data->map.size_shape)][(int)(x / data->map.size_shape)] == '1' || 
-//         (data->map.map[(int)(y / data->map.size_shape)][(int)(data->player.pos_x / data->map.size_shape)] == '1' && 
-//          data->map.map[(int)(data->player.pos_y / data->map.size_shape)][(int)(x / data->map.size_shape)] == '1'))
-//         return (0);
-//     return (1);
-// }
-int check_wall(t_cub3d *data, float new_x, float new_y) {
-    int map_x = (int)(new_x / data->map.size_shape);
-    int map_y = (int)(new_y / data->map.size_shape);
-
+    // マップの範囲を超えた場合の処理
     if (map_x < 0 || map_x >= data->map.width_map || map_y < 0 || map_y >= data->map.height_map) {
         printf("Out of map bounds: (%d, %d)\n", map_x, map_y);
-        return 0; // プレイヤーがマップの外に出るのを防ぐ
+        return 0;
     }
-    if (data->map.world_map[map_y][map_x] == '1')
-    {
+
+    // 壁の衝突判定
+    if (data->map.map[map_y][map_x] == '1') {
         printf("Hit wall at (%d, %d)\n", map_x, map_y);
-        return 0; // 壁がある        
+        return 0;
     }
-    return 1; // 壁がない
+    return 1;
 }

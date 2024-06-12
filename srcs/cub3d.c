@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/11 21:46:29 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/12 23:32:05 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_data(t_cub3d *data)
 {
-	data->map.map[data->player.i][data->player.j] = 'P';
+	// data->map.map[data->player.i][data->player.j] = 'P';
 	if (data->player.direction == 'N')
 		data->player.angle = 270;
 	else if (data->player.direction == 'S')
@@ -98,10 +98,6 @@ int	main(int ac, char **av)
 	data.map.img = mlx_new_image(data.mlx, WIDTH_WIN, HEIGHT_WIN);
 	if (!data.map.img || (mlx_image_to_window(data.mlx, data.map.img, 0, 0)))
 		return (1);
-	// (mlx_image_to_window(data.mlx, data.map.img_map, 0, 0));
-	// if (!data.map.img_map)
-	// 	return (1);
-	// print_map(&data);
 	my_draw(&data);
 	mlx_loop_hook(data.mlx, my_draw, &data);
 	mlx_close_hook(data.mlx, close_callback, NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:51:53 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/12 23:53:18 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/13 22:34:32 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	get_player_pos(t_cub3d *data)
 			{
                 data->player.i = i;
                 data->player.j = j;
-                data->player.pos_x = i + 0.5;
-                data->player.pos_y = j + 0.5;
+                data->player.pos_x = j + 0.5;
+                data->player.pos_y = i + 0.5;
 				data->player.direction = data->map.map[i][j];
 				printf("Found player at (%d, %d)\n", i, j);
                 return;

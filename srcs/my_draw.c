@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 02:04:16 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/13 23:00:01 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/13 23:51:16 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ void	init_draw(t_draw *draw, t_cub3d *data)
 	if (data->ray.side == 0)
 	{
 		if (data->ray.ray_dir_x > 0)
-			draw->texture_img = data->textures.no_texture;
+			draw->texture_img = data->textures.we_texture;
 		else
-			draw->texture_img = data->textures.so_texture;
+			draw->texture_img = data->textures.ea_texture;
 	}
 	else
 	{
 		if (data->ray.ray_dir_y > 0)
-			draw->texture_img = data->textures.ea_texture;
+			draw->texture_img = data->textures.so_texture;
 		else
-			draw->texture_img = data->textures.we_texture;
+			draw->texture_img = data->textures.no_texture;
 	}
 	if (!draw->texture_img)
 	{
@@ -60,9 +60,9 @@ void render_wall(t_cub3d *data, t_ray *ray, int x) {
 	}
 
 	int tex_x = (int)(draw.wall_x * (double)(draw.texture_img->width));
-	if (ray->side == 0 && ray->ray_dir_x > 0)
+	if (ray->side == 0 && ray->ray_dir_x < 0)
 		tex_x = draw.texture_img->width - tex_x - 1;
-	if (ray->side == 1 && ray->ray_dir_y < 0)
+	if (ray->side == 1 && ray->ray_dir_y > 0)
 		tex_x = draw.texture_img->width - tex_x - 1;
 
 	for (int y = draw.draw_start; y < draw.draw_end; y++) {

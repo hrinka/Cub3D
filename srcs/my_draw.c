@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 02:04:16 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/13 19:32:16 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/13 23:00:01 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ void render_wall(t_cub3d *data, t_ray *ray, int x) {
 	}
 
 	int tex_x = (int)(draw.wall_x * (double)(draw.texture_img->width));
-	if ((ray->side == 0 && ray->ray_dir_x < 0) || (ray->side == 1 && ray->ray_dir_y > 0))
+	if (ray->side == 0 && ray->ray_dir_x > 0)
+		tex_x = draw.texture_img->width - tex_x - 1;
+	if (ray->side == 1 && ray->ray_dir_y < 0)
 		tex_x = draw.texture_img->width - tex_x - 1;
 
 	for (int y = draw.draw_start; y < draw.draw_end; y++) {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/13 05:18:25 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:15:49 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_map
 	// float			px;
 	// float			py;
 	double			old_x;
-	int				**world_map;
+	// int				**world_map;
 }					t_map;
 
 typedef struct s_ray
@@ -227,10 +227,10 @@ void				print_ray(t_ray ray, t_player *player, int x);
 void				print_player(t_player *player);
 void				render_wall(t_cub3d *data, t_ray *ray, int x);
 void				ray_dist(t_player *player, t_ray *ray);
-void				dda(t_cub3d *ray, int **world_map);
+void				dda(t_cub3d *ray, char **map);
 void				ray_vec(t_player *player, t_ray *ray);
-void				init_world_map(t_cub3d *data);
-void				print_world_map(t_cub3d *data, int **world_map);
+// void				init_world_map(t_cub3d *data);
+// void				print_world_map(t_cub3d *data, int **world_map);
 void				print_map(char **map);
 uint32_t			get_texel_image(mlx_image_t *image,
 						uint32_t tex_x, uint32_t tex_y);

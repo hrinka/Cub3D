@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 01:45:06 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/13 02:49:22 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:14:52 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ void	print_player(t_player *player)
 	// printf("plane_y: %f\n", player->plane_y);
 }
 
-void	print_world_map(t_cub3d *data, int **world_map)
+void	print_world_map(t_cub3d *data, char **map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	(void)world_map;
-	printf("world_map\n");
+	(void)map;
+	printf("print_map\n");
 	while (j < data->map.height_map)
 	{
 		i = 0;
 		while (i < data->map.width_map)
 		{
-			printf("%d", data->map.world_map[j][i]);
+			printf("%d", data->map.map[j][i]);
 			i++;
 		}
 		printf("\n");

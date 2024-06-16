@@ -6,85 +6,11 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 02:04:16 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/13 05:52:18 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:51:16 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-// void	init_draw(t_draw *draw, t_cub3d *data)
-// {
-// 	ft_memset(draw, 0, sizeof(t_draw));
-// 	draw->line_height = (int)(HEIGHT_WIN / data->ray.wall_dist);
-// 	draw->draw_start = -draw->line_height / 2 + HEIGHT_WIN / 2;
-// 	if (draw->draw_start < 0)
-// 		draw->draw_start = 0;
-// 	draw->draw_end = draw->line_height / 2 + HEIGHT_WIN / 2;
-// 	if (draw->draw_end >= HEIGHT_WIN)
-// 		draw->draw_end = HEIGHT_WIN - 1;
-// 	if (data->ray.side == 0)
-// 		draw->wall_x = \
-// 			data->player.pos_y + data->ray.wall_dist * data->ray.ray_dir_y;
-// 	else
-// 		draw->wall_x = \
-// 			data->player.pos_x + data->ray.wall_dist * data->ray.ray_dir_x;
-// 	draw->wall_x -= floor(draw->wall_x);
-// 	if (data->ray.side == 0)
-// 		if (data->ray.ray_dir_x > 0)
-// 			draw->texture_img = data->textures.no_texture;
-// 		else
-// 			draw->texture_img = data->textures.so_texture;
-// 	else
-// 		if (data->ray.ray_dir_y > 0)
-// 			draw->texture_img = data->textures.ea_texture;
-// 		else
-// 			draw->texture_img = data->textures.we_texture;
-// 	if (!draw->texture_img)
-// 	{
-// 		printf("Failed to get texture image\n");
-// 		exit(EXIT_FAILURE);
-// 	}
-// }
-
-// void    render_wall(t_cub3d *data, t_ray *ray, int x)
-// {
-// 	// int line_height = (int)(HEIGHT_WIN / ray->wall_dist);
-// 	// int draw_start = -line_height / 2 + HEIGHT_WIN / 2;
-// 	// if (draw_start < 0) draw_start = 0;
-// 	// int draw_end = line_height / 2 + HEIGHT_WIN / 2;
-// 	// if (draw_end >= HEIGHT_WIN) draw_end = HEIGHT_WIN - 1;
-// 	t_draw	draw;
-
-// 	init_draw(&draw, data);
-// 	// double wall_x = ray->side == 0 ? data->player.pos_y + ray->wall_dist * ray->ray_dir_y
-// 	// 							   : data->player.pos_x + ray->wall_dist * ray->ray_dir_x;
-// 	// wall_x -= floor(wall_x);
-
-// 	// テクスチャ番号を取得し、適切なテクスチャを選択
-// 	mlx_image_t *texture_img = NULL;
-// 	// if (ray->side == 0) {
-// 	// 	texture_img = ray->ray_dir_x > 0 ? data->textures.no_texture : data->textures.so_texture;
-// 	// } else {
-// 	// 	texture_img = ray->ray_dir_y > 0 ? data->textures.ea_texture : data->textures.we_texture;
-// 	// }
-
-// 	// if (!texture_img) {
-// 	// 	fprintf(stderr, "Failed to get texture image\n");
-// 	// 	return;
-// 	// }
-
-// 	int tex_x = (int)(draw.wall_x * (double)(texture_img->width));
-// 	if (ray->side == 0 && ray->ray_dir_x > 0) tex_x = texture_img->width - tex_x - 1;
-// 	if (ray->side == 1 && ray->ray_dir_y < 0) tex_x = texture_img->width - tex_x - 1;
-
-// 	for (int y = draw.draw_start; y < draw.draw_end; y++)
-// 	{
-// 		int d = y * 256 - HEIGHT_WIN * 128 + draw.line_height * 128;
-// 		int tex_y = ((d * texture_img->height) / draw.line_height) / 256;
-// 		uint32_t color = get_texel_image(texture_img, tex_x, tex_y);
-// 		mlx_put_pixel(data->map.img, x, y, color);
-// 	}
-// }
 
 void	init_draw(t_draw *draw, t_cub3d *data)
 {
@@ -105,16 +31,16 @@ void	init_draw(t_draw *draw, t_cub3d *data)
 	if (data->ray.side == 0)
 	{
 		if (data->ray.ray_dir_x > 0)
-			draw->texture_img = data->textures.no_texture;
+			draw->texture_img = data->textures.we_texture;
 		else
-			draw->texture_img = data->textures.so_texture;
+			draw->texture_img = data->textures.ea_texture;
 	}
 	else
 	{
 		if (data->ray.ray_dir_y > 0)
-			draw->texture_img = data->textures.ea_texture;
+			draw->texture_img = data->textures.so_texture;
 		else
-			draw->texture_img = data->textures.we_texture;
+			draw->texture_img = data->textures.no_texture;
 	}
 	if (!draw->texture_img)
 	{
@@ -134,9 +60,9 @@ void render_wall(t_cub3d *data, t_ray *ray, int x) {
 	}
 
 	int tex_x = (int)(draw.wall_x * (double)(draw.texture_img->width));
-	if (ray->side == 0 && ray->ray_dir_x > 0)
+	if (ray->side == 0 && ray->ray_dir_x < 0)
 		tex_x = draw.texture_img->width - tex_x - 1;
-	if (ray->side == 1 && ray->ray_dir_y < 0)
+	if (ray->side == 1 && ray->ray_dir_y > 0)
 		tex_x = draw.texture_img->width - tex_x - 1;
 
 	for (int y = draw.draw_start; y < draw.draw_end; y++) {

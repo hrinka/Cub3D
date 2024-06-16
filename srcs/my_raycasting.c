@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 08:00:07 by hirosuzu          #+#    #+#             */
-/*   Updated: 2024/06/13 04:58:25 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:31:53 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ray_vec(t_player *player, t_ray *ray)
 	}
 }
 
-void	dda(t_cub3d *data, int **world_map)
+void	dda(t_cub3d *data, char **map)
 {
 	while (data->ray.hit == 0)
 	{
@@ -57,7 +57,8 @@ void	dda(t_cub3d *data, int **world_map)
             printf("Out of map bounds: map_x=%d, map_y=%d\n", data->ray.map_x, data->ray.map_y);
             break;  // Break the loop if out of bounds
 		}
-		if (world_map[data->ray.map_x][data->ray.map_y] == 1)
+		if (map[data->ray.map_y][data->ray.map_x] == '1')
+
 		{
 			data->ray.hit = 1;
 		}
@@ -90,7 +91,7 @@ void	single_ray(t_cub3d *data, int x)
 	// print_player(player); // debug
 	// print_ray(ray, player, x); // debug
 	ray_vec(&data->player, &data->ray);
-	dda(data, data->map.world_map);
+	dda(data, data->map.map);
 	ray_dist(&data->player, &data->ray);
 	render_wall(data, &data->ray, x);
 }
@@ -110,5 +111,4 @@ void	raycasting(t_cub3d *data)
 		if (x == WIDTH_WIN)
 			break ;
 	}
-	// print_world_map(data, data->map.world_map);
 }

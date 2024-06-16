@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:54:04 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/12 23:40:58 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/16 19:11:40 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	is_map_line(char *line)
 {
 	while (*line)
 	{
-		if (*line != '0' && *line != '1' && *line != 'N' && *line != 'S'
-			&& *line != 'E' && *line != 'W' && *line != ' ' && *line != '\t' && *line != '\n')
+		if (*line != '0' && *line != '1' && *line != 'N' && *line != 'S'\
+			&& *line != 'E' && *line != 'W' && *line != ' '\
+			&& *line != '\t' && *line != '\n')
 			return (1);
 		line++;
 	}
@@ -45,10 +46,11 @@ void	check_map(t_map *data)
 	i = 0;
 	while (data->map[i] != NULL)
 	{
-		if (is_map_line(data->map[i]) == 1)
+		if (is_map_line (data->map[i]) == 1)
 		{
-			printf ("Error on line %d: Map can only be composed of '01NSWE ' and must not be empty.\n", i+1);
-			exit(1);
+			printf ("Error on line %d: Map can only be composed of \
+				'01NSWE' and must not be empty.\n", i+1);
+			exit (1);
 		}
 		i++;
 	}
@@ -79,39 +81,3 @@ void	check_dimensions(t_map *data)
 	data->height_map = i;
 	data->width_map = highest;
 }
-
-// void	check_dimensions(t_map *data)
-// {
-// 	int	i;
-// 	int	j;
-// 	int	highest;
-
-// 	i = 0;
-// 	highest = 0;
-// 	while (data->map[i])
-// 	{
-// 		j = 0;
-// 		while (data->map[i][j] && data->map[i][j] != '\n')
-// 			j++;
-// 		if (j > 100 || j == 0)
-// 		{
-// 			fprintf(stderr, "Error: Line %d is too long.\n", i+1);
-// 			exit(1);
-// 		}
-// 		if (i > 100 || i < 0)
-// 		{
-// 			fprintf(stderr, "Error: Map height out of expected range\n");
-// 			exit(1);
-// 		}
-// 		if (j > highest)
-// 			highest = j;
-// 		i++;
-// 	}
-// 	if (i > 100)
-// 	{
-// 		fprintf(stderr, "Error: Map is too tall.\n");
-// 		exit(1);
-// 	}
-// 	data->height_map = i;
-// 	data->width_map = highest;
-// }

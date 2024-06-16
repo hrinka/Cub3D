@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:24:22 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/12 20:13:12 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/16 19:47:50 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,34 +73,30 @@ int	nb_rgb_elem(char **line)
 // 	int		b;
 
 // 	values = ft_split(line, ',');
-//     if (nb_rgb_elem(values) != 3) {
-//         printf("Error: Invalid number of RGB values\n");
-//         free_2dchar_array(values);
-//         exit(1);
-//     }
-// 	validate_rgb_values(values);
-
-// 	r = ft_atoi(values[0]);
-// 	g = ft_atoi(values[1]);
-// 	b = ft_atoi(values[2]);
-// 	free_2dchar_array(values);
-// 	// if ((r >= 0 && r <= 255) && (g >= 0 && g <= 255) && (b >= 0
-// 	// 		&& b <= 255))
-// 	// 	return (r << 16 | g << 8 | b);
-// 	if ((r >= 0 && r <= 255) && (g >= 0 && g <= 255) && (b >= 0 && b <= 255))
-//         return (0xFF << 24) | (r << 16) | (g << 8) | b; // アルファ値を255に設定
-// 	else
+// 	if (nb_rgb_elem(values) != 3)
 // 	{
-// 		printf("Error: RGB values must be between 0 and 255.\n");
+// 		printf("Error: Invalid number of RGB values\n");
+// 		free_2dchar_array(values);
 // 		exit(1);
 // 	}
+// 	validate_rgb_values(values);
+// 	if (values && values[0] && values[1] && values[2])
+// 	{
+// 		r = ft_atoi(values[0]);
+// 		g = ft_atoi(values[1]);
+// 		b = ft_atoi(values[2]);
+// 		free_2dchar_array(values);
+// 		if ((r >= 0 && r <= 255) && (g >= 0 && g <= 255) && (b >= 0
+// 				&& b <= 255))
 // 		{
 // 			hex_val = ((long)r << 24) | ((long)g << 16) | (long)b << 8 | (1
 // 					* 255);
 // 			return (hex_val);
 // 		}
+// 	}
 // 	return (-1);
 // }
+
 long	return_hex_rgb(char *line)
 {
 	char	**values;
@@ -110,12 +106,8 @@ long	return_hex_rgb(char *line)
 	int		b;
 
 	values = ft_split(line, ',');
-	if (nb_rgb_elem(values) != 3)
-	{
-		printf("Error: Invalid number of RGB values\n");
-		free_2dchar_array(values);
+	if (nb_rgb_elem(values) > 3)
 		exit(1);
-	}
 	validate_rgb_values(values);
 	if (values && values[0] && values[1] && values[2])
 	{

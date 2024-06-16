@@ -6,7 +6,7 @@
 /*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/16 18:23:58 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/16 19:46:06 by hrinka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,60 +54,28 @@ void	init_struct(t_cub3d *data)
 // 	}
 // }
 
-// void check_walls(t_cub3d *data)
-// {
-// 	int i;
-// 	int j;
-
-// 	i = 0;
-// 	while (data->map.map[i])
-// 	{
-// 		j = 0;
-// 		while (data->map.map[i][j] && data->map.map[i][j] != '\n')
-// 		{
-// 			if (i == 0 || data->map.map[i + 1] == NULL)  // 上下の境界チェック
-// 			{
-// 				if (data->map.map[i][j] != '1' && data->map.map[i][j] != ' ')
-// 				{
-// 					printf("Error: Map boundaries must be walls or empty.\n");
-// 					exit(1);
-// 				}
-// 			}
-// 			else if (j == 0 || data->map.map[i][j + 1] == '\n')  // 左右の境界チェック
-// 			{
-// 				if (data->map.map[i][j] != '1' && data->map.map[i][j] != ' ')
-// 				{
-// 					printf("Error: Map boundaries must be walls or empty.\n");
-// 					exit(1);
-// 				}
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-void check_walls(t_map *map_data)
+void	check_walls(t_map *data)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (map_data->map[i])
+	while (data->map[i])
 	{
 		j = 0;
-		while (map_data->map[i][j] && map_data->map[i][j] != '\n')
+		while (data->map[i][j] && data->map[i][j] != '\n')
 		{
-			if (i == 0 || map_data->map[i + 1] == NULL)  // 上下の境界チェック
+			if (i == 0 || data->map[i + 1] == NULL)  // 上下の境界チェック
 			{
-				if (map_data->map[i][j] != '1' && map_data->map[i][j] != ' ')
+				if (data->map[i][j] != '1' && data->map[i][j] != ' ')
 				{
 					printf("Error: Map boundaries must be walls or empty.\n");
 					exit(1);
 				}
 			}
-			else if (j == 0 || map_data->map[i][j + 1] == '\n')  // 左右の境界チェック
+			else if (j == 0 || data->map[i][j + 1] == '\n')  // 左右の境界チェック
 			{
-				if (map_data->map[i][j] != '1' && map_data->map[i][j] != ' ')
+				if (data->map[i][j] != '1' && data->map[i][j] != ' ')
 				{
 					printf("Error: Map boundaries must be walls or empty.\n");
 					exit(1);
@@ -118,7 +86,6 @@ void check_walls(t_map *map_data)
 		i++;
 	}
 }
-
 
 int	check_path_rgb(t_cub3d *data)
 {

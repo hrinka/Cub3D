@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 23:24:58 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/13 23:26:13 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/17 00:15:56 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_data(t_cub3d *data)
 {
-	// data->map.map[data->player.i][data->player.j] = 'P';
 	if (data->player.direction == 'N')
 		data->player.angle = 270;
 	else if (data->player.direction == 'S')
@@ -23,12 +22,12 @@ void	init_data(t_cub3d *data)
 		data->player.angle = 180;
 	else
 		data->player.angle = 0;
-	data->ray.number_rays = WIDTH_WIN;//光線の数
-	if (WIDTH_WIN / 9 > HEIGHT_WIN / 9)//ゲームウィンドウ内でのマップの全体的なサイズを決定
+	data->ray.number_rays = WIDTH_WIN;
+	if (WIDTH_WIN / 9 > HEIGHT_WIN / 9)
 		data->map.size_map = WIDTH_WIN / 9;
 	else
 		data->map.size_map = HEIGHT_WIN / 9;
-	if (data->map.height_map > data->map.width_map)//マップ内の個々の要素（壁など）のサイズを決定
+	if (data->map.height_map > data->map.width_map)
 		data->map.size_shape = data->map.size_map / data->map.height_map;
 	else
 		data->map.size_shape = data->map.size_map / data->map.width_map;
@@ -54,9 +53,11 @@ void	print_data(t_cub3d *data)
 	// printf("next_hor_inters_x : %f\n", data->render.next_hor_inters_x);
 }
 
-void print_map(char **map) {
+void print_map(char **map)
+{
     int i = 0;
-    while (map[i]) {
+    while (map[i])
+	{
         printf("%s", map[i]);
         i++;
     }
@@ -75,8 +76,6 @@ void	my_draw(void *param)
 	draw_ceil_floor(data);
 	raycasting(data);
 	(mlx_image_to_window(data->mlx, data->map.img_map, 0, 0));
-// 	if (!data->map.img_map)
-// 		return (1);
 }
 
 int	main(int ac, char **av)
@@ -93,9 +92,9 @@ int	main(int ac, char **av)
 	init_data(&data);
 	printf("data init\n");
 	init_textures(data.mlx, &data);
-	// print_world_map(&data, data.map.world_map);
 	printf("textures init\n");
-	data.map.img_map = mlx_new_image(data.mlx, data.map.size_map, data.map.size_map);
+	data.map.img_map = mlx_new_image(data.mlx, data.map.size_map, \
+						data.map.size_map);
 	data.map.img = mlx_new_image(data.mlx, WIDTH_WIN, HEIGHT_WIN);
 	if (!data.map.img || (mlx_image_to_window(data.mlx, data.map.img, 0, 0)))
 		return (1);

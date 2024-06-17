@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 18:12:19 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/13 21:15:49 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/17 23:58:23 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,8 @@ int					ft_isdigit(int c);
 size_t				ft_strlen(const char *s);
 int					ft_atoi(const char *str);
 void				*ft_calloc(size_t count, size_t size);
+void				*ft_realloc(void *ptr, size_t original_size, \
+								size_t new_size);
 char				**ft_split(char const *s, char c);
 char				*ft_strchr(const char *s, int c);
 char				*get_next_line(int fd);

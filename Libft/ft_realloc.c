@@ -6,7 +6,7 @@
 /*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 06:24:53 by hirosuzu          #+#    #+#             */
-/*   Updated: 2023/12/15 08:40:28 by hirosuzu         ###   ########.fr       */
+/*   Updated: 2024/06/17 23:56:13 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	*ft_realloc(void *ptr, size_t original_size, size_t new_size)
 		else
 			ft_memmove(new, ptr, new_size);
 	}
+	free(ptr);
 	return (new);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrinka <hrinka@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hirosuzu <hirosuzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:32:34 by hrinka            #+#    #+#             */
-/*   Updated: 2024/06/16 19:46:06 by hrinka           ###   ########.fr       */
+/*   Updated: 2024/06/18 00:13:11 by hirosuzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	check_walls(t_map *data)
 	int i;
 	int j;
 
-	i = 0;
+	i = 1;
 	while (data->map[i])
 	{
 		j = 0;
@@ -69,7 +69,8 @@ void	check_walls(t_map *data)
 			{
 				if (data->map[i][j] != '1' && data->map[i][j] != ' ')
 				{
-					printf("Error: Map boundaries must be walls or empty.\n");
+					printf("data->map.map[%d][%d] = %c\n", i, j, data->map[i][j]);
+					printf("Error: Map boundaries must be walls or empty1.\n");
 					exit(1);
 				}
 			}
@@ -77,7 +78,8 @@ void	check_walls(t_map *data)
 			{
 				if (data->map[i][j] != '1' && data->map[i][j] != ' ')
 				{
-					printf("Error: Map boundaries must be walls or empty.\n");
+					printf("data->map.map[%d][%d] = %c\n", i, j, data->map[i][j]);
+					printf("Error: Map boundaries must be walls or empty2.\n");
 					exit(1);
 				}
 			}
@@ -117,7 +119,7 @@ void	init_game(char *path_file, t_cub3d *data)
 	sleep(1);
 	duplicate_player(data);
 	check_dimensions(&data->map);
-	get_player_pos(data);
+	get_player_pos(data); 
 	check_walls(&data->map);
 	check_valid_path(data, data->player.i, data->player.j);
 }

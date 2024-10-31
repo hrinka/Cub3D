@@ -1,5 +1,5 @@
 # Cub3D
-The goal of cub3d is to make something using raycasting (like Wolfenstein 3D).
+The goal of cub3d is to make something using raycasting like [Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D#) (1992).
 
 ## Prerequisites
 The project runs using the MiniLibX, a simplified version of the Xlib. It can therefore only run in MacOSX, preferably on a computer with a solid CPU !
